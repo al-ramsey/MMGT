@@ -272,13 +272,58 @@ is an opfibration. (It almost tautologically is).
 \end{itemize}
 
 \begin{definition}[{\autocite{goodfibrations}, Def 2.1}]
-A functor \(p : X \to Y\) between \(\infty\)-categories is an \textit{inner fibration} if for all \(n \geq 2\), all \(0 < k < n\), and any solid arrow commutative square 
+A functor \(p : X \to Y\) between simplicial sets is an \textit{inner fibration} if for all \(n \geq 2\), all \(0 < k < n\), and any solid arrow commutative square 
 \[\begin{tikzcd}
 \Lambda^n_k \arrow[r, ""] \arrow[d, hookrightarrow, swap, ""]  & X \arrow[d, "p"]  \\
 \Delta^n \arrow[r, swap, ""] \arrow[ur, dashrightarrow, swap, ""]  & Y
 \end{tikzcd}\]
 there exists a dotted lift. 
 \end{definition}
+
+The following proposition is stated without proof in Section 2.3 of \autocite{lurie2008higher}.
+
+\begin{proposition}\label{pullback}
+Let \(p : X \to Y\) be an inner fibration, and suppose that the diagram below is a pullback square in \textbf{sSet}.
+\[\begin{tikzcd}
+X' \arrow[r, ""] \arrow[d, swap, "p'"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=10pt}] & X \arrow[d, "p"]  \\
+Y' \arrow[r, swap, ""]  & Y
+\end{tikzcd}\]
+Then \(p'\) is also an inner fibration. 
+\end{proposition}
+
+\begin{ourproof}
+Consider the (commutative) solid arrow diagram below.
+\[\begin{tikzcd}
+\Lambda^n_k \arrow[r, "\lambda"] \arrow[d, hookrightarrow, swap, "\iota"]  & X' \arrow[d, "p'" {yshift=-2pt}] \arrow[r, "f"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=10pt}] & X \arrow[d, "p"]  \\
+\Delta^n \arrow[r, swap, "\delta"] \arrow[urr, dashrightarrow, "\phi" {xshift=-7pt, yshift=-3pt}]  & Y' \arrow[r, swap, "g"] & Y
+\end{tikzcd}\]
+Since \(p\) is a fibration, there exists a dotted lift \(\phi\) of \(g \delta\); that is, \(p\phi = g \delta\) and \(\phi \iota = f \lambda\). Further, since the right square is a pullback diagram, there exists a unique map \(\phi' : \Delta^n \to X'\) making the diagram below commute.
+\[\begin{tikzcd}
+\Delta^n \arrow[rd, dashrightarrow, "\phi'"] \arrow[drr, bend left, "\phi"] \arrow[ddr, swap, bend right, "\delta"] & &  \\
+ & X' \arrow[r, "f"] \arrow[d, swap, "p'"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=10pt}]  & X \arrow[d, "p"] \\
+ & Y' \arrow[r, swap, "g"] & Y
+\end{tikzcd}\]
+It remains to show that the triangle below commutes.
+\[\begin{tikzcd}
+\Lambda^n_k \arrow[r, "\lambda"] \arrow[d, hookrightarrow, swap, "\iota"]  & X' \\
+\Delta^n \arrow[ur, dashrightarrow, swap, "\phi'"]  & 
+\end{tikzcd}\]
+Again, using the universal property of pullbacks, we see that there exist unique dotted maps such that the diagrams below commute.
+\[\begin{tikzcd}
+\Lambda^n_k \arrow[rd, dashrightarrow, ""] \arrow[drr, bend left, "f \lambda"] \arrow[ddr, swap, bend right, "\delta\iota"] & &  \\
+ & X' \arrow[r, "f"] \arrow[d, swap, "p'"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=10pt}] & X \arrow[d, "p"] \\
+ & Y' \arrow[r, swap, "g"] & Y
+\end{tikzcd} \quad \begin{tikzcd}
+\Lambda^n_k \arrow[rd, dashrightarrow, ""] \arrow[drr, bend left, "f\phi'\iota"] \arrow[ddr, swap, bend right, "\delta\iota"] & &  \\
+ & X' \arrow[r, "f"] \arrow[d, swap, "p'"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=10pt}] & X \arrow[d, "p"] \\
+ & Y' \arrow[r, swap, "g"] & Y
+\end{tikzcd}\]
+The maps \(\lambda\) and \(\phi'\iota\) make the left and right diagrams commute respectively. Further, we note that \(f\phi' = \phi\) (by the second diagram) and \(\phi \iota =f \lambda\) (since \(p\) is an inner fibration), so \(f\phi'\iota=f \lambda\). Therefore, the above two diagrams are identical. By the uniqueness property of pullbacks, \(\lambda = \phi'\iota\). \done
+\end{ourproof}
+
+%\begin{corollary}
+%Let \(p : X \to Y\) be an inner fibration. Then each fibre \(X \times_{Y}\{y\}\) is an \(\infty\)-category.
+%\end{corollary}
 
 (Stupid note to self, very obvious but I forget it every now and again):
 \begin{itemize}
@@ -289,7 +334,7 @@ there exists a dotted lift.
 Let \(p : X \to \Delta^0\) be the canonical map, and suppose we have the diagram below, such that the outer square commutes. 
 \[\begin{tikzcd}
 \Lambda^n_k \arrow[r, ""] \arrow[d, hookrightarrow, swap, ""]  & X \arrow[d, "p"]  \\
-\Delta^n \arrow[r, swap, ""] \arrow[ur, dashrightarrow, swap, "\phi"]  & \Delta^0
+\Delta^n \arrow[r, swap, ""] \arrow[ur, dashrightarrow, swap, ""]  & \Delta^0
 \end{tikzcd}\]
 The lower triangle commutes automatically, so the statement that \(p\) is an inner fibration is equivalent to the statement that for all \(n \geq 2\), all \(0 < k < n\), and any map \(\Lambda^n_k \to X\), there exists a dotted lift.
 \[\begin{tikzcd}
@@ -298,7 +343,7 @@ The lower triangle commutes automatically, so the statement that \(p\) is an inn
 \end{tikzcd}\]
 That is, \(X\) is an \(\infty\)-category.
 
-Now, since any element \(y \in Y_0\) can be viewed as a copy of \(\Delta^0\), the above discussion tells us that the fibre \(p^{-1}\{y\}\) is an \(\infty\)-category.
+Now, combining the above argument with \ref{pullback}, we see that for any inner fibration \(p : X \to Y\), each fibre \(X\times_Y \{y\}\) is an \(\infty\)-category. 
 \end{example}
 
 \begin{definition}[{\autocite{goodfibrations}, Def 3.1}]
@@ -319,7 +364,7 @@ a dotted lift exists.
 Let \(p : X \to Y\) be an inner fibration. Then \(p\) is a cocartesian fibration if for any edge \(\phi : y \to y'\) in \(Y_1\), and for every \(x \in X_0\) lying over \(y\), there exists a \(p\)-cocartesian edge \(f : x \to x'\) of \(X\) lying over \(\phi\). 
 \end{definition}
 
-This is a test to check pushing to GitHub is working as expected.
+%This is a test to check pushing to GitHub is working as expected.
 
 %\tableofcontents
 
