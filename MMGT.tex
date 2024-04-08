@@ -285,8 +285,8 @@ The following proposition is stated without proof in Section 2.3 of \autocite{lu
 \begin{proposition}\label{pullback}
 Let \(p : X \to Y\) be an inner fibration, and suppose that the diagram below is a pullback square in \textbf{sSet}.
 \[\begin{tikzcd}
-X' \arrow[r, ""] \arrow[d, swap, "p'"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=10pt}] & X \arrow[d, "p"]  \\
-Y' \arrow[r, swap, ""]  & Y
+X' \arrow[r, "f"] \arrow[d, swap, "p'"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=10pt}] & X \arrow[d, "p"]  \\
+Y' \arrow[r, swap, "g"]  & Y
 \end{tikzcd}\]
 Then \(p'\) is also an inner fibration. 
 \end{proposition}
@@ -294,8 +294,8 @@ Then \(p'\) is also an inner fibration.
 \begin{ourproof}
 Consider the (commutative) solid arrow diagram below.
 \[\begin{tikzcd}
-\Lambda^n_k \arrow[r, "\lambda"] \arrow[d, hookrightarrow, swap, "\iota"]  & X' \arrow[d, "p'" {yshift=-2pt}] \arrow[r, "f"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=10pt}] & X \arrow[d, "p"]  \\
-\Delta^n \arrow[r, swap, "\delta"] \arrow[urr, dashrightarrow, "\phi" {xshift=-7pt, yshift=-3pt}]  & Y' \arrow[r, swap, "g"] & Y
+\Lambda^n_k \arrow[r, "\lambda"] \arrow[d, hookrightarrow, swap, "\iota"]  & X' \arrow[d, "p'" {yshift=-4pt}] \arrow[r, "f"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=12pt}] & X \arrow[d, "p"]  \\
+\Delta^n \arrow[r, swap, "\delta"] \arrow[urr, dashrightarrow, "\phi" {xshift=-8pt, yshift=-4pt}]  & Y' \arrow[r, swap, "g"] & Y
 \end{tikzcd}\]
 Since \(p\) is a fibration, there exists a dotted lift \(\phi\) of \(g \delta\); that is, \(p\phi = g \delta\) and \(\phi \iota = f \lambda\). Further, since the right square is a pullback diagram, there exists a unique map \(\phi' : \Delta^n \to X'\) making the diagram below commute.
 \[\begin{tikzcd}
@@ -318,7 +318,7 @@ Again, using the universal property of pullbacks, we see that there exist unique
  & X' \arrow[r, "f"] \arrow[d, swap, "p'"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=10pt}] & X \arrow[d, "p"] \\
  & Y' \arrow[r, swap, "g"] & Y
 \end{tikzcd}\]
-The maps \(\lambda\) and \(\phi'\iota\) make the left and right diagrams commute respectively. Further, we note that \(f\phi' = \phi\) (by the second diagram) and \(\phi \iota =f \lambda\) (since \(p\) is an inner fibration), so \(f\phi'\iota=f \lambda\). Therefore, the above two diagrams are identical. By the uniqueness property of pullbacks, \(\lambda = \phi'\iota\). \done
+The maps \(\lambda\) and \(\phi'\iota\) make the left and right diagrams commute respectively. Further, we note that \(f\phi' = \phi\) (by the second diagram) and \(\phi \iota =f \lambda\) (since \(p\) is an inner fibration), so \(f\phi'\iota=f \lambda\). Therefore, the above two diagrams are identical. Thus, by the uniqueness property of pullbacks, \(\lambda = \phi'\iota\). \done
 \end{ourproof}
 
 %\begin{corollary}
