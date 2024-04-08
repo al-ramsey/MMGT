@@ -1,0 +1,314 @@
+\documentclass{MetricNotes2023}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{float}
+
+
+%inserting a figure:
+
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=0.5\textwidth]{pfigure_1}
+%\caption{The compound pendulum}
+%\end{figure}
+\setcounter{MaxMatrixCols}{20}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{realhats} %for hats
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+%\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{parskip}
+%\usepackage{mbboard}
+%\usepackage[mtpbbi]{mtpro2}
+\usepackage{mathrsfs}
+
+
+% knots stuff
+
+\usepackage{tikz}
+\usetikzlibrary{cd}
+\usetikzlibrary{shapes,snakes}
+\usepackage{listings}
+
+%\graphicspath{ {figs/} }
+
+\usepackage{cleveref}
+\newcommand{\notimplies}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\implies$}}}}
+
+%keyword: edit
+
+\def\summing{\ensuremath\sum^{\infty}_{n=1}}
+\def\summingo{\ensuremath\sum^{\infty}_{n=0}}
+\def\bb{\ensuremath\mathbb}
+\def\la{\ensuremath\langle}
+\def\ra{\ensuremath\rangle}
+\def\notto{\ensuremath\nrightarrow}
+\def\subq{\ensuremath\subseteq}
+
+\def\met{\ensuremath(X, d)}
+\def\metx{\ensuremath(X, d_X)}
+\def\mety{\ensuremath(Y, d_Y)}
+\def\topox{\ensuremath(X, \mathcal{T}_X)}
+\def\topoy{\ensuremath(Y, \mathcal{T}_Y)}
+
+\def\comp{\ensuremath\mathbb{C}}
+\def\real{\ensuremath\mathbb{R}}
+\def\rat{\ensuremath\mathbb{Q}}
+\def\inte{\ensuremath\mathbb{Z}}
+\def\nat{\ensuremath\mathbb{N}}
+\def\topo{\ensuremath\mathcal{T}}
+
+\def\sequiv{\ensuremath\stackrel{\text{S}}{\sim}}
+\def\rr{\ensuremath\mathcal{R}}
+\def\com{\ensuremath\Delta}
+\def\id{\ensuremath\text{id}}
+\def\hopf{\ensuremath\mathcal{H}}
+\def\psip{\ensuremath\psi_{+}}
+\def\psin{\ensuremath\psi_{-}}
+\def\psipm{\ensuremath\psi_{\pm}}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\str}{str}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\lk}{lk}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Fin}{Fin}
+
+\def\done{\begin{flushright}\(\qed\)\end{flushright}}
+
+\def\mlip{\ensuremath\abs f_\text{Lip}}
+
+
+%\DeclareSymbolFont{bbold}{U}{bbold}{m}{n}
+%\DeclareSymbolFontAlphabet{\mathbbold}{bbold}
+
+% \limits\sum or \sum\limits (one of them) will put the text under the sum
+% [upquote=true] on \begin{lstlisting} will stop backticks being interpreted as quotes
+
+\usepackage[backend=bibtex]{biblatex}
+\usepackage{csquotes}
+\addbibresource{References.bib}
+
+%\author{Ali Ramsey}
+\title{Symmetric Monoidal \(\infty\)-Categories}
+\date{\vspace{-5ex}}
+
+\counterwithin{figure}{section}
+
+
+\begin{document}
+\maketitle
+%\input{titlepage.tex}
+
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} 
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert} 
+\DeclarePairedDelimiter{\ang}{\langle}{\rangle} 
+
+(Assuming I don't change topics, this is a rough idea of what I want to talk about).
+
+Points to cover:
+\begin{itemize}
+\item Grothendieck op-fibrations correspond to pseudofunctors to \textbf{Cat}.
+\item (Usual) definition of symmetric monoidal category and translation into the language of op-fibrations into \(\text{Fin}_*\), running example of \(\textbf{Vect}_k\) with \(\otimes\) or \(\times\). 
+\item Possibly mention swapping out \(\textbf{Fin}_*\) for \(\Delta^{\text{op}}\) gives a monoidal category rather than a symmetric monoidal category (how do we get a braided monoidal category?)
+\item Correspondence of symmetric monoidal functors with morphisms of op-fibrations.
+\item Translation of the above into \(\infty\)-categorical language.
+\item Note: we will call \((\infty, 1)\)-categories \(\infty\)-categories. Sorry Tom, it's just convenient. 
+\item Some examples (nerve of an ordinary symmetric monoidal category, currently trying to find more examples -- many people talk about \textbf{Sp}, but it seems like I'd need a lot of background to understand this).
+\item Possibly generalisation to \(\infty\)-operads, depending on how much the above comes to or if I find anything fun to do with symmetric monoidal \(\infty\)-categories. 
+\item Main references: \autocite{higheralgebra}, \autocite{lurie2008higher}, \autocite{symmetricmonoidal}, \autocite{goodfibrations}, \autocite{groth2015short}.
+\end{itemize}
+
+\section{Pseudofunctors, opfibrations, and symmetric monoidal categories}
+
+\subsection{Pseudofunctors to \textbf{Cat} are Grothendieck opfibrations}
+
+The below gives an example to complement \autocite{symmetricmonoidal}.
+
+Example of a pseudofunctor to \textbf{Cat}: Let \(\mathcal{C}\) be a category with pullbacks. Recall that for a map \(f : C \to D\) in \(\mathcal{C}\), we define a pullback functor 
+\begin{align*}
+f^* : \;\;\;\mathcal{C}_{/D}\;\;\;&\to\;\;\; \mathcal{C}_{/C},\\
+(h : X \to D) &\mapsto (f^*h : P \to C),
+\end{align*}
+ where we have formed a pullback 
+\[\begin{tikzcd}
+P \arrow[r, "h^*f"] \arrow[d, swap, "f^*h"]  & X \arrow[d, "h"]  \\
+C \arrow[r, swap, "f"]  & D
+\end{tikzcd}\]
+in \(\mathscr{C}\). For any map 
+\[\begin{tikzcd}
+X \arrow[rr, "\phi"] \arrow[dr, swap, "h"]  & & X' \arrow[dl, "h'"]  \\
+& D  & 
+\end{tikzcd}\]
+from \(h\) to \(h'\) in \(\mathcal{C}_{/D}\), we define \(f^*\phi\) to be the unique map making the diagram below commute.
+\[\begin{tikzcd}
+X \arrow[rr, "\phi"] \arrow[dr, swap, "h"]  & & X' \arrow[dl, "h'"]  \\
+& D  & \\
+& & & \\
+P \arrow[rr, dashrightarrow, "f^*\phi" {xshift=-10pt}] \arrow[uuu, "h^*f"] \arrow[dr, swap, "f^*h"] & & P' \arrow[uuu, swap, "h'^*f"] \arrow[dl, "f^*h'"]\\
+& C \arrow[uuu, swap, "f" {yshift=8pt}] & 
+\end{tikzcd}\]
+Now, we may wish to define a functor 
+\begin{align*}
+F : \mathcal{C}^{\text{op}} &\to \textbf{Cat},\\
+C &\mapsto \mathcal{C}_{/C},
+\end{align*}
+which sends a map \(f : C \to D\) in \(\mathcal{C}\) to a pullback functor \(f^* : \mathcal{C}_{/D}\to \mathcal{C}_{/C}\). However a problem arises when we check that \(F\) respects composition: suppose \(f : C \to D\), \(g : D \to E\) are maps in \(\mathcal{C}\). Then 
+\[F(g \circ f)(h : X \to E)=(g\circ f)^*h : P \to C,\] corresponding to the pullback
+\[\begin{tikzcd}
+P \arrow[r, "h^*(g\circ f)"] \arrow[d, swap, "(g \circ f)^*h"]  & X \arrow[d, "h"]  \\
+C \arrow[r, swap, "g\circ f"]  & E
+\end{tikzcd}\]
+in \(\mathcal{C}\). On the other hand, 
+\[(F(g)\circ F(f))(h : X \to E)=f^*(g^*h) : P'' \to C,\] which corresponds to the diagram below.
+\[\begin{tikzcd}
+P'' \arrow[r, "(g^*h)^*f"] \arrow[d, swap, "f^*(g^*h)"]  & P' \arrow[r, "h^*g"] \arrow[d, "g^*h"] & X \arrow[d, "h"]  \\
+C \arrow[r, swap, "f"]  & D \arrow[r, swap, "g"] & E
+\end{tikzcd}\]
+The outer square is indeed a pullback square, since the inner two squares are, so we have a unique isomorphism \(P \cong P''\). However, we do not in general have equality. This is because pullbacks are only unique up to unique isomorphism, and in defining a pullback functor we made arbitrary (and not necessarily compatible) choices of \(P, P'\) and \(P''\). Thus, we have not defined a functor \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), rather, we have defined what is known as a \textit{pseudofunctor}. 
+
+(definition of a pseudofunctor)
+
+The above example is one way in which pseudofunctors into \textbf{Cat} naturally arise; another common example is the pseudofunctor
+\begin{align*}
+\textbf{CRing}&\to \textbf{Cat}\\
+R\; &\mapsto R \textbf{-Mod},
+\end{align*}
+which sends a ring homomorphism \(\phi : R \to S\) to the functor \(-\otimes_R S : R \textbf{-Mod}\to S \textbf{-Mod}\) (extension of scalars). However, to give the data of a pseudofunctor \(F : \mathcal{C} \to \textbf{Cat}\), we must specify not only the functions \(\ob(\mathcal{C})\to \ob(\textbf{Cat})\) and \(\Hom_\mathcal{C}(X, Y)\to \Hom_\textbf{Cat}(F(X), F(Y))\) for each \(X, Y \in \mathcal{C}\), but also natural isomorphisms
+\[F(\id_X) \cong \id_{F(X)}, \quad F(g \circ f) \cong F(g) \circ F(f).\]
+
+That's a pain, let's use Grothendieck opfibrations instead. 
+
+The definitions below are from \autocite{goodfibrations}.
+
+\begin{definition}
+Let \(p : X \to \mathcal{C}\) be a functor, and let \(f : c \to d\) be a morphism in \(\mathcal{C}\). A morphism \(\Phi\) in \(X\) lying over \(f\) is \textit{\(p\)-cocartesian} if for any other morphism \(\Psi\) of \(X\) lying over \(f\), there exists a morphism \(I\) of \(X\) such that \(p(I)=\id_d\) and \(\Psi = I \circ \Phi\). 
+\end{definition}
+
+\begin{definition}
+Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck opfibration} if for any morphism of \(\mathcal{C}\) and any lift of its source, there is a \(p\)-cocartesian morphism with that course lying over it.
+\end{definition}
+
+\subsection{Symmetric monoidal categories are special pseudofunctors to \textbf{Cat}}
+
+\subsection{...which are special opfibrations}
+
+The construction below is in \autocite{higheralgebra}. 
+
+Let \((\mathcal{C}, \otimes)\) be a symmetric monoidal category. We define a new category \(\mathcal{C}^\otimes\), whose objects are finite (possibly empty) sequences of objects of \(\mathcal{C}\), denoted by \([C_1, ..., C_n]\). A morphism 
+\[[C_1, ..., C_n]\to [C_1', ..., C_m']\]
+consists of a subset \(S \subq \{1, ..., n\}\), a map of finite sets \(\alpha : S \to \{1, ..., m\}\), and a collection of morphisms \(\{f_j : \bigotimes_{i \in \alpha^{-1}\{j\}} C_i \to C_j'\}_{1 \leq j \leq m}\) in \(\mathcal{C}\). 
+
+For two morphisms \(f : [C_1, ..., C_n]\to [C_1', ..., C_m']\) and \(g : [C_1', ..., C_m']\to[C_1'', ..., C_l'']\), determining two subsets \(S \subq \{1, ..., n\}\) and \(T \subq \{1, ..., m\}\) and maps \(\alpha : S \to \{1, ..., m\}\), \(\beta : T \to \{1, ..., l\}\), the composition \(g \circ f\) is given by the subset \(U = \alpha^{-1}T \subq \{1, ..., n\}\), the map \(\beta \circ \alpha : U \to \{1, ..., l\}\) and the maps 
+\[\left\{\bigotimes_{i \in (\beta \circ \alpha)^{-1}\{k\}} C_i \cong \bigotimes_{j \in \beta^{-1}\{k\}}\bigotimes_{i \in \alpha^{-1}\{j\}}C_i \to \bigotimes_{j \in \beta^{-1}\{k\}}C_j' \to C_k''\right\}_{1 \leq k \leq l}.\] 
+
+For example, let 
+\[f : [C_1, C_2, C_3, C_4]\to [C_1', C_2', C_3']\]
+be a morphism in \(\mathcal{C}^\otimes\) consisting of the subset \(\{1, 2, 3\}\subq \{1, 2, 3, 4\}\), the map
+\begin{align*}
+\alpha : \{1, 2, 3\}&\to \{1, 2, 3\},\\
+1 &\mapsto 1,\\
+2 &\mapsto 2,\\
+3 &\mapsto 3,
+\end{align*}
+and morphisms
+\[f_1 : C_1 \to C_1', \quad f_2 : C_2 \otimes C_3 \to C_2', \quad f_3 : \textbf{1}\to C_3',\]
+and let 
+\[g : [C_1', C_2', C_3'] \to [C_1'', C_2'', C_3'']\]
+be a morphism in \(\mathcal{C}^\otimes\) consisting of the subset \(\{1, 2, 3\}\subq \{1, 2, 3\}\), the map
+\begin{align*}
+\beta : \{1, 2, 3\}&\to \{1, 2, 3\},\\
+1, 2, 3 &\mapsto 3,
+\end{align*}
+and morphisms
+\[g_1 : \textbf{1} \to C_1'', \quad g_2 : \textbf{1} \to C_2'', \quad g_3 : C_1'\otimes C_2'\otimes C_3' \to C_3''.\]
+Then the composition \(g \circ f \) consists of the subset \(\alpha^{-1}\{1, 2, 3\}=\{1, 2, 3\}\subq \{1, 2, 3, 4\}\), the map
+\begin{align*}
+\beta \circ \alpha : \{1, 2, 3\}&\to \{1, 2, 3\},\\
+1, 2, 3 &\mapsto 3,
+\end{align*}
+and the morphisms
+\[(g\circ f)_1 =g_1, \quad (g\circ f)_2 = g_2, \quad (g \circ f)_3 = g_3 \circ (f_1 \otimes f_2 \otimes f_3).\]
+(really?)
+
+(some intuition on this, tensor along the fibres, etc)
+
+Claim: the forgetful functor
+\begin{align*}
+p : \quad\;\mathcal{C}^\otimes \quad\;&\to \;\;\Fin_*,\\
+[C_1, ..., C_n] &\mapsto \;\ang{n}_*
+\end{align*}
+is an opfibration. (It almost tautologically is). 
+
+\subsection{Generalisation to \(\infty\)-categories}
+
+\begin{definition}[{\autocite{goodfibrations}, Def 2.1}]
+A functor \(p : X \to Y\) between \(\infty\)-categories is an \textit{inner fibration} if for all \(n \geq 2\), all \(0 < k < n\), and any solid arrow commutative square 
+\[\begin{tikzcd}
+\Lambda^n_k \arrow[r, ""] \arrow[d, hookrightarrow, swap, ""]  & X \arrow[d, "p"]  \\
+\Delta^n \arrow[r, swap, ""] \arrow[ur, dashrightarrow, swap, ""]  & Y
+\end{tikzcd}\]
+there exists a dotted lift. 
+\end{definition}
+
+(Stupid note to self, very obvious but I forget it every now and again):
+\begin{itemize}
+\item If \(X : \Delta^{\text{op}}\to \textbf{Set}\) is a simplicial set, and \(\Delta^0 : \Delta^{\text{op}}\to \textbf{Set}:= \Hom(-, [0])\), then a map \(F : X \to \Delta^0\) is a natural transformation \((F_n : X_n \to *)_{n \in \nat_0}\). That is, such a natural transformation is a family of maps down to a point. In other words, there's only really one natural transformation, so we really *can* view \(\Delta^0\) as a point. 
+\end{itemize}
+
+\begin{example}[{\autocite{goodfibrations}, Ex 2.2}]
+Let \(p : X \to \Delta^0\) be the canonical map, and suppose we have the diagram below, such that the outer square commutes. 
+\[\begin{tikzcd}
+\Lambda^n_k \arrow[r, ""] \arrow[d, hookrightarrow, swap, ""]  & X \arrow[d, "p"]  \\
+\Delta^n \arrow[r, swap, ""] \arrow[ur, dashrightarrow, swap, "\phi"]  & \Delta^0
+\end{tikzcd}\]
+The lower triangle commutes automatically, so the statement that \(p\) is an inner fibration is equivalent to the statement that for all \(n \geq 2\), all \(0 < k < n\), and any map \(\Lambda^n_k \to X\), there exists a dotted lift.
+\[\begin{tikzcd}
+\Lambda^n_k \arrow[r, ""] \arrow[d, hookrightarrow, swap, ""]  & X  \\
+\Delta^n \arrow[ur, dashrightarrow, swap, ""]  & 
+\end{tikzcd}\]
+That is, \(X\) is an \(\infty\)-category.
+
+Now, since any element \(y \in Y_0\) can be viewed as a copy of \(\Delta^0\), the above discussion tells us that the fibre \(p^{-1}\{y\}\) is an \(\infty\)-category.
+\end{example}
+
+\begin{definition}[{\autocite{goodfibrations}, Def 3.1}]
+Let \(p : X \to Y\) be an inner fibration. An edge \(f : \Delta^1 \to X\) of \(X\) is \(p\)-\textit{cocartesian} if for all \(n \geq 2\), any extension 
+\[\begin{tikzcd}
+\Delta^{\{0, 1\}} \arrow[r, "f"] \arrow[d, hookrightarrow, swap, ""]  & X \\
+\Lambda^n_0 \arrow[ur, swap, "F"]  & 
+\end{tikzcd}\]
+and any solid arrow commutative diagram
+\[\begin{tikzcd}
+\Lambda^n_0 \arrow[r, "F"] \arrow[d, hookrightarrow, swap, ""]  & X \arrow[d, "p"]  \\
+\Delta^n \arrow[r, swap, ""] \arrow[ur, dashrightarrow, ""]  & Y
+\end{tikzcd}\]
+a dotted lift exists. 
+\end{definition}
+
+\begin{definition}
+Let \(p : X \to Y\) be an inner fibration. Then \(p\) is a cocartesian fibration if for any edge \(\phi : y \to y'\) in \(Y_1\), and for every \(x \in X_0\) lying over \(y\), there exists a \(p\)-cocartesian edge \(f : x \to x'\) of \(X\) lying over \(\phi\). 
+\end{definition}
+
+%\tableofcontents
+
+%\pagebreak
+
+\printbibliography
+
+\end{document}
