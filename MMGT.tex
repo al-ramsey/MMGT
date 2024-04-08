@@ -119,24 +119,18 @@
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert} 
 \DeclarePairedDelimiter{\ang}{\langle}{\rangle} 
 
-(Assuming I don't change topics, this is a rough idea of what I want to talk about).
-
-Points to cover:
 \begin{itemize}
-\item Grothendieck op-fibrations correspond to pseudofunctors to \textbf{Cat}.
-\item (Usual) definition of symmetric monoidal category and translation into the language of op-fibrations into \(\text{Fin}_*\), running example of \(\textbf{Vect}_k\) with \(\otimes\) or \(\times\). 
-\item Possibly mention swapping out \(\textbf{Fin}_*\) for \(\Delta^{\text{op}}\) gives a monoidal category rather than a symmetric monoidal category (how do we get a braided monoidal category?)
-\item Correspondence of symmetric monoidal functors with morphisms of op-fibrations.
-\item Translation of the above into \(\infty\)-categorical language.
 \item Note: we will call \((\infty, 1)\)-categories \(\infty\)-categories. Sorry Tom, it's just convenient. 
-\item Some examples (nerve of an ordinary symmetric monoidal category, currently trying to find more examples -- many people talk about \textbf{Sp}, but it seems like I'd need a lot of background to understand this).
-\item Possibly generalisation to \(\infty\)-operads, depending on how much the above comes to or if I find anything fun to do with symmetric monoidal \(\infty\)-categories. 
 \item Main references: \autocite{higheralgebra}, \autocite{lurie2008higher}, \autocite{symmetricmonoidal}, \autocite{goodfibrations}, \autocite{groth2015short}.
 \end{itemize}
 
 \section{Pseudofunctors, opfibrations, and symmetric monoidal categories}
 
 \subsection{Pseudofunctors to \textbf{Cat} are Grothendieck opfibrations}
+
+\begin{itemize}
+\item Grothendieck op-fibrations correspond to pseudofunctors to \textbf{Cat}.
+\end{itemize}
 
 The below gives an example to complement \autocite{symmetricmonoidal}.
 
@@ -206,7 +200,18 @@ Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck
 
 \subsection{Symmetric monoidal categories are special pseudofunctors to \textbf{Cat}}
 
+\begin{itemize}
+\item Now that we know how to move between pseudofunctors to \textbf{Cat} and opfibrations, let's write the data of a symmetric monoidal category as a pseudofunctor to \textbf{Cat}.
+\end{itemize}
+
 \subsection{...which are special opfibrations}
+
+\begin{itemize}
+\item The above implies there's some category \(\mathcal{D}\) such that opfibrations \(\mathcal{D}\to \Fin_*\) are the same as symmetric monoidal categories. Let's see what \(\mathcal{D}\) is.
+\item (Usual) definition of symmetric monoidal category and translation into the language of op-fibrations into \(\text{Fin}_*\), running example of \(\textbf{Vect}_k\) with \(\otimes\) or \(\times\). 
+\item Possibly mention swapping out \(\textbf{Fin}_*\) for \(\Delta^{\text{op}}\) gives a monoidal category rather than a symmetric monoidal category (how do we get a braided monoidal category?)
+\item Correspondence of symmetric monoidal functors with morphisms of opfibrations.
+\end{itemize}
 
 The construction below is in \autocite{higheralgebra}. 
 
@@ -256,6 +261,15 @@ p : \quad\;\mathcal{C}^\otimes \quad\;&\to \;\;\Fin_*,\\
 is an opfibration. (It almost tautologically is). 
 
 \subsection{Generalisation to \(\infty\)-categories}
+
+\begin{itemize}
+\item Translation of the above into \(\infty\)-categorical language.
+\item A functor \(p : D \to C\) between ordinary categories is a Grothendieck opfibration if and only if the induced functor \(N(p) : N(D) \to N(C)\) on nerves is a cocartesian fibration.
+\item Some examples (nerve of an ordinary symmetric monoidal category, currently trying to find more examples -- many people talk about \textbf{Sp}, but it seems like I'd need a lot of background to understand this).
+\item If an \(\infty\)-category has finite (co)products, there is a (co)cartesian monoidal structure on \(\mathcal{C}\). 
+\item Algebra objects in monoidal (\(\infty\)-)categories
+\item Possibly generalisation to \(\infty\)-operads, depending on how much the above comes to or if I find anything fun to do with symmetric monoidal \(\infty\)-categories. 
+\end{itemize}
 
 \begin{definition}[{\autocite{goodfibrations}, Def 2.1}]
 A functor \(p : X \to Y\) between \(\infty\)-categories is an \textit{inner fibration} if for all \(n \geq 2\), all \(0 < k < n\), and any solid arrow commutative square 
