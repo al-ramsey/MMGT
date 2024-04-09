@@ -328,6 +328,7 @@ The maps \(\lambda\) and \(\phi'\iota\) make the left and right diagrams commute
 (Stupid note to self, very obvious but I forget it every now and again):
 \begin{itemize}
 \item If \(X : \Delta^{\text{op}}\to \textbf{Set}\) is a simplicial set, and \(\Delta^0 : \Delta^{\text{op}}\to \textbf{Set}:= \Hom(-, [0])\), then a map \(F : X \to \Delta^0\) is a natural transformation \((F_n : X_n \to *)_{n \in \nat_0}\). That is, such a natural transformation is a family of maps down to a point. In other words, there's only really one natural transformation, so we really *can* view \(\Delta^0\) as a point. 
+\item If \(Y\) is a simplicial set, and \(y \in Y_0\) is a vertex of \(Y\), we can view \(\{y\}\) as a copy of \(\Delta^0\). Why is this? We can view \(\{y\}\) as the constant simplicial set, sending everything to \(y\). Then a natural isomorphism \(\Delta^0 \cong \{y\}\) is a collection of isomorphisms \((* \to *)\), of which there is exactly one. Why is it natural? Well, there's only one map from a one-point set to another one-point set, so the square always commutes. 
 \end{itemize}
 
 \begin{example}[{\autocite{goodfibrations}, Ex 2.2}]
