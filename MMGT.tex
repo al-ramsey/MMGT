@@ -201,19 +201,19 @@ Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck
 And the reconstructed definitions that actually (hopefully) work are below:
 
 \begin{definition}
-Let \(p : X \to \mathcal{C}\) be a functor, and let \(f : c \to d\) be a morphism in \(\mathcal{C}\). A morphism \(\Phi : x \to x'\) in \(X\) lying over \(f\) is \textit{\(p\)-cocartesian} if for any other morphism \(\Psi : x \to x''\) in \(X\), and for any morphism \(g : d \to p(x'')\) in \(\mathcal{C}\) satisfying \(g \circ f = p(\Psi)\), there exists a unique morphism \(I : x' \to x''\) such that \(p(I)=g\) and \(\Psi = I \circ \Phi\).  
+Let \(p : X \to \mathcal{C}\) be a functor, and let \(f : c \to c'\) be a morphism in \(\mathcal{C}\). A morphism \(\phi : x \to x'\) in \(X\) lying over \(f\) is \textit{\(p\)-cocartesian} if for any other morphism \(\psi : x \to x''\) in \(X\), and for any morphism \(g : c' \to p(x'')\) in \(\mathcal{C}\) satisfying \(g \circ f = p(\psi)\), there exists a unique morphism \(\gamma : x' \to x''\) such that \(p(\gamma)=g\) and \(\psi = \gamma \circ \phi\).  
 \end{definition}
 
 \[\begin{tikzcd}
- & & x'' \arrow[dddd, ""] & \\
-x \arrow[r, swap, "\Phi"] \arrow[dd, swap, ""] \arrow[urr, "\forall \Psi"] & x' \arrow[dd, swap, ""] \arrow[ur, dashrightarrow, swap, "\exists! I"] & & X \arrow[dd, swap, "p"] \\
+ & & x'' \arrow[dddd, mapsto, ""] & \\
+x \arrow[r, swap, "\phi"] \arrow[dd, mapsto, swap, ""] \arrow[urr, "\forall \psi"] & x' \arrow[dd, mapsto, swap, ""] \arrow[ur, dashrightarrow, swap, "\exists! \gamma"] & & X \arrow[dd, swap, "p"] \\
 & & & \\
-c \arrow[r, "f"] \arrow[rrd, swap, "p(\Psi)"] & d \arrow[rd, "\forall g"]  & & \mathcal{C}\\
+c \arrow[r, "f"] \arrow[rrd, swap, "p(\psi)"] & c' \arrow[rd, "\forall g"]  & & \mathcal{C}\\
  & & p(x'') & 
 \end{tikzcd}\]
 
 
-\begin{definition}
+\begin{definition}\label{opfibration}
 Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck opfibration} if for any morphism of \(\mathcal{C}\) and any lift of its source, there is a \(p\)-cocartesian morphism with that source lying over it.
 \end{definition}
 
@@ -383,6 +383,88 @@ a dotted lift exists.
 \begin{definition}
 Let \(p : X \to Y\) be an inner fibration. Then \(p\) is a cocartesian fibration if for any edge \(\phi : y \to y'\) in \(Y_1\), and for every \(x \in X_0\) lying over \(y\), there exists a \(p\)-cocartesian edge \(f : x \to x'\) of \(X\) lying over \(\phi\). 
 \end{definition}
+
+The following proposition tells us that the above definition is a reasonable generalisation of \ref{opfibration}.
+
+\begin{proposition}
+Let \(\mathcal{C}\), \(\mathcal{D}\) be categories, and let \(p : \mathcal{C} \to \mathcal{D}\) be a functor between them. Then \(p\) is a Grothendieck opfibration if and only if the induced map \(N(p) : N \mathcal{C} \to N\mathcal{D}\) is a cocartesian fibration of simplicial sets.
+\end{proposition}
+
+\begin{ourproof}
+Let \(f : d \to d'\) be a morphism of \(\mathcal{D}\), and let \(c\) lie over \(d\). 
+
+Suppose \(p\) is a Grothendieck opfibration, let \(F : \Lambda^n_0 \to N \mathcal{C}\) be an extension of \(f\), and let 
+\[\begin{tikzcd}
+\Lambda^n_0 \arrow[r, "F"] \arrow[d, hookrightarrow, swap, ""]  & N\mathcal{C} \arrow[d, "N(p)"]  \\
+\Delta^n \arrow[r, swap, ""]  & N\mathcal{D}
+\end{tikzcd}\]
+be a commutative diagram. If \(n=2\), it follows immediately from the fact that \(p\) is an opfibration that a dotted lift exists. Further, if \(n>3\), there is nothing to check, since an \(n\)-simplex in a category commutes if and only if all of its triangles commute, which is guaranteed for any extension \(F : \Lambda^n_0 \to N \mathcal{C}\). We thus prove the proposition for \(n=3\).
+
+Suppose we have an extension \(F : \Lambda^3_0 \to N \mathcal{C}\) of \(f\); that is, a tetrahedron 
+\[\begin{tikzcd}
+& c \arrow[rr, "\chi"] \arrow[ddl, swap, "\phi"]  & & c''' \\
+& & & \\
+c' \arrow[rr, swap, "\gamma"] \arrow[rrruu, swap, "\gamma'" {xshift=8pt, yshift=6pt}] & & c'' \arrow[ruu, swap, "\gamma''"] \arrow[from=luu, swap, crossing over, "\psi" {xshift=-4pt, yshift=8pt}] & 
+\end{tikzcd}\]
+such that all faces containing the vertex \(c\) commute. Let
+\[\begin{tikzcd}
+& d \arrow[rr, "p(\chi)"] \arrow[ddl, swap, "f"]  & & p(c''') \\
+& & & \\
+d' \arrow[rr, swap, "p(\gamma)"] \arrow[rrruu, swap, "p(\gamma')" {xshift=8pt, yshift=6pt}] & & p(c'') \arrow[ruu, swap, "p(\gamma'')"] \arrow[from=luu, swap, crossing over, "p(\psi)" {xshift=-4pt, yshift=8pt}] & 
+\end{tikzcd}\]
+be a commutative tetrahedron in \(\mathcal{D}\). We claim that the tetrahedron in \(\mathcal{C}\) commutes. First, note that \(\gamma'' \circ \gamma\) is a lift of \(p(\gamma')\), since \(p(\gamma')=p(\gamma'')\circ p(\gamma)=p(\gamma'' \circ \gamma)\). Further,
+\begin{align*}
+(\gamma \circ \gamma'') \circ \phi&=\gamma'' \circ \psi\\
+&= \chi.
+\end{align*}
+Thus, by the uniqueness in the universal property of \(\phi\), we have that \(\gamma'=\gamma'' \circ \gamma\), as required.
+
+Now, suppose \(N(p)\) is a cocartesian fibration. Then there exists a lift \(\phi : c \to c'\) of \(f\), and, in particular, for any diagram
+\[\begin{tikzcd}
+& c \arrow[dl, swap, "\phi"] \arrow[dr, "\psi"]  & \\
+c'  & & c''
+\end{tikzcd}\]
+in \(\mathcal{C}\), and any commutative diagram
+\[\begin{tikzcd}
+& d \arrow[dl, swap, "f"] \arrow[dr, "p(\psi)"]  & \\
+d' \arrow[rr, swap, "g"] & & p(c'')
+\end{tikzcd}\]
+in \(\mathcal{D}\), there exists a map \(\gamma : c'\to c''\) such that \(\gamma\) lies over \(g\) and \(\gamma \circ \phi = \psi\). It remains to show that \(\gamma\) is unique. 
+
+Suppose that there were two maps \(\gamma_1, \gamma_2 : c' \to c''\) lying over \(g\) and satisfying \(\gamma_1\circ\phi = \gamma_2 \circ \phi = \psi\). Then we would have a tetrahedron 
+
+\[\begin{tikzcd}
+& c \arrow[rr, "\psi"] \arrow[ddl, swap, "\phi"]  & & c'' \\
+& & & \\
+c' \arrow[rr, swap, "\gamma_1"] \arrow[rrruu, swap, "\gamma_2" {xshift=8pt, yshift=5pt}] & & c'' \arrow[ruu, swap, "\id"] \arrow[from=luu, swap, crossing over, "\psi" {xshift=-4pt, yshift=8pt}] & 
+\end{tikzcd}\]
+where all faces containing the vertex \(c\) commute. The image of this tetrahedron under \(p\) commutes in \(\mathcal{D}\), so the original tetrahedron must commute in \(\mathcal{C}\); that is, \(\gamma_1=\gamma_2\).\done
+%Let 
+%\[\begin{tikzcd}
+%& c \arrow[dl, swap, "\phi"] \arrow[dr, "\psi"]  & \\
+%c'  & & c''
+%\end{tikzcd}\quad \begin{tikzcd}
+%& c \arrow[dl, swap, "\phi"] \arrow[dr, "\chi"]  & \\
+%c'  & & c'''
+%\end{tikzcd}\]
+%be diagrams in \(\mathcal{C}\), and let
+%\[\begin{tikzcd}
+%& d \arrow[dl, swap, "f"] \arrow[dr, "p(\psi)"]  & \\
+%d' \arrow[rr, swap, "g"] & & p(c'')
+%\end{tikzcd}\quad \begin{tikzcd}
+%& d \arrow[dl, swap, "f"] \arrow[dr, "p(\chi)"]  & \\
+%d' \arrow[rr, swap, "g'"] & & p(c''')
+%\end{tikzcd}\]
+%be commutative diagrams in \(\mathcal{D}\). Then there exist maps \(\gamma : c' \to c''\) and \(\gamma' : c' \to c'''\) lying over \(g\) and \(g'\) respectively, and making the diagrams in \(\mathcal{C}\) commute. Suppose there were two maps \(\gamma'_1 \gamma'_2 : c' \to c'''\) lying over \(g'\) and making the right diagram in \(\mathcal{C}\) commute. 
+
+%Again, since \(N(p)\) is a cocartesian fibration, for any tetrahedron
+%\[\begin{tikzcd}
+%& c \arrow[rr, "\chi"] \arrow[ddl, swap, "\phi"]  & & c''' \\
+%& & & \\
+%c' \arrow[rr, swap, ""] \arrow[rrruu, swap, ""] & & c'' \arrow[ruu, swap, ""] \arrow[from=luu, swap, crossing over, "\psi"] & 
+%\end{tikzcd}\]
+%where all faces containing the vertex \(c\) commute, if image commutes in \(\mathcal{D}\), then the original diagram must commute. 
+\end{ourproof}
 
 %This is a test to check pushing to GitHub is working as expected.
 
