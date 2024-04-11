@@ -88,6 +88,7 @@
 \DeclareMathOperator{\lk}{lk}
 \DeclareMathOperator{\ob}{ob}
 \DeclareMathOperator{\Fin}{Fin}
+\DeclareMathOperator{\Ch}{Ch}
 
 \def\done{\begin{flushright}\vspace{-4.35ex}\(\qed\)\end{flushright}}
 
@@ -121,7 +122,7 @@
 
 \begin{itemize}
 \item Note: we will call \((\infty, 1)\)-categories \(\infty\)-categories. 
-\item Main references: \autocite{higheralgebra}, \autocite{lurie2008higher}, \autocite{symmetricmonoidal}, \autocite{goodfibrations}, \autocite{groth2015short}, \autocite{kerodon}. How does \cite[\href{https://kerodon.net/tag/01UB}{Example 01UB}]{kerodon} work?
+\item Main references: \autocite{higheralgebra}, \autocite{lurie2008higher}, \autocite{symmetricmonoidal}, \autocite{goodfibrations}, \autocite{groth2015short}, \autocite{kerodon}. Referencing Kerodon test: \cite[\href{https://kerodon.net/tag/01UB}{Example 01UB}]{kerodon}. 
 \end{itemize}
 
 \section{Pseudofunctors, opfibrations, and symmetric monoidal categories}
@@ -188,17 +189,17 @@ which sends a ring homomorphism \(\phi : R \to S\) to the functor \(-\otimes_R S
 
 That's a pain, let's use Grothendieck opfibrations instead. 
 
-The definitions below are from \autocite{goodfibrations}.
+%The definitions below are from \autocite{goodfibrations}.
 
-\begin{definition}
-Let \(p : X \to \mathcal{C}\) be a functor, and let \(f : c \to d\) be a morphism in \(\mathcal{C}\). A morphism \(\Phi\) in \(X\) lying over \(f\) is \textit{\(p\)-cocartesian} if for any other morphism \(\Psi\) of \(X\) lying over \(f\), there exists a morphism \(I\) of \(X\) such that \(p(I)=\id_d\) and \(\Psi = I \circ \Phi\). 
-\end{definition}
+%\begin{definition}
+%Let \(p : X \to \mathcal{C}\) be a functor, and let \(f : c \to d\) be a morphism in \(\mathcal{C}\). A morphism \(\Phi\) in \(X\) lying over \(f\) is \textit{\(p\)-cocartesian} if for any other morphism \(\Psi\) of \(X\) lying over \(f\), there exists a morphism \(I\) of \(X\) such that \(p(I)=\id_d\) and \(\Psi = I \circ \Phi\). 
+%\end{definition}
 
-\begin{definition}
-Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck opfibration} if for any morphism of \(\mathcal{C}\) and any lift of its source, there is a \(p\)-cocartesian morphism with that source lying over it.
-\end{definition}
+%\begin{definition}
+%Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck opfibration} if for any morphism of \(\mathcal{C}\) and any lift of its source, there is a \(p\)-cocartesian morphism with that source lying over it.
+%\end{definition}
 
-And the reconstructed definitions that actually (hopefully) work are below:
+%And the reconstructed definitions that actually (hopefully) work are below:
 
 \begin{definition}
 Let \(p : X \to \mathcal{C}\) be a functor, and let \(f : c \to c'\) be a morphism in \(\mathcal{C}\). A morphism \(\phi : x \to x'\) in \(X\) lying over \(f\) is \textit{\(p\)-cocartesian} if for any other morphism \(\psi : x \to x''\) in \(X\), and for any morphism \(g : c' \to p(x'')\) in \(\mathcal{C}\) satisfying \(g \circ f = p(\psi)\), there exists a unique morphism \(\gamma : x' \to x''\) such that \(p(\gamma)=g\) and \(\psi = \gamma \circ \phi\).  
@@ -228,7 +229,7 @@ Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck
 \begin{itemize}
 \item The above implies there's some category \(\mathcal{D}\) such that opfibrations \(\mathcal{D}\to \Fin_*\) are the same as symmetric monoidal categories. Let's see what \(\mathcal{D}\) is.
 \item (Usual) definition of symmetric monoidal category and translation into the language of op-fibrations into \(\text{Fin}_*\), running example of \(\textbf{Vect}_k\) with \(\otimes\) or \(\times\). 
-\item Possibly mention swapping out \(\textbf{Fin}_*\) for \(\Delta^{\text{op}}\) gives a monoidal category rather than a symmetric monoidal category (how do we get a braided monoidal category?)
+\item Possibly mention swapping out \(\textbf{Fin}_*\) for \(\Delta^{\text{op}}\) gives a monoidal category rather than a symmetric monoidal category. (How do we get a braided monoidal category? Apparently there is no base 1-category we can look at opfibrations into, because the correct formulation is with \(E_2\), which has higher homotopy groups on the mapping spaces.)
 \item Correspondence of symmetric monoidal functors with morphisms of opfibrations.
 \end{itemize}
 
@@ -288,6 +289,7 @@ is an opfibration. (It almost tautologically is).
 \item If an \(\infty\)-category has finite (co)products, there is a (co)cartesian monoidal structure on \(\mathcal{C}\). And we would have hoped so, because it's definitely true for \(1\)-categories!
 \item Algebra objects in monoidal (\(\infty\)-)categories
 \item Possibly generalisation to \(\infty\)-operads, depending on how much the above comes to or if I find anything fun to do with symmetric monoidal \(\infty\)-categories. 
+\item Might be cool to try to look at \(E_k\) algebras, to resolve the earlier mystery of how to write braided monoidal categories.
 \end{itemize}
 
 \begin{definition}[{\autocite{goodfibrations}, Def 2.1}]
@@ -298,6 +300,10 @@ A functor \(p : X \to Y\) between simplicial sets is an \textit{inner fibration}
 \end{tikzcd}\]
 there exists a dotted lift. 
 \end{definition}
+
+\begin{example}
+Let \(\mathcal{C}, \mathcal{D}\) be categories, and \(p : \mathcal{C} \to \mathcal{D}\) be a functor between them. Then \(N(p) : N \mathcal{C} \to N \mathcal{D}\) is an inner fibration.
+\end{example}
 
 The following proposition is stated without proof in Section 2.3 of \autocite{lurie2008higher}.
 
@@ -439,6 +445,25 @@ Suppose that there were two maps \(\gamma_1, \gamma_2 : c' \to c''\) lying over 
 c' \arrow[rr, swap, "\gamma_1"] \arrow[rrruu, swap, "\gamma_2" {xshift=8pt, yshift=5pt}] & & c'' \arrow[ruu, swap, "\id"] \arrow[from=luu, swap, crossing over, "\psi" {xshift=-4pt, yshift=8pt}] & 
 \end{tikzcd}\]
 where all faces containing the vertex \(c\) commute. The image of this tetrahedron under \(p\) commutes in \(\mathcal{D}\), so the original tetrahedron must commute in \(\mathcal{C}\); that is, \(\gamma_1=\gamma_2\).\done
+
+\subsection{A nontrivial example}
+
+Throughout this section, \(\mathcal{A}\) is an abelian category, and \(\mathcal{A}_{\text{proj}}\) is the full subcategory of \(\mathcal{A}\) spanned by the projective objects. 
+
+\begin{definition}[{\autocite{higheralgebra}, Def 1.2.3.1}]
+A \textit{chain complex} with values in \(\mathcal{A}\) is a composable sequence of morphisms 
+\[\cdots \to A_2 \xrightarrow{d(2)} A_1 \xrightarrow{d(1)}A_0 \xrightarrow{d(0)} A_{-1}\to \cdots\]
+in \(\mathcal{A}\) such that \(d(n-1)\circ d(n)=0\) for all \(n \in \int\). The collection of chain complexes with values in \(\mathcal{A}\) is an additive category, \(\Ch(\mathcal{A})\). 
+\end{definition}
+
+\begin{definition}[\autocite{higheralgebra}, Not 1.3.2.6]
+\(\Ch^-(\mathcal{A})\) is the full subcategory of \(\Ch(\mathcal{A})\) spanned by those chain complexes \(M_*\) such that \(M_n \simeq 0\) for \(n << 0\). 
+\end{definition}
+
+\begin{definition}[{\autocite{higheralgebra}, Def 1.3.2.7}]
+Suppose \(\mathcal{A}\) has enough projective objects. We let \(\mathcal{D}^-(\mathcal{A})\) denote the \(\infty\)-category \(N_{\text{dg}}(\Ch^-(\mathcal{A}_{\text{proj}}))\). We refer to \(\mathcal{D}^-(\mathcal{A})\) as the \textit{derived \(\infty\)-category of \(\mathcal{A}\)}.  
+\end{definition}
+
 %Let 
 %\[\begin{tikzcd}
 %& c \arrow[dl, swap, "\phi"] \arrow[dr, "\psi"]  & \\
