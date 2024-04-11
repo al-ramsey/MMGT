@@ -120,7 +120,7 @@
 \DeclarePairedDelimiter{\ang}{\langle}{\rangle} 
 
 \begin{itemize}
-\item Note: we will call \((\infty, 1)\)-categories \(\infty\)-categories. Sorry Tom, it's just convenient. 
+\item Note: we will call \((\infty, 1)\)-categories \(\infty\)-categories. 
 \item Main references: \autocite{higheralgebra}, \autocite{lurie2008higher}, \autocite{symmetricmonoidal}, \autocite{goodfibrations}, \autocite{groth2015short}, \autocite{kerodon}. How does \cite[\href{https://kerodon.net/tag/01UB}{Example 01UB}]{kerodon} work?
 \end{itemize}
 
@@ -283,7 +283,7 @@ is an opfibration. (It almost tautologically is).
 
 \begin{itemize}
 \item Translation of the above into \(\infty\)-categorical language.
-\item A functor \(p : D \to C\) between ordinary categories is a Grothendieck opfibration if and only if the induced functor \(N(p) : N(D) \to N(C)\) on nerves is a cocartesian fibration -- I cannot for the life of me prove this, there's possibly a proof in Kerodon (note: Kerodon calls Grothendieck opfibrations ``cocartesian fibrations of categories")...
+\item A functor \(p : D \to C\) between ordinary categories is a Grothendieck opfibration if and only if the induced functor \(N(p) : N(D) \to N(C)\) on nerves is a cocartesian fibration -- I *think* I have finally managed to prove this!
 \item Some examples (nerve of an ordinary symmetric monoidal category, currently trying to find more examples -- many people talk about \textbf{Sp}, but it seems like I'd need a lot of background to understand this).
 \item If an \(\infty\)-category has finite (co)products, there is a (co)cartesian monoidal structure on \(\mathcal{C}\). And we would have hoped so, because it's definitely true for \(1\)-categories!
 \item Algebra objects in monoidal (\(\infty\)-)categories
@@ -384,9 +384,9 @@ a dotted lift exists.
 Let \(p : X \to Y\) be an inner fibration. Then \(p\) is a cocartesian fibration if for any edge \(\phi : y \to y'\) in \(Y_1\), and for every \(x \in X_0\) lying over \(y\), there exists a \(p\)-cocartesian edge \(f : x \to x'\) of \(X\) lying over \(\phi\). 
 \end{definition}
 
-The following proposition tells us that the above definition is a reasonable generalisation of \ref{opfibration}.
+The following proposition tells us that the above definition is a reasonable generalisation of \ref{opfibration}. It is also stated without proof in \autocite{lurie2008higher}, which did not do wonders for my ego. 
 
-\begin{proposition}
+\begin{proposition}[{\autocite{lurie2008higher}, Rmk 2.4.2.2}]
 Let \(\mathcal{C}\), \(\mathcal{D}\) be categories, and let \(p : \mathcal{C} \to \mathcal{D}\) be a functor between them. Then \(p\) is a Grothendieck opfibration if and only if the induced map \(N(p) : N \mathcal{C} \to N\mathcal{D}\) is a cocartesian fibration of simplicial sets.
 \end{proposition}
 
