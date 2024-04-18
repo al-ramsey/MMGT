@@ -175,9 +175,7 @@ in \(\mathcal{C}\). On the other hand,
 P'' \arrow[r, "(g^*h)^*f"] \arrow[d, swap, "f^*(g^*h)"]  & P' \arrow[r, "h^*g"] \arrow[d, "g^*h"] & X \arrow[d, "h"]  \\
 C \arrow[r, swap, "f"]  & D \arrow[r, swap, "g"] & E
 \end{tikzcd}\]
-The outer square is indeed a pullback square, since the inner two squares are, so we have a unique isomorphism \(P \cong P''\). However, we do not in general have equality. This is because pullbacks are only unique up to unique isomorphism, and in defining a pullback functor we made arbitrary (and not necessarily compatible) choices of \(P, P'\) and \(P''\). Thus, we have not defined a functor \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), rather, we have defined what is known as a \textit{pseudofunctor}. 
-
-(definition of a pseudofunctor)
+The outer square is indeed a pullback square, since the inner two squares are, so we have a unique isomorphism \(P \cong P''\). However, we do not in general have equality. This is because pullbacks are only unique up to unique isomorphism, and in defining a pullback functor we made arbitrary (and not necessarily compatible) choices of \(P, P'\) and \(P''\). Thus, we have not defined a functor \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), rather, we have defined what is known as a \textit{pseudofunctor}; that is, a weak functor between 2-categories. 
 
 The above example is one way in which pseudofunctors into \textbf{Cat} naturally arise; another common example is the pseudofunctor
 \begin{align*}
@@ -187,19 +185,9 @@ R\; &\mapsto R \textbf{-Mod},
 which sends a ring homomorphism \(\phi : R \to S\) to the functor \(-\otimes_R S : R \textbf{-Mod}\to S \textbf{-Mod}\) (extension of scalars). However, to give the data of a pseudofunctor \(F : \mathcal{C} \to \textbf{Cat}\), we must specify not only the functions \(\ob(\mathcal{C})\to \ob(\textbf{Cat})\) and \(\Hom_\mathcal{C}(X, Y)\to \Hom_\textbf{Cat}(F(X), F(Y))\) for each \(X, Y \in \mathcal{C}\), but also natural isomorphisms
 \[F(\id_X) \cong \id_{F(X)}, \quad F(g \circ f) \cong F(g) \circ F(f).\]
 
-That's a pain, let's use Grothendieck opfibrations instead. 
+This problem only becomes worse as we consider functors between higher categories...
 
-%The definitions below are from \autocite{goodfibrations}.
-
-%\begin{definition}
-%Let \(p : X \to \mathcal{C}\) be a functor, and let \(f : c \to d\) be a morphism in \(\mathcal{C}\). A morphism \(\Phi\) in \(X\) lying over \(f\) is \textit{\(p\)-cocartesian} if for any other morphism \(\Psi\) of \(X\) lying over \(f\), there exists a morphism \(I\) of \(X\) such that \(p(I)=\id_d\) and \(\Psi = I \circ \Phi\). 
-%\end{definition}
-
-%\begin{definition}
-%Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck opfibration} if for any morphism of \(\mathcal{C}\) and any lift of its source, there is a \(p\)-cocartesian morphism with that source lying over it.
-%\end{definition}
-
-%And the reconstructed definitions that actually (hopefully) work are below:
+Let's use Grothendieck opfibrations instead.
 
 \begin{definition}
 Let \(p : X \to \mathcal{C}\) be a functor, and let \(f : c \to c'\) be a morphism in \(\mathcal{C}\). A morphism \(\phi : x \to x'\) in \(X\) lying over \(f\) is \textit{\(p\)-cocartesian} if for any other morphism \(\psi : x \to x''\) in \(X\), and for any morphism \(g : c' \to p(x'')\) in \(\mathcal{C}\) satisfying \(g \circ f = p(\psi)\), there exists a unique morphism \(\gamma : x' \to x''\) such that \(p(\gamma)=g\) and \(\psi = \gamma \circ \phi\).  
@@ -218,12 +206,25 @@ c \arrow[r, "f"] \arrow[rrd, swap, "p(\psi)"] & c' \arrow[rd, "\forall g"]  & & 
 Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck opfibration} if for any morphism of \(\mathcal{C}\) and any lift of its source, there is a \(p\)-cocartesian morphism with that source lying over it.
 \end{definition}
 
+Slightly confusing thing: Theorem 8.3.1 of \autocite{categorical} says fibrations (not opfibrations) into \(\mathcal{C}\) are "the same" as pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). nLab says the same thing but for pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\). Definition 2.2.7 of \autocite{fibrational_notions} gives the definition of an opfibration \(p : E \to B\) as a fibration \(E^{\text{op}}\to B^{\text{op}}\), which I believe; they also say in Theorem 2.2.3 that pseudofunctors into \(\mathcal{C}\) are the same as pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), which means that opfibrations into \(\mathcal{C}\) (which are fibrations into \(\mathcal{C}^{\text{op}}\)) are pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). Um? 
+
 \subsection{Symmetric monoidal categories are special pseudofunctors to \textbf{Cat}}
 
 \begin{itemize}
 \item Now that we know how to move between pseudofunctors to \textbf{Cat} and opfibrations, let's write the data of a symmetric monoidal category as a pseudofunctor to \textbf{Cat}.
 \end{itemize}
 
+Let \((\mathcal{C}, \otimes)\) be a symmetric monoidal category. Define a pseudofunctor 
+\begin{align*}
+F : \Fin_* &\to \textbf{Cat}\\
+\ang{n}&\mapsto \mathcal{C}^n
+\end{align*}
+Let \(f : \ang{n}\to \ang{m}\) be a morphism in \(\Fin_*\). This induces a morphism 
+\begin{align*}
+f^* : (C_1, ...,C_n) &\mapsto (C_1', ..., C_m'),	
+\end{align*}
+where
+\[C_i' = \bigotimes_{j \in f^{-1}\{i\}}C_j.\]
 \subsection{...which are special opfibrations}
 
 \begin{itemize}
@@ -453,7 +454,7 @@ Throughout this section, \(\mathcal{A}\) is an abelian category, and \(\mathcal{
 \begin{definition}[{\autocite{higheralgebra}, Def 1.2.3.1}]
 A \textit{chain complex} with values in \(\mathcal{A}\) is a composable sequence of morphisms 
 \[\cdots \to A_2 \xrightarrow{d(2)} A_1 \xrightarrow{d(1)}A_0 \xrightarrow{d(0)} A_{-1}\to \cdots\]
-in \(\mathcal{A}\) such that \(d(n-1)\circ d(n)=0\) for all \(n \in \int\). The collection of chain complexes with values in \(\mathcal{A}\) is an additive category, \(\Ch(\mathcal{A})\). 
+in \(\mathcal{A}\) such that \(d(n-1)\circ d(n)=0\) for all \(n \in \inte\). The collection of chain complexes with values in \(\mathcal{A}\) is an additive category, \(\Ch(\mathcal{A})\). 
 \end{definition}
 
 \begin{definition}[\autocite{higheralgebra}, Not 1.3.2.6]
