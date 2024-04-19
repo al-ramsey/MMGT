@@ -206,7 +206,9 @@ c \arrow[r, "f"] \arrow[rrd, swap, "p(\psi)"] & c' \arrow[rd, "\forall g"]  & & 
 Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck opfibration} if for any morphism of \(\mathcal{C}\) and any lift of its source, there is a \(p\)-cocartesian morphism with that source lying over it.
 \end{definition}
 
-Slightly confusing thing: Theorem 8.3.1 of \autocite{categorical} says fibrations (not opfibrations) into \(\mathcal{C}\) are "the same" as pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). nLab says the same thing but for pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\). Definition 2.2.7 of \autocite{fibrational_notions} gives the definition of an opfibration \(p : E \to B\) as a fibration \(E^{\text{op}}\to B^{\text{op}}\), which I believe; they also say in Theorem 2.2.3 that pseudofunctors into \(\mathcal{C}\) are the same as pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), which means that opfibrations into \(\mathcal{C}\) (which are fibrations into \(\mathcal{C}^{\text{op}}\)) are pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). Um? 
+Slightly confusing thing: Theorem 8.3.1 of \autocite{categorical} says fibrations (not opfibrations) into \(\mathcal{C}\) are ``the same" as pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). nLab says the same thing but for pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\). Definition 2.2.7 of \autocite{fibrational_notions} gives the definition of an opfibration \(p : E \to B\) as a fibration \(E^{\text{op}}\to B^{\text{op}}\), which I believe; they also say in Theorem 2.2.3 that pseudofunctors into \(\mathcal{C}\) are the same as pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), which means that opfibrations into \(\mathcal{C}\) (which are fibrations into \(\mathcal{C}^{\text{op}}\)) are pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). Um? 
+
+I don't need to prove the theorem above, but I should at least provide a way to move between the two!
 
 \subsection{Symmetric monoidal categories are special pseudofunctors to \textbf{Cat}}
 
@@ -281,7 +283,7 @@ p : \quad\;\mathcal{C}^\otimes \quad\;&\to \;\;\Fin_*,\\
 \end{align*}
 is an opfibration. (It almost tautologically is). 
 
-\subsection{Generalisation to \(\infty\)-categories}
+\section{Generalisation to \(\infty\)-categories}
 
 \begin{itemize}
 \item Translation of the above into \(\infty\)-categorical language.
@@ -447,7 +449,7 @@ c' \arrow[rr, swap, "\gamma_1"] \arrow[rrruu, swap, "\gamma_2" {xshift=8pt, yshi
 \end{tikzcd}\]
 where all faces containing the vertex \(c\) commute. The image of this tetrahedron under \(p\) commutes in \(\mathcal{D}\), so the original tetrahedron must commute in \(\mathcal{C}\); that is, \(\gamma_1=\gamma_2\).\done
 
-\subsection{A nontrivial example}
+\section{A nontrivial example}
 
 Throughout this section, \(\mathcal{A}\) is an abelian category, and \(\mathcal{A}_{\text{proj}}\) is the full subcategory of \(\mathcal{A}\) spanned by the projective objects. 
 
@@ -497,6 +499,36 @@ Suppose \(\mathcal{A}\) has enough projective objects. We let \(\mathcal{D}^-(\m
 %\tableofcontents
 
 %\pagebreak
+
+\section{Miscellaneous stupid notes}
+
+\subsection{Observations}
+
+Let \(S \in \textbf{Set}\). We define the constant simplicial set 
+\[\begin{tikzcd}
+\overline{S} : \Delta^{\text{op}} \arrow[r, ""]  & \textbf{Set} \\
+\left[n\right] \arrow[r, mapsto, swap, ""] \arrow[d, swap, "f"] & S\\
+\left[m\right] \arrow[r, mapsto, swap, ""] & S \arrow[u, swap, "\id"]
+\end{tikzcd}\]
+
+It's a Kan complex. Why? Well, when you consider \(S\) as a discrete category, and take the nerve of it, you get \(\overline{S}\). You can then either just see than it's a Kan complex (fill the horns with identities) or use the fact that the nerve of a groupoid is a Kan complex. It's surely in \autocite{lurie2008higher} or \autocite{kerodon} somewhere. 
+
+\subsection{Questions}
+
+Questions:
+\begin{itemize}
+\item ...what *is* \(\textbf{Grpd}_\infty\)?
+\end{itemize}
+
+\subsection{Equivalent definitions}
+
+\(\textbf{Grpd}_\infty\) 
+
+An algebraic category
+
+An equivalence of \(\infty\)-categories
+
+
 
 \printbibliography
 
