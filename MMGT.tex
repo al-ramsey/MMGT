@@ -206,9 +206,22 @@ c \arrow[r, "f"] \arrow[rrd, swap, "p(\psi)"] & c' \arrow[rd, "\forall g"]  & & 
 Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck opfibration} if for any morphism of \(\mathcal{C}\) and any lift of its source, there is a \(p\)-cocartesian morphism with that source lying over it.
 \end{definition}
 
+We will usually refer to Grothendieck opfibrations as just opfibrations for brevity. Note that in \autocite{symmetricmonoidal} and \autocite{lurie2008higher} these are referred to as \textit{cocartesian fibrations}; we reserve this term for the \(\infty\)-category analogue. 
+
 Slightly confusing thing: Theorem 8.3.1 of \autocite{categorical} says fibrations (not opfibrations) into \(\mathcal{C}\) are ``the same" as pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). nLab says the same thing but for pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\). Definition 2.2.7 of \autocite{fibrational_notions} gives the definition of an opfibration \(p : E \to B\) as a fibration \(E^{\text{op}}\to B^{\text{op}}\), which I believe; they also say in Theorem 2.2.3 that pseudofunctors into \(\mathcal{C}\) are the same as pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), which means that opfibrations into \(\mathcal{C}\) (which are fibrations into \(\mathcal{C}^{\text{op}}\)) are pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). Um? 
 
 I don't need to prove the theorem above, but I should at least provide a way to move between the two!
+
+The definition below is basically definition 3.3 of \autocite{symmetricmonoidal}.
+
+\begin{definition}
+Let \(p : X \to \mathcal{C}\) and \(q : Y \to \mathcal{C}\) be two Grothendieck opfibrations. A functor \(F : X \to Y\) is a \textit{morphism of opfibrations} from \(p\) to \(q\) if the diagram below commutes,
+\[\begin{tikzcd}
+X \arrow[rd, swap, "p"] \arrow[rr, "F"]  & & Y \arrow[ld, "q"]  \\
+& \mathcal{C}  & 
+\end{tikzcd}\]
+and \(F\) sends \(p\)-cocartesian morphisms to \(q\)-cocartesian morphisms. 
+\end{definition}
 
 \subsection{Symmetric monoidal categories are special pseudofunctors to \textbf{Cat}}
 
@@ -295,6 +308,8 @@ is an opfibration. (It almost tautologically is).
 \item Might be cool to try to look at \(E_k\) algebras, to resolve the earlier mystery of how to write braided monoidal categories.
 \end{itemize}
 
+We first need an \(\infty\)-categorical analogue of Grothendieck opfibrations. We start by requiring that our functor is what's known as an \textit{inner fibration}; there is no \(1\)--categorical analogue of this, since all functors between \(1\)-categories are automatically inner fibrations under the nerve functor (see \ref{ex:inner}). Think of it as a `minimum niceness condition' -- we want the fibres to be \(\infty\)-categories in much the same way as we want the fibres of ordinary functors to be categories themselves. 
+
 \begin{definition}[{\autocite{goodfibrations}, Def 2.1}]
 A functor \(p : X \to Y\) between simplicial sets is an \textit{inner fibration} if for all \(n \geq 2\), all \(0 < k < n\), and any solid arrow commutative square 
 \[\begin{tikzcd}
@@ -304,7 +319,7 @@ A functor \(p : X \to Y\) between simplicial sets is an \textit{inner fibration}
 there exists a dotted lift. 
 \end{definition}
 
-\begin{example}
+\begin{example}\label{ex:inner}
 Let \(\mathcal{C}, \mathcal{D}\) be categories, and \(p : \mathcal{C} \to \mathcal{D}\) be a functor between them. Then \(N(p) : N \mathcal{C} \to N \mathcal{D}\) is an inner fibration.
 \end{example}
 
