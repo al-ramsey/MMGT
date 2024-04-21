@@ -190,6 +190,18 @@ This problem only becomes worse as we consider functors between higher categorie
 Let's use Grothendieck opfibrations instead.
 
 \begin{definition}
+Let \(p : X \to \mathcal{C}\) be a functor, and let \(f : c \to c'\) be a morphism in \(\mathcal{C}\). A morphism \(\phi : x \to x'\) in \(X\) lying over \(f\) is \textit{\(p\)-cartesian} if for any other morphism \(\psi : x'' \to x'\) in \(X\), and for any morphism \(g : p(x'')\to c\) in \(\mathcal{C}\) satisfying \(f \circ g = p(\psi)\), there exists a unique morphism \(\gamma : x'' \to x\) such that \(p(\gamma)=g\) and \(\psi = \gamma \circ \phi\).  
+\end{definition}
+
+\[\begin{tikzcd}
+ & & x'' \arrow[dddd, mapsto, ""] \arrow[dll, swap, "\forall \psi"] \arrow[dl, dashrightarrow, "\exists! \gamma"] & \\
+x \arrow[r, swap, "\phi"] \arrow[dd, mapsto, swap, ""] & x' \arrow[dd, mapsto, swap, ""]  & & X \arrow[dd, swap, "p"] \\
+& & & \\
+c \arrow[r, "f"] & c'  & & \mathcal{C}\\
+ & & p(x'') \arrow[llu, "p(\psi)"] \arrow[lu, swap, "\forall g"] & 
+\end{tikzcd}\]
+
+\begin{definition}
 Let \(p : X \to \mathcal{C}\) be a functor, and let \(f : c \to c'\) be a morphism in \(\mathcal{C}\). A morphism \(\phi : x \to x'\) in \(X\) lying over \(f\) is \textit{\(p\)-cocartesian} if for any other morphism \(\psi : x \to x''\) in \(X\), and for any morphism \(g : c' \to p(x'')\) in \(\mathcal{C}\) satisfying \(g \circ f = p(\psi)\), there exists a unique morphism \(\gamma : x' \to x''\) such that \(p(\gamma)=g\) and \(\psi = \gamma \circ \phi\).  
 \end{definition}
 
@@ -203,10 +215,10 @@ c \arrow[r, "f"] \arrow[rrd, swap, "p(\psi)"] & c' \arrow[rd, "\forall g"]  & & 
 
 
 \begin{definition}\label{opfibration}
-Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck opfibration} if for any morphism of \(\mathcal{C}\) and any lift of its source, there is a \(p\)-cocartesian morphism with that source lying over it.
+Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck fibration} if for any morphism of \(\mathcal{C}\) and any lift of its target, there is a \(p\)-cartesian morphism with that target lying over it. Dually, \(p\) is a \textit{Grothendieck opfibration} if for any morphism of \(\mathcal{C}\) and any lift of its source, there  is a \(p\)-cocartesian morphism with that source lying over it.
 \end{definition}
 
-We will usually refer to Grothendieck opfibrations as just opfibrations for brevity. Note that in \autocite{symmetricmonoidal} and \autocite{lurie2008higher} these are referred to as \textit{cocartesian fibrations}; we reserve this term for the \(\infty\)-category analogue. 
+We will usually refer to Grothendieck (op)fibrations as just (op)fibrations for brevity. Note that in \autocite{symmetricmonoidal} and \autocite{lurie2008higher} these are referred to as \textit{(co)cartesian fibrations}; we reserve this term for the \(\infty\)-category analogue. 
 
 Slightly confusing thing: Theorem 8.3.1 of \autocite{categorical} says fibrations (not opfibrations) into \(\mathcal{C}\) are ``the same" as pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). nLab says the same thing but for pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\). Definition 2.2.7 of \autocite{fibrational_notions} gives the definition of an opfibration \(p : E \to B\) as a fibration \(E^{\text{op}}\to B^{\text{op}}\), which I believe; they also say in Theorem 2.2.3 that pseudofunctors into \(\mathcal{C}\) are the same as pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), which means that opfibrations into \(\mathcal{C}\) (which are fibrations into \(\mathcal{C}^{\text{op}}\)) are pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). Um? 
 
