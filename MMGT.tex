@@ -220,6 +220,10 @@ Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck
 
 We will usually refer to Grothendieck (op)fibrations as just (op)fibrations for brevity. Note that in \autocite{symmetricmonoidal} and \autocite{lurie2008higher} these are referred to as \textit{(co)cartesian fibrations}; we reserve this term for the \(\infty\)-category analogue. 
 
+\begin{remark}
+A functor \(p : X \to \mathcal{C}\) is an opfibration if and only if \(p^{\text{op}} : X^{\text{op}}\to \mathcal{C}^{\text{op}}\) is a fibration. We give the definition of an opfibration explicitly, since we will be working with these more often than fibrations.  
+\end{remark}
+
 Slightly confusing thing: Theorem 8.3.1 of \autocite{categorical} says fibrations (not opfibrations) into \(\mathcal{C}\) are ``the same" as pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). nLab says the same thing but for pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\). Definition 2.2.7 of \autocite{fibrational_notions} gives the definition of an opfibration \(p : E \to B\) as a fibration \(E^{\text{op}}\to B^{\text{op}}\), which I believe; they also say in Theorem 2.2.3 that pseudofunctors into \(\mathcal{C}\) are the same as pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), which means that opfibrations into \(\mathcal{C}\) (which are fibrations into \(\mathcal{C}^{\text{op}}\)) are pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). Um? 
 
 I don't need to prove the theorem above, but I should at least provide a way to move between the two!
