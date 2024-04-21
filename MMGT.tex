@@ -122,7 +122,8 @@
 
 \begin{itemize}
 \item Note: we will call \((\infty, 1)\)-categories \(\infty\)-categories. 
-\item Main references: \autocite{higheralgebra}, \autocite{lurie2008higher}, \autocite{symmetricmonoidal}, \autocite{goodfibrations}, \autocite{groth2015short}, \autocite{kerodon}. Referencing Kerodon test: \cite[\href{https://kerodon.net/tag/01UB}{Example 01UB}]{kerodon}. 
+\item References:
+\autocite{goodfibrations}, \autocite{categorical},  \autocite{symmetricmonoidal}, \autocite{groth2015short}, \autocite{fibrational_notions},  \autocite{higheralgebra}, \autocite{lurie2008higher}, \autocite{kerodon}, \autocite{monoidalgrothendieck}. Referencing Kerodon test: \cite[\href{https://kerodon.net/tag/01UB}{Example 01UB}]{kerodon}. 
 \end{itemize}
 
 \section{Pseudofunctors, opfibrations, and symmetric monoidal categories}
@@ -226,8 +227,6 @@ A functor \(p : X \to \mathcal{C}\) is an opfibration if and only if \(p^{\text{
 
 Slightly confusing thing: Theorem 8.3.1 of \autocite{categorical} says fibrations (not opfibrations) into \(\mathcal{C}\) are ``the same" as pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). nLab says the same thing but for pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\). Definition 2.2.7 of \autocite{fibrational_notions} gives the definition of an opfibration \(p : E \to B\) as a fibration \(E^{\text{op}}\to B^{\text{op}}\), which I believe; they also say in Theorem 2.2.3 that pseudofunctors into \(\mathcal{C}\) are the same as pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), which means that opfibrations into \(\mathcal{C}\) (which are fibrations into \(\mathcal{C}^{\text{op}}\)) are pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). Um? 
 
-I don't need to prove the theorem above, but I should at least provide a way to move between the two!
-
 \autocite{categorical} states the theorem I need nicely, but doesn't give a proof or even a reference for the non-discrete case. Another source is \autocite{monoidalgrothendieck}, which seems to give a proof (though I haven't checked it). 
 
 \begin{theorem}[{\autocite{monoidalgrothendieck}, Thm 2.4}]\label{thm:grothendieck}
@@ -241,22 +240,43 @@ Combining \ref{rem:op} with \ref{thm:grothendieck} gives us an equivalence of \(
 \[\textbf{Psd}[\mathcal{C}, \textbf{Cat}]\simeq \textbf{opFib}(\mathcal{C}).\]
 \end{remark}
 
-The definition below is basically definition 3.3 of \autocite{symmetricmonoidal}.
+Given a pseudofunctor \(\mathcal{C} \to \textbf{Cat}\), how do we get an opfibration \(X \to \mathcal{C}\)?
 
-\begin{definition}
-Let \(p : X \to \mathcal{C}\) and \(q : Y \to \mathcal{C}\) be two Grothendieck opfibrations. A functor \(F : X \to Y\) is a \textit{morphism of opfibrations} from \(p\) to \(q\) if the diagram below commutes,
-\[\begin{tikzcd}
-X \arrow[rd, swap, "p"] \arrow[rr, "F"]  & & Y \arrow[ld, "q"]  \\
-& \mathcal{C}  & 
-\end{tikzcd}\]
-and \(F\) sends \(p\)-cocartesian morphisms to \(q\)-cocartesian morphisms. 
-\end{definition}
+Given an opfibration \(X \to \mathcal{C}\), how do we get a pseudofunctor \(\mathcal{C} \to \textbf{Cat}\)? 
 
 \subsection{Symmetric monoidal categories are special pseudofunctors to \textbf{Cat}}
 
-\begin{itemize}
-\item Now that we know how to move between pseudofunctors to \textbf{Cat} and opfibrations, let's write the data of a symmetric monoidal category as a pseudofunctor to \textbf{Cat}.
-\end{itemize}
+\begin{definition}
+A \textit{symmetric monoidal category} is a category \(\mathcal{C}\) equipped with a bifunctor 
+\[\otimes : \mathcal{C} \times \mathcal{C}\to \mathcal{C},\]
+an object \(\textbf{1}\in \mathcal{C}\), and natural isomorphisms
+\[\alpha : \otimes \circ (\otimes \times \id) \xrightarrow{\sim}\otimes \circ (\id \times \otimes),\quad l : \otimes \circ (\textbf{1}\times \id)\xrightarrow\sim \id, \quad r : \otimes \circ (\id \times \textbf{1})\xrightarrow\sim \id,\]
+\[\tau : \otimes \xrightarrow\sim \sigma \circ \otimes,\]
+where \(\sigma : \mathcal{C} \times \mathcal{C}\) swaps the order of the factors. These isomorphisms are subject to the condition that \(\tau^2=\id\), and that the diagrams below commute.
+\[\begin{tikzcd}
+& ((U\otimes V)\otimes W)\otimes X \arrow[ld, swap, "\alpha_{U\otimes V, W, X}"] \arrow[rd, "\alpha_{U, V, W}\otimes \id_X"]  & \\
+(U\otimes V)\otimes (W\otimes X) \arrow[d, swap, "\alpha_{U, V, W\otimes X}"]  & & (U\otimes(V\otimes W))\otimes X \arrow[d, "\alpha_{U, V\otimes W, X}"]\\
+U\otimes(V\otimes(W\otimes X)) & & U\otimes((V\otimes W)\otimes X) \arrow[ll, "\id\otimes \alpha_{V, W,X}"]
+\end{tikzcd}\]
+
+\[\begin{tikzcd}
+(V\otimes \textbf{1})\otimes W \arrow[rr, "\alpha_{V, \textbf{1}, W}"] \arrow[dr, swap, "r_V\otimes \id_W"]  & & V\otimes (\textbf{1}\otimes W) \arrow[dl, "\id_V\otimes l_W"]  \\
+& V\otimes W & 
+\end{tikzcd} \quad \begin{tikzcd}
+V\otimes \textbf{1} \arrow[rr, "\tau_{V, \textbf{1}}"] \arrow[dr, swap, "r_V"]  & & \textbf{1}\otimes V \arrow[dl, "l_V"]  \\
+& V & 
+\end{tikzcd}\]
+
+\[\begin{tikzcd}
+& (U\otimes V)\otimes W \arrow[ld, swap, "\alpha_{U, V, W}"] \arrow[dr, "\tau_{U, V}\otimes\id_W"]  &  \\
+U\otimes (V\otimes W) \arrow[d, swap, "\tau_{U, V\otimes W}"] & & (V\otimes U)\otimes W \arrow[d, "\alpha_{V, U, W}"]  \\
+(V\otimes W)\otimes U \arrow[dr, swap, "\alpha_{V, W, U}"] & & V\otimes (U\otimes W) \arrow[dl, "\id_V \otimes \tau_{U, W}"]\\
+& V\otimes (W\otimes U) &
+\end{tikzcd}\]
+
+\end{definition}
+
+Now that we know how to move between pseudofunctors to \textbf{Cat} and opfibrations, let's write the data of a symmetric monoidal category as a pseudofunctor to \textbf{Cat}.
 
 Let \((\mathcal{C}, \otimes)\) be a symmetric monoidal category. Define a pseudofunctor 
 \begin{align*}
@@ -269,6 +289,8 @@ f^* : (C_1, ...,C_n) &\mapsto (C_1', ..., C_m'),
 \end{align*}
 where
 \[C_i' = \bigotimes_{j \in f^{-1}\{i\}}C_j.\]
+
+
 \subsection{...which are special opfibrations}
 
 \begin{itemize}
@@ -324,6 +346,17 @@ p : \quad\;\mathcal{C}^\otimes \quad\;&\to \;\;\Fin_*,\\
 [C_1, ..., C_n] &\mapsto \;\ang{n}_*
 \end{align*}
 is an opfibration. (It almost tautologically is). 
+
+The definition below is basically definition 3.3 of \autocite{symmetricmonoidal}.
+
+\begin{definition}
+Let \(p : X \to \mathcal{C}\) and \(q : Y \to \mathcal{C}\) be two Grothendieck opfibrations. A functor \(F : X \to Y\) is a \textit{morphism of opfibrations} from \(p\) to \(q\) if the diagram below commutes,
+\[\begin{tikzcd}
+X \arrow[rd, swap, "p"] \arrow[rr, "F"]  & & Y \arrow[ld, "q"]  \\
+& \mathcal{C}  & 
+\end{tikzcd}\]
+and \(F\) sends \(p\)-cocartesian morphisms to \(q\)-cocartesian morphisms. 
+\end{definition}
 
 \section{Generalisation to \(\infty\)-categories}
 
