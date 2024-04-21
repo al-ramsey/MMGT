@@ -240,7 +240,9 @@ Combining \ref{rem:op} with \ref{thm:grothendieck} gives us an equivalence of \(
 \[\textbf{Psd}[\mathcal{C}, \textbf{Cat}]\simeq \textbf{opFib}(\mathcal{C}).\]
 \end{remark}
 
-Given a pseudofunctor \(\mathcal{C} \to \textbf{Cat}\), how do we get an opfibration \(X \to \mathcal{C}\)?
+We will not prove the theorems above (see \autocite{monoidalgrothendieck} for more details) but we will describe how to pass between the two \(2\)-categories.
+
+Given a pseudofunctor \(\mathcal{C} \to \textbf{Cat}\), we want an opfibration \(X \to \mathcal{C}\). 
 
 Given an opfibration \(X \to \mathcal{C}\), how do we get a pseudofunctor \(\mathcal{C} \to \textbf{Cat}\)? 
 
@@ -350,12 +352,12 @@ is an opfibration. (It almost tautologically is).
 The definition below is basically definition 3.3 of \autocite{symmetricmonoidal}.
 
 \begin{definition}
-Let \(p : X \to \mathcal{C}\) and \(q : Y \to \mathcal{C}\) be two Grothendieck opfibrations. A functor \(F : X \to Y\) is a \textit{morphism of opfibrations} from \(p\) to \(q\) if the diagram below commutes,
+Let \(p : X \to \mathcal{C}\) and \(q : Y \to \mathcal{C}\) be two Grothendieck (op)fibrations. A functor \(F : X \to Y\) is a \textit{morphism of (op)fibrations} from \(p\) to \(q\) if the diagram below commutes,
 \[\begin{tikzcd}
 X \arrow[rd, swap, "p"] \arrow[rr, "F"]  & & Y \arrow[ld, "q"]  \\
 & \mathcal{C}  & 
 \end{tikzcd}\]
-and \(F\) sends \(p\)-cocartesian morphisms to \(q\)-cocartesian morphisms. 
+and \(F\) sends \(p\)-(co)cartesian morphisms to \(q\)-(co)cartesian morphisms. 
 \end{definition}
 
 \section{Generalisation to \(\infty\)-categories}
