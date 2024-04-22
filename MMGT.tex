@@ -242,9 +242,26 @@ Combining \ref{rem:op} with \ref{thm:grothendieck} gives us an equivalence of \(
 
 We will not prove the theorems above (see \autocite{monoidalgrothendieck} for more details) but we will describe how to pass between the two \(2\)-categories. Actually maybe chapter 10 of \autocite{2dimensional} is a better reference, because the functions it talks about actually compose. 
 
-Given a pseudofunctor \(\mathcal{C} \to \textbf{Cat}\), we want an opfibration \(X \to \mathcal{C}\). 
+Let \(F : \mathcal{C}^{\text{op}} \to \textbf{Cat}\) be a pseudofunctor. Define the category \(X\) as follows: the objects of \(X\) are pairs \((c, x)\), with \(c \in \mathcal{C}\), \(x \in F(c)\). A map \((c, x)\to (d, y)\) is a pair \((f, u)\), where \(f : c \to d\) is a morphism in \(\mathcal{C}\), and \(u : x\to (Ff)(y)\) is a morphism in \(F(c)\). For an object \((c, x) \in X\), the identity morphism is given by
+\[(\id_c, F^0_x : x \to F(\id_c)(x)),\]
+where \(F^0\) is the natural isomorphism \(\id_{F(c)} \cong F(\id_c)\). Further, given two maps \((f, u) : (c, x) \to (d, y)\) and \((g, v) : (d, y)\to (e, z)\), their composition \((g,v)\circ (f, u)\) is given by
+\[x \xrightarrow{u} (Ff)(y)\xrightarrow{(Ff)(v)} (Ff \circ Fg)(z) \xrightarrow{(F^2_{f,g})_z} (F(g\circ f))(z),\]
 
-Given an opfibration \(X \to \mathcal{C}\), how do we get a pseudofunctor \(\mathcal{C} \to \textbf{Cat}\)? 
+where \(F^2_{f, g}\) is the natural isomorphism \(Ff \circ Fg \cong F(g \circ f)\) (recall that the domain of \(F\) is \(\mathcal{C}^{\text{op}}\), while \(f, g\) are morphisms in \(\mathcal{C}\)). One can show that the forgetful functor \(X \to \mathcal{C}\) is a fibration over \(\mathcal{C}\). 
+
+Now, let \(p : X\to \mathcal{C}\) be a fibration over \(\mathcal{C}\). Define a pseudofunctor 
+\begin{align*}
+\mathcal{C}^{\text{op}}&\to \textbf{Cat}\\
+c &\mapsto p^{-1}\{c\}.
+\end{align*}
+
+For a map \(c \to d\) in \(\mathcal{C}\), we define a functor 
+\begin{align*}
+p^{-1}\{d\}&\to p^{-1}\{c\},
+\end{align*}
+which sends \(x \in p^{-1}\{d\}\) to a cartesian edge \(f : x' \to x\). It can be shown that these data assemble into a pseudofunctor \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\).
+
+I should dualise the above to make it not ridiculous, but I'm already many circles into op hell now, and it's also past 1am. 
 
 \subsection{Symmetric monoidal categories are special pseudofunctors to \textbf{Cat}}
 
