@@ -381,6 +381,14 @@ p : \quad\;\mathcal{C}^\otimes \quad\;&\to \;\;\Fin_*,\\
 \end{align*}
 is an opfibration. (It almost tautologically is). 
 
+\begin{proposition}[{\autocite{groth2015short}, Prop 4.26}]
+If \((\mathcal{C}, \otimes)\) is a symmetric monoidal category, then the forgetful functor \(p : \mathcal{C}^\otimes \to \textbf{Fin}_*\) given above is an opfibration. Moreover, \(p\) satisfies tha \textit{Segal condition}; that is, the Segal maps 
+\[(\rho_!^1, ..., \rho_!^n) : \mathcal{C}^\otimes_{\ang{n}}\to \mathcal{C}^{\times n}\]
+are equivalences. Conversely any Grothendieck opfibration \(p : \mathcal{C} \to \textbf{Fin}_*\) satisfying the Segal condition gives rise to a symmetric monoidal structure on \(\mathcal{C}_{\ang{1}}\).
+\end{proposition}
+
+We've said that symmetric monoidal categories are special opfibrations to \(\textbf{Fin}_*\). Now, what are symmetric monoidal functors? 
+
 The definition below is basically definition 3.3 of \autocite{symmetricmonoidal}.
 
 \begin{definition}
@@ -559,6 +567,16 @@ Suppose that there were two maps \(\gamma_1, \gamma_2 : c' \to c''\) lying over 
 c' \arrow[rr, swap, "\gamma_1"] \arrow[rrruu, swap, "\gamma_2" {xshift=8pt, yshift=5pt}] & & c'' \arrow[ruu, swap, "\id"] \arrow[from=luu, swap, crossing over, "\psi" {xshift=-4pt, yshift=8pt}] & 
 \end{tikzcd}\]
 where all faces containing the vertex \(c\) commute. The image of this tetrahedron under \(p\) commutes in \(\mathcal{D}\), so the original tetrahedron must commute in \(\mathcal{C}\); that is, \(\gamma_1=\gamma_2\).\done
+
+\begin{definition}[{\autocite{lurie2008higher}, Def 2.0.0.7}]
+A \textit{symmetric monoidal \(\infty\)-category} is a cocartesian fibration of simplicial sets \(p : X^\otimes \to N(\textbf{Fin}_*)\) such that for each \(n \geq 0\), the maps 
+\[\{\rho^i : \ang{n}\to \ang{1}\}_{1 \leq i \leq n}\] 
+induce functors \(\rho^i_! : X^\otimes_{\ang{n}}\to X^\otimes_{\ang{1}}\) which determine an equivalence \(X^\otimes_{\ang{n}}\simeq \left(X^\otimes_{\ang{1}}\right)^n\). 
+\end{definition}
+
+\begin{example}
+Let \((\mathcal{C}, \otimes)\) be a symmetric monoidal category. Then \(p : N(\mathcal{C}^\otimes) \to N(\textbf{Fin}_*)\) is a symmetric monoidal \(\infty\)-category. 
+\end{example}
 
 \section{A nontrivial example}
 
