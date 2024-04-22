@@ -105,7 +105,7 @@
 \usepackage{csquotes}
 \addbibresource{References.bib}
 
-%\author{Ali Ramsey}
+\author{Ali Ramsey}
 \title{Symmetric Monoidal \(\infty\)-Categories}
 \date{\vspace{-5ex}}
 
@@ -120,19 +120,23 @@
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert} 
 \DeclarePairedDelimiter{\ang}{\langle}{\rangle} 
 
+\section{Introduction}
+
 \begin{itemize}
 \item Note: we will call \((\infty, 1)\)-categories \(\infty\)-categories. 
+\item We start with an example of a pseudofunctor to motivate Grothendieck opfibrations. We explain the relationship between pseudofunctors into \textbf{Cat} and Grothendieck opfibrations and how to pass between the two.
+\item We define a symmetric monoidal category \((	\mathcal{C},\otimes)\) in the usual way, then note that it can be written as a pseudofunctor to \textbf{Cat}, and thus as a Grothendieck opfibration. We construct \(\mathcal{C}^\otimes\) using the process outlined earlier, and compare it to Lurie's construction. 
+\item We define symmetric monoidal functors in the usual way, and then construct the correct definitions in terms of morphisms of opfibrations.
+\item We introduce inner fibrations and prove that they are stable under pullbacks and that the fibres are \(\infty\)-categories. We introduce (co)cartesian fibrations and prove that the nerve of a functor is a (co)cartesian fibration if and only if the original functor was an (op)fibration. 
+\item We finally define symmetric monoidal \(\infty\)-categories, and functors between them. We give the trivial examples: the nerve of a symmetric monoidal category, and the symmetric monoidal (co)cartesian structure on an \(\infty\)-category with finite products.
+\item We give an interesting example: the derived category.
 \item References:
 \autocite{goodfibrations}, \autocite{categorical},  \autocite{symmetricmonoidal}, \autocite{groth2015short}, \autocite{2dimensional},  \autocite{fibrational_notions},  \autocite{higheralgebra}, \autocite{lurie2008higher}, \autocite{kerodon}, \autocite{monoidalgrothendieck}. Referencing Kerodon test: \cite[\href{https://kerodon.net/tag/01UB}{Example 01UB}]{kerodon}. 
 \end{itemize}
 
-\section{Pseudofunctors, opfibrations, and symmetric monoidal categories}
+\section{Symmetric monoidal \(1\)-categories}
 
-\subsection{Pseudofunctors to \textbf{Cat} are Grothendieck opfibrations}
-
-\begin{itemize}
-\item Grothendieck op-fibrations correspond to pseudofunctors to \textbf{Cat}.
-\end{itemize}
+\subsection{The Grothendieck construction}
 
 The below gives an example to complement \autocite{symmetricmonoidal}.
 
@@ -278,7 +282,7 @@ It can be shown that these data assemble into a pseudofunctor \(\mathcal{C}^{\te
 
 I should dualise the above to make it not ridiculous, but I'm already so many circles into op hell now, and it's also past 1am. 
 
-\subsection{Symmetric monoidal categories are special pseudofunctors to \textbf{Cat}}
+\subsection{Symmetric monoidal categories and functors}
 
 \begin{definition}
 A \textit{symmetric monoidal category} is a category \(\mathcal{C}\) equipped with a bifunctor 
@@ -324,12 +328,8 @@ f^* : (C_1, ...,C_n) &\mapsto (C_1', ..., C_m'),
 where
 \[C_i' = \bigotimes_{j \in f^{-1}\{i\}}C_j.\]
 
-
-\subsection{...which are special opfibrations}
-
 \begin{itemize}
 \item The above implies there's some category \(\mathcal{D}\) such that opfibrations \(\mathcal{D}\to \Fin_*\) are the same as symmetric monoidal categories. Let's see what \(\mathcal{D}\) is.
-\item (Usual) definition of symmetric monoidal category and translation into the language of op-fibrations into \(\text{Fin}_*\), running example of \(\textbf{Vect}_k\) with \(\otimes\) or \(\times\). 
 \item Possibly mention swapping out \(\textbf{Fin}_*\) for \(\Delta^{\text{op}}\) gives a monoidal category rather than a symmetric monoidal category. (How do we get a braided monoidal category? Apparently there is no base 1-category we can look at opfibrations into, because the correct formulation is with \(E_2\), which has higher homotopy groups on the mapping spaces.)
 \item Correspondence of symmetric monoidal functors with morphisms of opfibrations.
 \end{itemize}
@@ -403,12 +403,9 @@ and \(F\) sends \(p\)-(co)cartesian morphisms to \(q\)-(co)cartesian morphisms.
 \section{Generalisation to \(\infty\)-categories}
 
 \begin{itemize}
-\item Translation of the above into \(\infty\)-categorical language.
-\item A functor \(p : D \to C\) between ordinary categories is a Grothendieck opfibration if and only if the induced functor \(N(p) : N(D) \to N(C)\) on nerves is a cocartesian fibration -- I *think* I have finally managed to prove this!
-\item Some examples (nerve of an ordinary symmetric monoidal category, currently trying to find more examples -- many people talk about \textbf{Sp}, but it seems like I'd need a lot of background to understand this).
+\item A functor \(p : D \to C\) between ordinary categories is a Grothendieck opfibration if and only if the induced functor \(N(p) : N(D) \to N(C)\) on nerves is a cocartesian fibration
+\item Nerve of a symmetric monoidal category
 \item If an \(\infty\)-category has finite (co)products, there is a (co)cartesian monoidal structure on \(\mathcal{C}\). And we would have hoped so, because it's definitely true for \(1\)-categories!
-\item Algebra objects in monoidal (\(\infty\)-)categories
-\item Possibly generalisation to \(\infty\)-operads, depending on how much the above comes to or if I find anything fun to do with symmetric monoidal \(\infty\)-categories. 
 \item Might be cool to try to look at \(E_k\) algebras, to resolve the earlier mystery of how to write braided monoidal categories.
 \end{itemize}
 
