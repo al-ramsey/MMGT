@@ -330,7 +330,7 @@ where
 \item Correspondence of symmetric monoidal functors with morphisms of opfibrations.
 \end{itemize}
 
-The construction below is in \autocite{higheralgebra}. 
+Using the construction above, we can obtain a category \(\mathcal{C}^\otimes\) and an opfibration \(p : \mathcal{C}^\otimes\to \textbf{Fin}_*\) corresponding to the pseudofunctor encoding \((\mathcal{C}, \otimes)\). Unravelling the definitions gives exactly the construction below, in  \autocite{higheralgebra}. 
 
 Let \((\mathcal{C}, \otimes)\) be a symmetric monoidal category. We define a new category \(\mathcal{C}^\otimes\), whose objects are finite (possibly empty) sequences of objects of \(\mathcal{C}\), denoted by \([C_1, ..., C_n]\). A morphism 
 \[[C_1, ..., C_n]\to [C_1', ..., C_m']\]
@@ -382,6 +382,8 @@ If \((\mathcal{C}, \otimes)\) is a symmetric monoidal category, then the forgetf
 \[(\rho_!^1, ..., \rho_!^n) : \mathcal{C}^\otimes_{\ang{n}}\to \mathcal{C}^{\times n}\]
 are equivalences. Conversely any Grothendieck opfibration \(p : \mathcal{C} \to \textbf{Fin}_*\) satisfying the Segal condition gives rise to a symmetric monoidal structure on \(\mathcal{C}_{\ang{1}}\).
 \end{proposition}
+
+Summary: we noticed that pseudofunctors \(\mathcal{D}\to \textbf{Cat}\) are the same thing as opfibrations into \(\mathcal{D}\). We also noticed that symmetric monoidal categories could be written as special pseudofunctors \(\textbf{Fin}_* \to \textbf{Cat}\), which means they are special opfibrations into \(\textbf{Fin}_*\). We looked at the corresponding construction of \(\mathcal{C}^\otimes\). So: symmetric monoidal categories, special opfibrations into \(\textbf{Fin}_*\) and special pseudofunctors \(\textbf{Fin}_* \to \textbf{Cat}\) are all the same thing, we just hide the coherences in the opfibrations. 
 
 We've said that symmetric monoidal categories are special opfibrations to \(\textbf{Fin}_*\). Now, what are symmetric monoidal functors? 
 
