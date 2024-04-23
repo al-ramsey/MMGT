@@ -138,19 +138,19 @@
 
 \subsection{The Grothendieck construction}
 
-The below gives an example to complement \autocite{symmetricmonoidal}.
+(Something about motivation and the pain of higher coherences. Below we give an example to complement \autocite{symmetricmonoidal}.)
 
-Example of a pseudofunctor to \textbf{Cat}: Let \(\mathcal{C}\) be a category with pullbacks. Recall that for a map \(f : C \to D\) in \(\mathcal{C}\), we define a pullback functor 
+Let \(\mathcal{C}\) be a category with pullbacks. Recall that for a map \(f : C \to D\) in \(\mathcal{C}\), we may define a pullback functor 
 \begin{align*}
-f^* : \;\;\;\mathcal{C}_{/D}\;\;\;&\to\;\;\; \mathcal{C}_{/C},\\
+f^* : \qquad\mathcal{C}_{/D}\qquad&\to\qquad \mathcal{C}_{/C},\\
 (h : X \to D) &\mapsto (f^*h : P \to C),
 \end{align*}
  where we have formed a pullback 
 \[\begin{tikzcd}
-P \arrow[r, "h^*f"] \arrow[d, swap, "f^*h"]  & X \arrow[d, "h"]  \\
+P \arrow[r, "h^*f"] \arrow[d, swap, "f^*h"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=10pt}] & X \arrow[d, "h"]  \\
 C \arrow[r, swap, "f"]  & D
 \end{tikzcd}\]
-in \(\mathscr{C}\). For any map 
+in \(\mathcal{C}\). For any map 
 \[\begin{tikzcd}
 X \arrow[rr, "\phi"] \arrow[dr, swap, "h"]  & & X' \arrow[dl, "h'"]  \\
 & D  & 
@@ -171,13 +171,13 @@ C &\mapsto \mathcal{C}_{/C},
 which sends a map \(f : C \to D\) in \(\mathcal{C}\) to a pullback functor \(f^* : \mathcal{C}_{/D}\to \mathcal{C}_{/C}\). However a problem arises when we check that \(F\) respects composition: suppose \(f : C \to D\), \(g : D \to E\) are maps in \(\mathcal{C}\). Then 
 \[F(g \circ f)(h : X \to E)=(g\circ f)^*h : P \to C,\] corresponding to the pullback
 \[\begin{tikzcd}
-P \arrow[r, "h^*(g\circ f)"] \arrow[d, swap, "(g \circ f)^*h"]  & X \arrow[d, "h"]  \\
+P \arrow[r, "h^*(g\circ f)"] \arrow[d, swap, "(g \circ f)^*h"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=10pt}] & X \arrow[d, "h"]  \\
 C \arrow[r, swap, "g\circ f"]  & E
 \end{tikzcd}\]
 in \(\mathcal{C}\). On the other hand, 
 \[(F(g)\circ F(f))(h : X \to E)=f^*(g^*h) : P'' \to C,\] which corresponds to the diagram below.
 \[\begin{tikzcd}
-P'' \arrow[r, "(g^*h)^*f"] \arrow[d, swap, "f^*(g^*h)"]  & P' \arrow[r, "h^*g"] \arrow[d, "g^*h"] & X \arrow[d, "h"]  \\
+P'' \arrow[r, "(g^*h)^*f"] \arrow[d, swap, "f^*(g^*h)"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=10pt}] & P' \arrow[r, "h^*g"] \arrow[d, swap, "g^*h"] \arrow[dr, phantom, "\scalebox{1.3}{$\lrcorner$}" {xshift=-16pt, yshift=10pt}] & X \arrow[d, "h"]  \\
 C \arrow[r, swap, "f"]  & D \arrow[r, swap, "g"] & E
 \end{tikzcd}\]
 The outer square is indeed a pullback square, since the inner two squares are, so we have a unique isomorphism \(P \cong P''\). However, we do not in general have equality. This is because pullbacks are only unique up to unique isomorphism, and in defining a pullback functor we made arbitrary (and not necessarily compatible) choices of \(P, P'\) and \(P''\). Thus, we have not defined a functor \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), rather, we have defined what is known as a \textit{pseudofunctor}; that is, a weak functor between 2-categories. 
@@ -190,14 +190,12 @@ R\; &\mapsto R \textbf{-Mod},
 which sends a ring homomorphism \(\phi : R \to S\) to the functor \(-\otimes_R S : R \textbf{-Mod}\to S \textbf{-Mod}\) (extension of scalars). However, to give the data of a pseudofunctor \(F : \mathcal{C} \to \textbf{Cat}\), we must specify not only the functions \(\ob(\mathcal{C})\to \ob(\textbf{Cat})\) and \(\Hom_\mathcal{C}(X, Y)\to \Hom_\textbf{Cat}(F(X), F(Y))\) for each \(X, Y \in \mathcal{C}\), but also natural isomorphisms
 \[F(\id_X) \cong \id_{F(X)}, \quad F(g \circ f) \cong F(g) \circ F(f).\]
 
-This problem only becomes worse as we consider functors between higher categories...
-
-Let's use Grothendieck opfibrations instead.
+(This problem only becomes worse as we consider functors between higher categories... Let's use Grothendieck opfibrations instead.)
 
 \begin{definition}
 Let \(p : X \to \mathcal{C}\) be a functor, let \(f : c \to c'\) be a morphism in \(\mathcal{C}\), and let \(\phi : x \to x'\) be a morphism in \(X\) lying over \(f\).
 
-\(\phi\) is \textit{\(p\)-cartesian} if for any other morphism \(\psi : x'' \to x'\) in \(X\), and for any morphism \(g : p(x'')\to c\) in \(\mathcal{C}\) satisfying \(f \circ g = p(\psi)\), there exists a unique morphism \(\gamma : x'' \to x\) such that \(p(\gamma)=g\) and \(\psi = \gamma \circ \phi\).
+We say that \(\phi\) is \textit{\(p\)-cartesian} if for any other morphism \(\psi : x'' \to x'\) in \(X\), and for any morphism \(g : p(x'')\to c\) in \(\mathcal{C}\) satisfying \(f \circ g = p(\psi)\), there exists a unique morphism \(\gamma : x'' \to x\) such that \(p(\gamma)=g\) and \(\psi = \gamma \circ \phi\).
 
 Dually, \(\phi\) is \textit{\(p\)-cocartesian} if for any other morphism \(\psi : x \to x''\) in \(X\), and for any morphism \(g : c' \to p(x'')\) in \(\mathcal{C}\) satisfying \(g \circ f = p(\psi)\), there exists a unique morphism \(\gamma : x' \to x''\) such that \(p(\gamma)=g\) and \(\psi = \gamma \circ \phi\).  
 
@@ -229,9 +227,9 @@ We will usually refer to Grothendieck (op)fibrations as just (op)fibrations for 
 A functor \(p : X \to \mathcal{C}\) is an opfibration if and only if \(p^{\text{op}} : X^{\text{op}}\to \mathcal{C}^{\text{op}}\) is a fibration. We give the definition of an opfibration explicitly, since we will be working with these more often than fibrations.  
 \end{remark}
 
-Slightly confusing thing: Theorem 8.3.1 of \autocite{categorical} says fibrations (not opfibrations) into \(\mathcal{C}\) are ``the same" as pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). nLab says the same thing but for pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\). Definition 2.2.7 of \autocite{fibrational_notions} gives the definition of an opfibration \(p : E \to B\) as a fibration \(E^{\text{op}}\to B^{\text{op}}\), which I believe; they also say in Theorem 2.2.3 that pseudofunctors into \(\mathcal{C}\) are the same as pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), which means that opfibrations into \(\mathcal{C}\) (which are fibrations into \(\mathcal{C}^{\text{op}}\)) are pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). Um? 
+(Slightly confusing thing: Theorem 8.3.1 of \autocite{categorical} says fibrations (not opfibrations) into \(\mathcal{C}\) are ``the same" as pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). nLab says the same thing but for pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\). Definition 2.2.7 of \autocite{fibrational_notions} gives the definition of an opfibration \(p : E \to B\) as a fibration \(E^{\text{op}}\to B^{\text{op}}\), which I believe; they also say in Theorem 2.2.3 that pseudofunctors into \(\mathcal{C}\) are the same as pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), which means that opfibrations into \(\mathcal{C}\) (which are fibrations into \(\mathcal{C}^{\text{op}}\)) are pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). Um?)
 
-\autocite{categorical} states the theorem I need nicely, but doesn't give a proof or even a reference for the non-discrete case. Another source is \autocite{monoidalgrothendieck}, which seems to give a proof (though I haven't checked it). 
+(\autocite{categorical} states the theorem I need nicely, but doesn't give a proof or even a reference for the non-discrete case. Another source is \autocite{monoidalgrothendieck}, which seems to give a proof (though I haven't checked it). )
 
 \begin{theorem}[{\autocite{monoidalgrothendieck}, Thm 2.4}]\label{thm:grothendieck}
 There is an equivalence of \(2\)-categories 
@@ -244,43 +242,41 @@ Combining \ref{rem:op} with \ref{thm:grothendieck} gives us an equivalence of \(
 \[\textbf{Psd}[\mathcal{C}, \textbf{Cat}]\simeq \textbf{opFib}(\mathcal{C}).\]
 \end{remark}
 
-We will not prove the theorems above (see \autocite{monoidalgrothendieck} for more details) but we will describe how to pass between the two \(2\)-categories. Actually maybe chapter 10 of \autocite{2dimensional} is a better reference, because the functions it talks about actually compose. 
+We will not prove the theorems above (see \autocite{monoidalgrothendieck} for more details) but we will describe how to pass between the two \(2\)-categories. (Actually maybe chapter 10 of \autocite{2dimensional} is a better reference, because the functions it talks about actually compose.)
 
-Let \(F : \mathcal{C}^{\text{op}} \to \textbf{Cat}\) be a pseudofunctor. Define the category \(X\) as follows: the objects of \(X\) are pairs \((c, x)\), with \(c \in \mathcal{C}\), \(x \in F(c)\). A map \((c, x)\to (d, y)\) is a pair \((f, u)\), where \(f : c \to d\) is a morphism in \(\mathcal{C}\), and \(u : x\to (Ff)(y)\) is a morphism in \(F(c)\). For an object \((c, x) \in X\), the identity morphism is given by
+Let \(F : \mathcal{C} \to \textbf{Cat}\) be a pseudofunctor. Define the category \(X\) as follows: the objects of \(X\) are pairs \((c, x)\), with \(c \in \mathcal{C}\), \(x \in F(c)\). A map \((c, x)\to (d, y)\) is a pair \((f, u)\), where \(f : c \to d\) is a morphism in \(\mathcal{C}\), and \(u : y\to (Ff)(x)\) is a morphism in \(F(d)\). For an object \((c, x) \in X\), the identity morphism is given by
 \[(\id_c, F^0_x : x \to F(\id_c)(x)),\]
-where \(F^0\) is the natural isomorphism \(\id_{F(c)} \cong F(\id_c)\). Further, given two maps \((f, u) : (c, x) \to (d, y)\) and \((g, v) : (d, y)\to (e, z)\), their composition \((g,v)\circ (f, u)\) is given by
-\[x \xrightarrow{u} (Ff)(y)\xrightarrow{(Ff)(v)} (Ff \circ Fg)(z) \xrightarrow{\left(F^2_{f,g}\right)_z} (F(g\circ f))(z),\]
+where \(F^0\) is the natural isomorphism \(\id_{F(c)} \cong F(\id_c)\). Further, given two maps \((f, u) : (c, x) \to (d, y)\) and \((g, v) : (d, y)\to (e, z)\), their composition \((g,v)\circ (f, u)\) is given by \(g \circ f\), together with the map
+\[z \xrightarrow{v} (Fg)(y)\xrightarrow{(Fg)(u)} (Fg \circ Ff)(x) \xrightarrow{\left(F^2_{g,f}\right)_x} (F(g\circ f))(x),\]
 
-where \(F^2_{f, g}\) is the natural isomorphism \(Ff \circ Fg \cong F(g \circ f)\) (recall that the domain of \(F\) is \(\mathcal{C}^{\text{op}}\), while \(f, g\) are morphisms in \(\mathcal{C}\)). One can show that the forgetful functor \(X \to \mathcal{C}\) is a fibration over \(\mathcal{C}\). 
+where \(F^2_{g, f}\) is the natural isomorphism \(Fg \circ Ff \cong F(g \circ f)\). One can show that the forgetful functor \(X \to \mathcal{C}\) is an opfibration over \(\mathcal{C}\). 
 
-Now, let \(p : X\to \mathcal{C}\) be a fibration over \(\mathcal{C}\). Define a pseudofunctor 
+Now, let \(p : X \to \mathcal{C}\) be an opfibration over \(\mathcal{C}\). Define a pseudofunctor 
 \begin{align*}
-\mathcal{C}^{\text{op}}&\to \textbf{Cat}\\
+\mathcal{C}&\to \textbf{Cat}\\
 c &\mapsto p^{-1}\{c\}.
 \end{align*}
 
 For a map \(f : c \to d\) in \(\mathcal{C}\), we define a functor 
 \begin{align*}
-f^* : p^{-1}\{d\}&\to p^{-1}\{c\},
+f_* : p^{-1}\{c\}&\to p^{-1}\{d\},
 \end{align*}
-which sends \(x \in p^{-1}\{d\}\) to a the source \(x'\) of a cartesian edge \(\phi_x : x' \to x\) lying over \(f\). Now, let \(f^*(y)=y'\), with \(\phi_y : y' \to y\), and let \(g : x \to y\) be a morphism in \(p^{-1}\{d\}\) (that is, a morphism in \(X\) lying over \(\id_c\)). Then, since \(\phi_y : y' \to y\) is a cartesian edge, there is a unique lift \(\overline g : x' \to y'\) of \(\id_c\) making the square on the left commute, as shown in the diagram on the right. 
+which sends \(x \in p^{-1}\{c\}\) to the target \(x'\) of a cocartesian edge \(\phi_x : x \to x'\) lying over \(f\). Now, let \(f^*(y)=y'\), with \(\phi_y : y \to y'\), and let \(g : x \to y\) be a morphism in \(p^{-1}\{c\}\) (that is, a morphism in \(X\) lying over \(\id_c\)). Then, since \(\phi_y : y \to y'\) is a cocartesian edge, there is a unique lift \(\overline g : x' \to y'\) of \(\id_d\) making the square on the left commute, as shown in the diagram on the right. 
 
 \[\begin{tikzcd}
-x' \arrow[r, "\phi_x"] \arrow[d, swap, dashrightarrow, "\exists!\overline g"]  & x \arrow[d, "g"]  \\
-y' \arrow[r, swap, "\phi_y"]  & y
+x \arrow[r, "\phi_x"] \arrow[d, swap, dashrightarrow, " g"]  & x' \arrow[d, "\exists!\overline g"]  \\
+y \arrow[r, swap, "\phi_y"]  & y'
 \end{tikzcd}\quad\quad\quad \begin{tikzcd}
- & & x' \arrow[dddd, mapsto, ""] \arrow[dll, dashrightarrow, swap, "\exists !\overline g"] \arrow[dl, "g \circ \phi_x"] \\
-y' \arrow[r, swap, "\phi_y"] \arrow[dd, mapsto, swap, ""] & y \arrow[dd, mapsto, swap, ""]  & \\
+ & & y' \arrow[dddd, mapsto, ""] \\
+x \arrow[urr, "\phi_y \circ g"] \arrow[r, swap, "\phi_x"] \arrow[dd, mapsto, swap, ""] & x' \arrow[ur, dashrightarrow, swap,  "\exists! \overline g"] \arrow[dd, mapsto, swap, ""]  & \\
 & & \\
-c \arrow[r, "f"] & d  & \\
- & & c \arrow[llu, "\id_c"] \arrow[lu, swap, "f"] 
+c \arrow[r, "f"] \arrow[rrd, swap, "f"] & d \arrow[rd, "\id_d"]  & \\
+ & & d
 \end{tikzcd}\]
 
-We thus define \(f^*g=\overline{g}\) in \(p^{-1}\{c\}\). 
+We thus define \(f_*g=\overline{g}\) in \(p^{-1}\{d\}\). 
 
-It can be shown that these data assemble into a pseudofunctor \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\).
-
-I should dualise the above to make it not ridiculous, but I'm already so many circles into op hell now, and it's also past 1am. 
+It can be shown that these data assemble into a pseudofunctor \(\mathcal{C}\to \textbf{Cat}\).
 
 \subsection{Symmetric monoidal categories and functors}
 
@@ -376,8 +372,8 @@ and the morphisms
 
 Claim: the forgetful functor
 \begin{align*}
-p : \quad\;\mathcal{C}^\otimes \quad\;&\to \;\;\Fin_*,\\
-[C_1, ..., C_n] &\mapsto \;\ang{n}_*
+p : \quad\;\;\, \mathcal{C}^\otimes \quad\;\;\,&\to \;\;\Fin_*,\\
+[C_1, ..., C_n] &\mapsto \;\;\ang{n}_*
 \end{align*}
 is an opfibration. (It almost tautologically is). 
 
@@ -638,6 +634,42 @@ Let \(S \in \textbf{Set}\). We define the constant simplicial set
 \end{tikzcd}\]
 
 It's a Kan complex. Why? Well, when you consider \(S\) as a discrete category, and take the nerve of it, you get \(\overline{S}\). You can then either just see than it's a Kan complex (fill the horns with identities) or use the fact that the nerve of a groupoid is a Kan complex. It's surely in \autocite{lurie2008higher} or \autocite{kerodon} somewhere. 
+
+Here are the original definitions of the Grothendieck equivalence (before I dualised them, just in case I did it wrong). 
+
+Let \(F : \mathcal{C}^{\text{op}} \to \textbf{Cat}\) be a pseudofunctor. Define the category \(X\) as follows: the objects of \(X\) are pairs \((c, x)\), with \(c \in \mathcal{C}\), \(x \in F(c)\). A map \((c, x)\to (d, y)\) is a pair \((f, u)\), where \(f : c \to d\) is a morphism in \(\mathcal{C}\), and \(u : x\to (Ff)(y)\) is a morphism in \(F(c)\). For an object \((c, x) \in X\), the identity morphism is given by
+\[(\id_c, F^0_x : x \to F(\id_c)(x)),\]
+where \(F^0\) is the natural isomorphism \(\id_{F(c)} \cong F(\id_c)\). Further, given two maps \((f, u) : (c, x) \to (d, y)\) and \((g, v) : (d, y)\to (e, z)\), their composition \((g,v)\circ (f, u)\) is given by \(g \circ f\), together with the map
+\[x \xrightarrow{u} (Ff)(y)\xrightarrow{(Ff)(v)} (Ff \circ Fg)(z) \xrightarrow{\left(F^2_{f,g}\right)_z} (F(g\circ f))(z),\]
+
+where \(F^2_{f, g}\) is the natural isomorphism \(Ff \circ Fg \cong F(g \circ f)\) (recall that the domain of \(F\) is \(\mathcal{C}^{\text{op}}\), while \(f, g\) are morphisms in \(\mathcal{C}\)). One can show that the forgetful functor \(X \to \mathcal{C}\) is a fibration over \(\mathcal{C}\). 
+
+Now, let \(p : X\to \mathcal{C}\) be a fibration over \(\mathcal{C}\). Define a pseudofunctor 
+\begin{align*}
+\mathcal{C}^{\text{op}}&\to \textbf{Cat}\\
+c &\mapsto p^{-1}\{c\}.
+\end{align*}
+
+For a map \(f : c \to d\) in \(\mathcal{C}\), we define a functor 
+\begin{align*}
+f^* : p^{-1}\{d\}&\to p^{-1}\{c\},
+\end{align*}
+which sends \(x \in p^{-1}\{d\}\) to a the source \(x'\) of a cartesian edge \(\phi_x : x' \to x\) lying over \(f\). Now, let \(f^*(y)=y'\), with \(\phi_y : y' \to y\), and let \(g : x \to y\) be a morphism in \(p^{-1}\{d\}\) (that is, a morphism in \(X\) lying over \(\id_c\)). Then, since \(\phi_y : y' \to y\) is a cartesian edge, there is a unique lift \(\overline g : x' \to y'\) of \(\id_c\) making the square on the left commute, as shown in the diagram on the right. 
+
+\[\begin{tikzcd}
+x' \arrow[r, "\phi_x"] \arrow[d, swap, dashrightarrow, "\exists!\overline g"]  & x \arrow[d, "g"]  \\
+y' \arrow[r, swap, "\phi_y"]  & y
+\end{tikzcd}\quad\quad\quad \begin{tikzcd}
+ & & x' \arrow[dddd, mapsto, ""] \arrow[dll, dashrightarrow, swap, "\exists !\overline g"] \arrow[dl, "g \circ \phi_x"] \\
+y' \arrow[r, swap, "\phi_y"] \arrow[dd, mapsto, swap, ""] & y \arrow[dd, mapsto, swap, ""]  & \\
+& & \\
+c \arrow[r, "f"] & d  & \\
+ & & c \arrow[llu, "\id_c"] \arrow[lu, swap, "f"] 
+\end{tikzcd}\]
+
+We thus define \(f^*g=\overline{g}\) in \(p^{-1}\{c\}\). 
+
+It can be shown that these data assemble into a pseudofunctor \(\mathcal{C}\to \textbf{Cat}\).
 
 \subsection{Questions}
 
