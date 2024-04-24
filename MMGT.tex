@@ -244,12 +244,14 @@ Combining \ref{rem:op} with \ref{thm:grothendieck} gives us an equivalence of \(
 
 We will not prove the theorems above (see \autocite{monoidalgrothendieck} for more details) but we will describe how to pass between the two \(2\)-categories. (Actually maybe chapter 10 of \autocite{2dimensional} is a better reference, because the functions it talks about actually compose.)
 
-Let \(F : \mathcal{C} \to \textbf{Cat}\) be a pseudofunctor. Define the category \(X\) as follows: the objects of \(X\) are pairs \((c, x)\), with \(c \in \mathcal{C}\), \(x \in F(c)\). A map \((c, x)\to (d, y)\) is a pair \((f, u)\), where \(f : c \to d\) is a morphism in \(\mathcal{C}\), and \(u : y\to (Ff)(x)\) is a morphism in \(F(d)\). For an object \((c, x) \in X\), the identity morphism is given by
-\[(\id_c, F^0_x : x \to F(\id_c)(x)),\]
-where \(F^0\) is the natural isomorphism \(\id_{F(c)} \cong F(\id_c)\). Further, given two maps \((f, u) : (c, x) \to (d, y)\) and \((g, v) : (d, y)\to (e, z)\), their composition \((g,v)\circ (f, u)\) is given by \(g \circ f\), together with the map
-\[z \xrightarrow{v} (Fg)(y)\xrightarrow{(Fg)(u)} (Fg \circ Ff)(x) \xrightarrow{\left(F^2_{g,f}\right)_x} (F(g\circ f))(x),\]
+We dualise\footnote{The construction referenced builds a fibration \(X\to \mathcal{C}\) from a pseudofunctor \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\); it is indeed possible to use this with \((\mathcal{C}^{\text{op}})^{\text{op}}\) to find a fibration \(\tilde X \to \mathcal{C}^{\text{op}}\) and hence an opfibration \(\tilde X^{\text{op}}\to \mathcal{C}\), but this is \textit{not} the same as the construction we give above. Welcome to op hell.} the construction in \autocite{2dimensional}.
 
-where \(F^2_{g, f}\) is the natural isomorphism \(Fg \circ Ff \cong F(g \circ f)\). One can show that the forgetful functor \(X \to \mathcal{C}\) is an opfibration over \(\mathcal{C}\). 
+Let \(F : \mathcal{C} \to \textbf{Cat}\) be a pseudofunctor. Define the category \(X\) as follows: the objects of \(X\) are pairs \((c, x)\), with \(c \in \mathcal{C}\), \(x \in F(c)\). A map \((c, x)\to (d, y)\) is a pair \((f, u)\), where \(f : c \to d\) is a morphism in \(\mathcal{C}\), and \(u : (Ff)(x)\to y\) is a morphism in \(F(d)\). For an object \((c, x) \in X\), the identity morphism is given by
+\[(\id_c, F^0_x : F(\id_c)(x)\to x),\]
+where \(F^0\) is the natural isomorphism \( F(\id_c)\cong \id_{F(c)} \). Further, given two maps \((f, u) : (c, x) \to (d, y)\) and \((g, v) : (d, y)\to (e, z)\), their composition \((g,v)\circ (f, u)\) is given by \(g \circ f\), together with the map
+\[(F(g\circ f))(x) \xrightarrow{\left(F^2_{g,f}\right)_x} (Fg \circ Ff)(x) \xrightarrow{(Fg)(u)} (Fg)(y)\xrightarrow{v} z,\]
+
+where \(F^2_{g, f}\) is the natural isomorphism \( F(g \circ f)\cong Fg \circ Ff\). One can show that the forgetful functor \(X \to \mathcal{C}\) is an opfibration over \(\mathcal{C}\). 
 
 Now, let \(p : X \to \mathcal{C}\) be an opfibration over \(\mathcal{C}\). Define a pseudofunctor 
 \begin{align*}
@@ -315,7 +317,7 @@ Now that we know how to move between pseudofunctors to \textbf{Cat} and opfibrat
 Let \((\mathcal{C}, \otimes)\) be a symmetric monoidal category. Define a pseudofunctor 
 \begin{align*}
 F : \Fin_* &\to \textbf{Cat}\\
-\ang{n}&\mapsto \mathcal{C}^n
+\ang{n}&\mapsto \mathcal{C}^{\times n}
 \end{align*}
 Let \(f : \ang{n}\to \ang{m}\) be a morphism in \(\Fin_*\). This induces a morphism 
 \begin{align*}
@@ -378,7 +380,7 @@ p : \quad\;\;\, \mathcal{C}^\otimes \quad\;\;\,&\to \;\;\Fin_*,\\
 is an opfibration. (It almost tautologically is). 
 
 \begin{proposition}[{\autocite{groth2015short}, Prop 4.26}]
-If \((\mathcal{C}, \otimes)\) is a symmetric monoidal category, then the forgetful functor \(p : \mathcal{C}^\otimes \to \textbf{Fin}_*\) given above is an opfibration. Moreover, \(p\) satisfies tha \textit{Segal condition}; that is, the Segal maps 
+If \((\mathcal{C}, \otimes)\) is a symmetric monoidal category, then the forgetful functor \(p : \mathcal{C}^\otimes \to \textbf{Fin}_*\) given above is an opfibration. Moreover, \(p\) satisfies the \textit{Segal condition}; that is, the Segal maps 
 \[(\rho_!^1, ..., \rho_!^n) : \mathcal{C}^\otimes_{\ang{n}}\to \mathcal{C}^{\times n}\]
 are equivalences. Conversely any Grothendieck opfibration \(p : \mathcal{C} \to \textbf{Fin}_*\) satisfying the Segal condition gives rise to a symmetric monoidal structure on \(\mathcal{C}_{\ang{1}}\).
 \end{proposition}
@@ -673,6 +675,15 @@ We thus define \(f^*g=\overline{g}\) in \(p^{-1}\{c\}\).
 
 It can be shown that these data assemble into a pseudofunctor \(\mathcal{C}\to \textbf{Cat}\).
 
+Here is the dualisation of the forward direction, which I think was correct, but actually not what I wanted:
+
+Let \(F : \mathcal{C} \to \textbf{Cat}\) be a pseudofunctor. Define the category \(X\) as follows: the objects of \(X\) are pairs \((c, x)\), with \(c \in \mathcal{C}\), \(x \in F(c)\). A map \((c, x)\to (d, y)\) is a pair \((f, u)\), where \(f : c \to d\) is a morphism in \(\mathcal{C}\), and \(u : y\to (Ff)(x)\) is a morphism in \(F(d)\). For an object \((c, x) \in X\), the identity morphism is given by
+\[(\id_c, F^0_x : x \to F(\id_c)(x)),\]
+where \(F^0\) is the natural isomorphism \(\id_{F(c)} \cong F(\id_c)\). Further, given two maps \((f, u) : (c, x) \to (d, y)\) and \((g, v) : (d, y)\to (e, z)\), their composition \((g,v)\circ (f, u)\) is given by \(g \circ f\), together with the map
+\[z \xrightarrow{v} (Fg)(y)\xrightarrow{(Fg)(u)} (Fg \circ Ff)(x) \xrightarrow{\left(F^2_{g,f}\right)_x} (F(g\circ f))(x),\]
+
+where \(F^2_{g, f}\) is the natural isomorphism \(Fg \circ Ff \cong F(g \circ f)\). One can show that the forgetful functor \(X \to \mathcal{C}\) is an opfibration over \(\mathcal{C}\). 
+
 \subsection{Questions}
 
 Questions:
@@ -687,7 +698,6 @@ Questions:
 An algebraic category
 
 An equivalence of \(\infty\)-categories
-
 
 
 \printbibliography
