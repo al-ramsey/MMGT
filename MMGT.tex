@@ -110,7 +110,7 @@
 \date{\vspace{-5ex}}
 
 \counterwithin{figure}{section}
-
+\newcommand{\circo}{~\raisebox{1pt}{\tikz \draw[line width=0.6pt] circle(1.1pt);}~}
 
 \begin{document}
 \maketitle
@@ -227,9 +227,7 @@ We will usually refer to Grothendieck (op)fibrations as just (op)fibrations for 
 A functor \(p : X \to \mathcal{C}\) is an opfibration if and only if \(p^{\text{op}} : X^{\text{op}}\to \mathcal{C}^{\text{op}}\) is a fibration. We give the definition of an opfibration explicitly, since we will be working with these more often than fibrations.  
 \end{remark}
 
-(Slightly confusing thing: Theorem 8.3.1 of \autocite{categorical} says fibrations (not opfibrations) into \(\mathcal{C}\) are ``the same" as pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). nLab says the same thing but for pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\). Definition 2.2.7 of \autocite{fibrational_notions} gives the definition of an opfibration \(p : E \to B\) as a fibration \(E^{\text{op}}\to B^{\text{op}}\), which I believe; they also say in Theorem 2.2.3 that pseudofunctors into \(\mathcal{C}\) are the same as pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), which means that opfibrations into \(\mathcal{C}\) (which are fibrations into \(\mathcal{C}^{\text{op}}\)) are pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). Um?)
-
-(\autocite{categorical} states the theorem I need nicely, but doesn't give a proof or even a reference for the non-discrete case. Another source is \autocite{monoidalgrothendieck}, which seems to give a proof (though I haven't checked it). )
+%(Slightly confusing thing: Theorem 8.3.1 of \autocite{categorical} says fibrations (not opfibrations) into \(\mathcal{C}\) are ``the same" as pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). nLab says the same thing but for pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\). Definition 2.2.7 of \autocite{fibrational_notions} gives the definition of an opfibration \(p : E \to B\) as a fibration \(E^{\text{op}}\to B^{\text{op}}\), which I believe; they also say in Theorem 2.2.3 that pseudofunctors into \(\mathcal{C}\) are the same as pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), which means that opfibrations into \(\mathcal{C}\) (which are fibrations into \(\mathcal{C}^{\text{op}}\)) are pseudofunctors \(\mathcal{C} \to \textbf{Cat}\). Um?)
 
 \begin{theorem}[{\autocite{monoidalgrothendieck}, Thm 2.4}]\label{thm:grothendieck}
 There is an equivalence of \(2\)-categories 
@@ -237,14 +235,12 @@ There is an equivalence of \(2\)-categories
 where \(\textbf{Psd}[\mathcal{C}^{\text{op}}, \textbf{Cat}]\) is the \(2\)-category of pseudofunctors \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), and \(\textbf{Fib}(\mathcal{C})\hookrightarrow \textbf{Cat}_{/\mathcal{C}}\) is the \(2\)-category of fibrations into \(\mathcal{C}\). 
 \end{theorem}
 
-\begin{remark}
-Combining \ref{rem:op} with \ref{thm:grothendieck} gives us an equivalence of \(2\)-categories
-\[\textbf{Psd}[\mathcal{C}, \textbf{Cat}]\simeq \textbf{opFib}(\mathcal{C}).\]
+\begin{remark}\label{rem:ophell}
+Combining \ref{rem:op} with \ref{thm:grothendieck} gives us a chain of equivalences
+\[\textbf{Psd}[\mathcal{C}, \textbf{Cat}]\xrightarrow{\text{op} \circo} \textbf{Psd}[\mathcal{C}, \textbf{Cat}]\simeq \textbf{Psd}[(\mathcal{C}^{\text{op}})^{\text{op}}, \textbf{Cat}] \simeq \textbf{Fib}(\mathcal{C}^{\text{op}}) \simeq \textbf{opFib}(\mathcal{C}).\]
 \end{remark}
 
-We will not prove the theorems above (see \autocite{monoidalgrothendieck} for more details) but we will describe how to pass between the two \(2\)-categories. (Actually maybe chapter 10 of \autocite{2dimensional} is a better reference, because the functions it talks about actually compose.)
-
-We dualise\footnote{The construction referenced builds a fibration \(X\to \mathcal{C}\) from a pseudofunctor \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\); it is indeed possible to use this with \((\mathcal{C}^{\text{op}})^{\text{op}}\) to find a fibration \(\tilde X \to \mathcal{C}^{\text{op}}\) and hence an opfibration \(\tilde X^{\text{op}}\to \mathcal{C}\), but this is \textit{not} the same as the construction we give above. Welcome to op hell.} the construction in \autocite{2dimensional}.
+We will not prove the theorem above (see \autocite{monoidalgrothendieck} or \autocite{2dimensional} for more details) but we will describe how to pass between \(\textbf{Psd}[\mathcal{C}, \textbf{Cat}]\) and \(\textbf{opFib}(\mathcal{C})\) by dualising\footnote{We use the equivalences in \ref{rem:ophell}; in particular we postcompose with the equivalence \(\text{op} : \textbf{Cat}\to \textbf{Cat}\). This is to ensure that we can define the pseudofunctor \(F : \mathcal{C} \to \textbf{Cat}\) to send \(c\in \mathcal{C}\) to \(p^{-1}\{c\}\) rather than \((p^{\text{op}})^{-1}\{c\}\simeq (p^{-1}\{c\})^{\text{op}}\).} the constructions in these sources.
 
 Let \(F : \mathcal{C} \to \textbf{Cat}\) be a pseudofunctor. Define the category \(X\) as follows: the objects of \(X\) are pairs \((c, x)\), with \(c \in \mathcal{C}\), \(x \in F(c)\). A map \((c, x)\to (d, y)\) is a pair \((f, u)\), where \(f : c \to d\) is a morphism in \(\mathcal{C}\), and \(u : (Ff)(x)\to y\) is a morphism in \(F(d)\). For an object \((c, x) \in X\), the identity morphism is given by
 \[(\id_c, F^0_x : F(\id_c)(x)\to x),\]
@@ -327,7 +323,6 @@ where
 \[C_i' = \bigotimes_{j \in f^{-1}\{i\}}C_j.\]
 
 \begin{itemize}
-\item The above implies there's some category \(\mathcal{D}\) such that opfibrations \(\mathcal{D}\to \Fin_*\) are the same as symmetric monoidal categories. Let's see what \(\mathcal{D}\) is.
 \item Possibly mention swapping out \(\textbf{Fin}_*\) for \(\Delta^{\text{op}}\) gives a monoidal category rather than a symmetric monoidal category. (How do we get a braided monoidal category? Apparently there is no base 1-category we can look at opfibrations into, because the correct formulation is with \(E_2\), which has higher homotopy groups on the mapping spaces.)
 \item Correspondence of symmetric monoidal functors with morphisms of opfibrations.
 \end{itemize}
@@ -403,8 +398,6 @@ and \(F\) sends \(p\)-(co)cartesian morphisms to \(q\)-(co)cartesian morphisms.
 \section{Generalisation to \(\infty\)-categories}
 
 \begin{itemize}
-\item A functor \(p : D \to C\) between ordinary categories is a Grothendieck opfibration if and only if the induced functor \(N(p) : N(D) \to N(C)\) on nerves is a cocartesian fibration
-\item Nerve of a symmetric monoidal category
 \item If an \(\infty\)-category has finite (co)products, there is a (co)cartesian monoidal structure on \(\mathcal{C}\). And we would have hoped so, because it's definitely true for \(1\)-categories!
 \item Might be cool to try to look at \(E_k\) algebras, to resolve the earlier mystery of how to write braided monoidal categories.
 \end{itemize}
