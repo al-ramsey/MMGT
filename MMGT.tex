@@ -247,7 +247,19 @@ Let \(F : \mathcal{C} \to \textbf{Cat}\) be a pseudofunctor. Define the category
 where \(F^0\) is the natural isomorphism \( F(\id_c)\cong \id_{F(c)} \). Further, given two maps \((f, u) : (c, x) \to (d, y)\) and \((g, v) : (d, y)\to (e, z)\), their composition \((g,v)\circ (f, u)\) is given by \(g \circ f\), together with the map
 \[(F(g\circ f))(x) \xrightarrow{\left(F^2_{g,f}\right)_x} (Fg \circ Ff)(x) \xrightarrow{(Fg)(u)} (Fg)(y)\xrightarrow{v} z,\]
 
-where \(F^2_{g, f}\) is the natural isomorphism \( F(g \circ f)\cong Fg \circ Ff\). One can show that the forgetful functor \(X \to \mathcal{C}\) is an opfibration over \(\mathcal{C}\). 
+where \(F^2_{g, f}\) is the natural isomorphism \( F(g \circ f)\cong Fg \circ Ff\). 
+
+\begin{lemma}
+The forgetful functor \(p : X \to \mathcal{C}\) is an opfibration over \(\mathcal{C}\).
+\end{lemma}
+
+\begin{ourproof}
+Let \(f : c \to d\) be a morphism in \(\mathcal{C}\), and let \(x\) be a lift of its source. Consider the map \((f, \id_{(Ff)(x)}) : (c, x)\to (d, (Ff)(x))\). Let \((g, \psi) : (c, x)\to (e, z)\) be a map in \(X\), and let \(h : d \to e\) be a map in \(\mathcal{C}\) such that \(g = h \circ f\). We wish to find some map \(\gamma : (Fh \circ Ff)(x) \to z\) such that the composition
+\[F(h \circ f)(x)\xrightarrow{F^2_{h,f}}(Fh\circ Ff)(x)\xrightarrow{(Fh)(\id_{(Ff)(x)})}(Fh\circ Ff)(x)\xrightarrow\gamma z\]
+is equal to the map
+\[(Fg)(x)\xrightarrow{\psi} z.\]
+Since \(h \circ f=g\), and \((Fh)(\id_{(Ff)(x)})=\id_{(Fh\circ Ff)(x)}\), we see that \(\psi = \gamma \circ F^2_{h,f}\). Since \(F^2\) is a natural isomorphism, we have \(\gamma = \psi \circ (F^2_{h,f})^{-1}\), so \(\gamma\) exists and is unique. Therefore, for every morphism in \(\mathcal{C}\) and every lift of its source, there is a cocartesian morphism lying over it; that is, \(p : X \to \mathcal{C}\) is a an opfibration. \done
+\end{ourproof} 
 
 Now, let \(p : X \to \mathcal{C}\) be an opfibration over \(\mathcal{C}\). Define a pseudofunctor 
 \begin{align*}
@@ -272,9 +284,7 @@ c \arrow[r, "f"] \arrow[rrd, swap, "f"] & d \arrow[rd, "\id_d"]  & \\
  & & d
 \end{tikzcd}\]
 
-We thus define \(f_*g=\overline{g}\) in \(p^{-1}\{d\}\). 
-
-It can be shown that these data assemble into a pseudofunctor \(\mathcal{C}\to \textbf{Cat}\).
+We thus define \(f_*g=\overline{g}\) in \(p^{-1}\{d\}\). It can be shown that these data assemble into a pseudofunctor \(\mathcal{C}\to \textbf{Cat}\).
 
 \subsection{Symmetric monoidal categories and functors}
 
