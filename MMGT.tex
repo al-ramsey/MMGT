@@ -182,24 +182,24 @@ C \arrow[r, swap, "f"]  & D \arrow[r, swap, "g"] & E
 \end{tikzcd}\]
 The outer square is indeed a pullback square, since the inner two squares are, so we have a unique isomorphism \(P \cong P''\). However, we do not in general have equality. This is because pullbacks are only unique up to unique isomorphism, and in defining a pullback functor we made arbitrary (and not necessarily compatible) choices of \(P, P'\) and \(P''\). Thus, we have not defined a functor \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\), rather, we have defined what is known as a \textit{pseudofunctor}; that is, a weak functor between 2-categories. 
 
-The above example is one way in which pseudofunctors into \textbf{Cat} naturally arise; another common example is the pseudofunctor
+The above example is just one way in which pseudofunctors into \textbf{Cat} naturally arise; another common example is the pseudofunctor
 \begin{align*}
 \textbf{CRing}&\to \textbf{Cat}\\
 R\; &\mapsto R \textbf{-Mod},
 \end{align*}
-which sends a ring homomorphism \(\phi : R \to S\) to the functor \(-\otimes_R S : R \textbf{-Mod}\to S \textbf{-Mod}\) (extension of scalars). However, to give the data of a pseudofunctor \(F : \mathcal{C} \to \textbf{Cat}\), we must specify not only the functions \(\ob(\mathcal{C})\to \ob(\textbf{Cat})\) and \(\Hom_\mathcal{C}(X, Y)\to \Hom_\textbf{Cat}(F(X), F(Y))\) for each \(X, Y \in \mathcal{C}\), but also natural isomorphisms
+which sends a ring homomorphism \(\phi : R \to S\) to the functor \(-\otimes_R S : R \textbf{-Mod}\to S \textbf{-Mod}\); this is known as \textit{extension of scalars}. However, to give the data of a pseudofunctor \(F : \mathcal{C} \to \textbf{Cat}\), we must specify not only the functions \(\ob(\mathcal{C})\to \ob(\textbf{Cat})\) and \(\Hom_\mathcal{C}(X, Y)\to \Hom_\textbf{Cat}(F(X), F(Y))\) for each \(X, Y \in \mathcal{C}\), but also natural isomorphisms
 \[F(\id_X) \cong \id_{F(X)}, \quad F(g \circ f) \cong F(g) \circ F(f).\]
 
-(This problem only becomes worse as we consider functors between higher categories... Let's use Grothendieck opfibrations instead.)
+Thus, as we move into the realm of higher categories, the data needed to define the appropriate notion of a functor grows rapidly. Since we intend to generalise these concepts to \(\infty\)-categories, we will turn to a different method of encoding the same information - Grothendieck fibrations and opfibrations.
 
 \begin{definition}
 Let \(p : X \to \mathcal{C}\) be a functor, let \(f : c \to c'\) be a morphism in \(\mathcal{C}\), and let \(\phi : x \to x'\) be a morphism in \(X\) lying over \(f\).
 
-We say that \(\phi\) is \textit{\(p\)-cartesian} if for any other morphism \(\psi : x'' \to x'\) in \(X\), and for any morphism \(g : p(x'')\to c\) in \(\mathcal{C}\) satisfying \(f \circ g = p(\psi)\), there exists a unique morphism \(\gamma : x'' \to x\) such that \(p(\gamma)=g\) and \(\psi = \gamma \circ \phi\).
+We say that \(\phi\) is \textit{cartesian} if for any other morphism \(\psi : x'' \to x'\) in \(X\), and for any morphism \(g : p(x'')\to c\) in \(\mathcal{C}\) satisfying \(f \circ g = p(\psi)\), there exists a unique morphism \(\gamma : x'' \to x\) such that \(p(\gamma)=g\) and \(\psi = \gamma \circ \phi\).
 
-Dually, \(\phi\) is \textit{\(p\)-cocartesian} if for any other morphism \(\psi : x \to x''\) in \(X\), and for any morphism \(g : c' \to p(x'')\) in \(\mathcal{C}\) satisfying \(g \circ f = p(\psi)\), there exists a unique morphism \(\gamma : x' \to x''\) such that \(p(\gamma)=g\) and \(\psi = \gamma \circ \phi\).  
+Dually, \(\phi\) is \textit{cocartesian} if for any other morphism \(\psi : x \to x''\) in \(X\), and for any morphism \(g : c' \to p(x'')\) in \(\mathcal{C}\) satisfying \(g \circ f = p(\psi)\), there exists a unique morphism \(\gamma : x' \to x''\) such that \(p(\gamma)=g\) and \(\psi = \gamma \circ \phi\).  
 
-The left diagram below corresponds to a \(p\)-cartesian morphism, and the right diagram corresponds to \(p\)-cocartesian morphism.
+The left diagram below corresponds to a cartesian morphism, and the right diagram corresponds to a cocartesian morphism.
 
 \[\begin{tikzcd}
  & & x'' \arrow[dddd, mapsto, ""] \arrow[dll, dashrightarrow, swap, "\exists ! \gamma"] \arrow[dl, "\forall \psi"] \\
@@ -218,7 +218,7 @@ c \arrow[r, "f"] \arrow[rrd, swap, "p(\psi)"] & c' \arrow[rd, "\forall g"]  & & 
 \end{definition}
 
 \begin{definition}\label{opfibration}
-Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck fibration} if for any morphism of \(\mathcal{C}\) and any lift of its target, there is a \(p\)-cartesian morphism with that target lying over it. Dually, \(p\) is a \textit{Grothendieck opfibration} if for any morphism of \(\mathcal{C}\) and any lift of its source, there  is a \(p\)-cocartesian morphism with that source lying over it.
+Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck fibration} if for any morphism of \(\mathcal{C}\) and any lift of its target, there is a cartesian morphism with that target lying over it. Dually, \(p\) is a \textit{Grothendieck opfibration} if for any morphism of \(\mathcal{C}\) and any lift of its source, there  is a cocartesian morphism with that source lying over it.
 \end{definition}
 
 We will usually refer to Grothendieck (op)fibrations as just (op)fibrations for brevity. Note that in \autocite{symmetricmonoidal} and \autocite{lurie2008higher} these are referred to as \textit{(co)cartesian fibrations}; we reserve this term for the \(\infty\)-category analogue. 
@@ -288,6 +288,8 @@ We thus define \(f_*g=\overline{g}\) in \(p^{-1}\{d\}\). It can be shown that th
 
 \subsection{Symmetric monoidal categories and functors}
 
+We now move onto the main object of our consideration, symmetric monoidal categories. 
+
 \begin{definition}
 A \textit{symmetric monoidal category} is a category \(\mathcal{C}\) equipped with a bifunctor 
 \[\otimes : \mathcal{C} \times \mathcal{C}\to \mathcal{C},\]
@@ -318,14 +320,22 @@ U\otimes (V\otimes W) \arrow[d, swap, "\tau_{U, V\otimes W}"] & & (V\otimes U)\o
 
 \end{definition}
 
-Now that we know how to move between pseudofunctors to \textbf{Cat} and opfibrations, let's write the data of a symmetric monoidal category as a pseudofunctor to \textbf{Cat}.
+\begin{example}
+Any category \(\mathcal{C}\) with finite products has a symmetric monoidal structure (the \textit{cartesian monoidal structure}) given by the categorical product, with unit the terminal object of \(\mathcal{C}\). Dually, any category with finite coproducts has a symmetric monoidal structure (the \textit{cocartesian monoidal structure}) given by the categorical coproduct, with unit the initial object.
+\end{example}
 
-Let \((\mathcal{C}, \otimes)\) be a symmetric monoidal category. Define a pseudofunctor 
+\begin{example}
+The category \(\textbf{Vect}_k\) has an additional symmetric monoidal structure given by the tensor product of vector spaces, and unit object \(k\). 
+\end{example}
+
+Note the increase in complexity between the definition of a commutative monoid and that of a symmetric monoidal category; in the former case, we required that the product be strictly associative, unital, and commutative, while relaxing these conditions for the latter required us to specify extra data (the natural isomorphisms \(\alpha, l, r, \tau\)) which then had to satisfy higher coherences. Much like specifying the data for a pseudofunctor, this quickly becomes overwhelming when considering higher categories. We thus use the tools of the previous section, writing the data of a symmetric monoidal category as a pseudofunctor to \textbf{Cat}, which we can transform into an opfibration using the Grothendieck construction. 
+
+Let \((\mathcal{C}, \otimes)\) be a symmetric monoidal category, and let \(\textbf{Fin}_*\) be the category of finite pointed sets\footnote{Replacing \(\textbf{Fin}_*\) by \(\Delta^{\text{op}}\) encodes the data of an ordinary monoidal category, since the total ordering on the finite sets removes the permutations that give rise to the natural isomorphism \(\tau\) of a symmetric monoidal category. See \autocite{groth2015short} for this formulation.}. Define a pseudofunctor 
 \begin{align*}
-F : \Fin_* &\to \textbf{Cat}\\
+F : \textbf{Fin}_* &\to \textbf{Cat}\\
 \ang{n}&\mapsto \mathcal{C}^{\times n}
 \end{align*}
-Let \(f : \ang{n}\to \ang{m}\) be a morphism in \(\Fin_*\). This induces a morphism 
+Let \(f : \ang{n}\to \ang{m}\) be a morphism in \(\textbf{Fin}_*\). This induces a morphism 
 \begin{align*}
 f^* : (C_1, ...,C_n) &\mapsto (C_1', ..., C_m'),	
 \end{align*}
@@ -333,11 +343,11 @@ where
 \[C_i' = \bigotimes_{j \in f^{-1}\{i\}}C_j.\]
 
 \begin{itemize}
-\item Possibly mention swapping out \(\textbf{Fin}_*\) for \(\Delta^{\text{op}}\) gives a monoidal category rather than a symmetric monoidal category. (How do we get a braided monoidal category? Apparently there is no base 1-category we can look at opfibrations into, because the correct formulation is with \(E_2\), which has higher homotopy groups on the mapping spaces.)
+%\item (How do we get a braided monoidal category? Apparently there is no base 1-category we can look at opfibrations into, because the correct formulation is with \(E_2\), which has higher homotopy groups on the mapping spaces.)
 \item Correspondence of symmetric monoidal functors with morphisms of opfibrations.
 \end{itemize}
 
-Using the construction above, we can obtain a category \(\mathcal{C}^\otimes\) and an opfibration \(p : \mathcal{C}^\otimes\to \textbf{Fin}_*\) corresponding to the pseudofunctor encoding \((\mathcal{C}, \otimes)\). Unravelling the definitions gives exactly the construction below, in  \autocite{higheralgebra}. 
+Using the pseudofunctor above, along with the Grothendieck construction, we can obtain a category \(\mathcal{C}^\otimes\) and an opfibration \(p : \mathcal{C}^\otimes\to \textbf{Fin}_*\) corresponding to the pseudofunctor encoding \((\mathcal{C}, \otimes)\). Unravelling the definitions gives exactly the construction below, given in \autocite{higheralgebra}. 
 
 Let \((\mathcal{C}, \otimes)\) be a symmetric monoidal category. We define a new category \(\mathcal{C}^\otimes\), whose objects are finite (possibly empty) sequences of objects of \(\mathcal{C}\), denoted by \([C_1, ..., C_n]\). A morphism 
 \[[C_1, ..., C_n]\to [C_1', ..., C_m']\]
@@ -390,7 +400,7 @@ If \((\mathcal{C}, \otimes)\) is a symmetric monoidal category, then the forgetf
 are equivalences. Conversely any Grothendieck opfibration \(p : \mathcal{C} \to \textbf{Fin}_*\) satisfying the Segal condition gives rise to a symmetric monoidal structure on \(\mathcal{C}_{\ang{1}}\).
 \end{proposition}
 
-Summary: we noticed that pseudofunctors \(\mathcal{D}\to \textbf{Cat}\) are the same thing as opfibrations into \(\mathcal{D}\). We also noticed that symmetric monoidal categories could be written as special pseudofunctors \(\textbf{Fin}_* \to \textbf{Cat}\), which means they are special opfibrations into \(\textbf{Fin}_*\). We looked at the corresponding construction of \(\mathcal{C}^\otimes\). So: symmetric monoidal categories, special opfibrations into \(\textbf{Fin}_*\) and special pseudofunctors \(\textbf{Fin}_* \to \textbf{Cat}\) are all the same thing, we just hide the coherences in the opfibrations. 
+It is worth pausing to summarise what we have achieved in the last two sections. First, we noticed that pseudofunctors \(\mathcal{C}\to \textbf{Cat}\) encode the same information as opfibrations into \(\mathcal{C}\). We also noticed that symmetric monoidal categories could be written as special pseudofunctors \(\textbf{Fin}_* \to \textbf{Cat}\), which means they are special opfibrations into \(\textbf{Fin}_*\). We looked at the corresponding construction of \(\mathcal{C}^\otimes\) (via the Grothendieck construction). Thus, symmetric monoidal categories, special pseudofunctors \(\textbf{Fin}_* \to \textbf{Cat}\), and special opfibrations into \(\textbf{Fin}_*\) all encode the same data, but the latter package allows us to `hide' the unwieldy higher coherences in the opfibration itself, which will be incredibly useful when we begin to consider symmetric monoidal \(\infty\)-categories.
 
 We've said that symmetric monoidal categories are special opfibrations to \(\textbf{Fin}_*\). Now, what are symmetric monoidal functors? 
 
@@ -409,7 +419,7 @@ and \(F\) sends \(p\)-(co)cartesian morphisms to \(q\)-(co)cartesian morphisms.
 
 \begin{itemize}
 \item If an \(\infty\)-category has finite (co)products, there is a (co)cartesian monoidal structure on \(\mathcal{C}\). And we would have hoped so, because it's definitely true for \(1\)-categories!
-\item Might be cool to try to look at \(E_k\) algebras, to resolve the earlier mystery of how to write braided monoidal categories.
+%\item Might be cool to try to look at \(E_k\) algebras, to resolve the earlier mystery of how to write braided monoidal categories.
 \end{itemize}
 
 We first need an \(\infty\)-categorical analogue of Grothendieck opfibrations. We start by requiring that our functor is what's known as an \textit{inner fibration}; there is no \(1\)--categorical analogue of this, since all functors between \(1\)-categories are automatically inner fibrations under the nerve functor (see \ref{ex:inner}). Think of it as a `minimum niceness condition' -- we want the fibres to be \(\infty\)-categories in much the same way as we want the fibres of ordinary functors to be categories themselves. 
@@ -472,12 +482,6 @@ The maps \(\lambda\) and \(\phi'\iota\) make the left and right diagrams commute
 %Let \(p : X \to Y\) be an inner fibration. Then each fibre \(X \times_{Y}\{y\}\) is an \(\infty\)-category.
 %\end{corollary}
 
-(Stupid note to self, very obvious but I forget it every now and again):
-\begin{itemize}
-\item If \(X : \Delta^{\text{op}}\to \textbf{Set}\) is a simplicial set, and \(\Delta^0 : \Delta^{\text{op}}\to \textbf{Set}:= \Hom(-, [0])\), then a map \(F : X \to \Delta^0\) is a natural transformation \((F_n : X_n \to *)_{n \in \nat_0}\). That is, such a natural transformation is a family of maps down to a point. In other words, there's only really one natural transformation, so we really *can* view \(\Delta^0\) as a point. 
-\item If \(Y\) is a simplicial set, and \(y \in Y_0\) is a vertex of \(Y\), we can view \(\{y\}\) as a copy of \(\Delta^0\). Why is this? We can view \(\{y\}\) as the constant simplicial set, sending everything to \(y\). Then a natural isomorphism \(\Delta^0 \cong \{y\}\) is a collection of isomorphisms \((* \to *)\), of which there is exactly one. Why is it natural? Well, there's only one map from a one-point set to another one-point set, so the square always commutes. 
-\end{itemize}
-
 \begin{example}[{\autocite{goodfibrations}, Ex 2.2}]
 Let \(p : X \to \Delta^0\) be the canonical map, and suppose we have the diagram below, such that the outer square commutes. 
 \[\begin{tikzcd}
@@ -512,7 +516,7 @@ a dotted lift exists.
 Let \(p : X \to Y\) be an inner fibration. Then \(p\) is a cocartesian fibration if for any edge \(\phi : y \to y'\) in \(Y_1\), and for every \(x \in X_0\) lying over \(y\), there exists a \(p\)-cocartesian edge \(f : x \to x'\) of \(X\) lying over \(\phi\). 
 \end{definition}
 
-The following proposition tells us that the above definition is a reasonable generalisation of \ref{opfibration}. It is also stated without proof in \autocite{lurie2008higher}, which did not do wonders for my ego. 
+The following proposition (stated as a remark in \autocite{lurie2008higher}) tells us that the above definition is a reasonable generalisation of \ref{opfibration}. 
 
 \begin{proposition}[{\autocite{lurie2008higher}, Rmk 2.4.2.2}]
 Let \(\mathcal{C}\), \(\mathcal{D}\) be categories, and let \(p : \mathcal{C} \to \mathcal{D}\) be a functor between them. Then \(p\) is a Grothendieck opfibration if and only if the induced map \(N(p) : N \mathcal{C} \to N\mathcal{D}\) is a cocartesian fibration of simplicial sets.
@@ -633,6 +637,12 @@ Suppose \(\mathcal{A}\) has enough projective objects. We let \(\mathcal{D}^-(\m
 
 \subsection{Observations}
 
+(Stupid note to self, very obvious but I forget it every now and again):
+\begin{itemize}
+\item If \(X : \Delta^{\text{op}}\to \textbf{Set}\) is a simplicial set, and \(\Delta^0 : \Delta^{\text{op}}\to \textbf{Set}:= \Hom(-, [0])\), then a map \(F : X \to \Delta^0\) is a natural transformation \((F_n : X_n \to *)_{n \in \nat_0}\). That is, such a natural transformation is a family of maps down to a point. In other words, there's only really one natural transformation, so we really *can* view \(\Delta^0\) as a point. 
+\item If \(Y\) is a simplicial set, and \(y \in Y_0\) is a vertex of \(Y\), we can view \(\{y\}\) as a copy of \(\Delta^0\). Why is this? We can view \(\{y\}\) as the constant simplicial set, sending everything to \(y\). Then a natural isomorphism \(\Delta^0 \cong \{y\}\) is a collection of isomorphisms \((* \to *)\), of which there is exactly one. Why is it natural? Well, there's only one map from a one-point set to another one-point set, so the square always commutes. 
+\end{itemize}
+
 Let \(S \in \textbf{Set}\). We define the constant simplicial set 
 \[\begin{tikzcd}
 \overline{S} : \Delta^{\text{op}} \arrow[r, ""]  & \textbf{Set} \\
@@ -674,18 +684,7 @@ c \arrow[r, "f"] & d  & \\
  & & c \arrow[llu, "\id_c"] \arrow[lu, swap, "f"] 
 \end{tikzcd}\]
 
-We thus define \(f^*g=\overline{g}\) in \(p^{-1}\{c\}\). 
-
-It can be shown that these data assemble into a pseudofunctor \(\mathcal{C}\to \textbf{Cat}\).
-
-Here is the dualisation of the forward direction, which I think was correct, but actually not what I wanted:
-
-Let \(F : \mathcal{C} \to \textbf{Cat}\) be a pseudofunctor. Define the category \(X\) as follows: the objects of \(X\) are pairs \((c, x)\), with \(c \in \mathcal{C}\), \(x \in F(c)\). A map \((c, x)\to (d, y)\) is a pair \((f, u)\), where \(f : c \to d\) is a morphism in \(\mathcal{C}\), and \(u : y\to (Ff)(x)\) is a morphism in \(F(d)\). For an object \((c, x) \in X\), the identity morphism is given by
-\[(\id_c, F^0_x : x \to F(\id_c)(x)),\]
-where \(F^0\) is the natural isomorphism \(\id_{F(c)} \cong F(\id_c)\). Further, given two maps \((f, u) : (c, x) \to (d, y)\) and \((g, v) : (d, y)\to (e, z)\), their composition \((g,v)\circ (f, u)\) is given by \(g \circ f\), together with the map
-\[z \xrightarrow{v} (Fg)(y)\xrightarrow{(Fg)(u)} (Fg \circ Ff)(x) \xrightarrow{\left(F^2_{g,f}\right)_x} (F(g\circ f))(x),\]
-
-where \(F^2_{g, f}\) is the natural isomorphism \(Fg \circ Ff \cong F(g \circ f)\). One can show that the forgetful functor \(X \to \mathcal{C}\) is an opfibration over \(\mathcal{C}\). 
+We thus define \(f^*g=\overline{g}\) in \(p^{-1}\{c\}\). It can be shown that these data assemble into a pseudofunctor \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\).
 
 \subsection{Questions}
 
