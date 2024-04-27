@@ -237,7 +237,7 @@ where \(\textbf{Psd}(\mathcal{C}^{\text{op}}, \textbf{Cat})\) is the \(2\)-categ
 
 \begin{remark}\label{rem:ophell}
 Combining \ref{rem:op} with \ref{thm:grothendieck} gives us a chain of equivalences
-\[\textbf{Psd}(\mathcal{C}, \textbf{Cat})\xrightarrow{\text{op} \circo} \textbf{Psd}(\mathcal{C}, \textbf{Cat})\simeq \textbf{Psd}((\mathcal{C}^{\text{op}})^{\text{op}}, \textbf{Cat}) \simeq \textbf{Fib}(\mathcal{C}^{\text{op}}) \simeq \textbf{opFib}(\mathcal{C}),\]
+\[\textbf{Psd}(\mathcal{C}, \textbf{Cat})\xrightarrow{\text{op} \circo -} \textbf{Psd}(\mathcal{C}, \textbf{Cat})\simeq \textbf{Psd}((\mathcal{C}^{\text{op}})^{\text{op}}, \textbf{Cat}) \simeq \textbf{Fib}(\mathcal{C}^{\text{op}}) \simeq \textbf{opFib}(\mathcal{C}),\]
 where the first functor \(\textbf{Psd}(\mathcal{C}, \textbf{Cat}) \to \textbf{Psd}(\mathcal{C}, \textbf{Cat})\) is given by postcomposition with \(\text{op} : \textbf{Cat}\to \textbf{Cat}\).  
 \end{remark}
 
@@ -407,7 +407,7 @@ are equivalences. Conversely any Grothendieck opfibration \(p : \mathcal{D} \to 
 
 The proposition above allows us to make the following alternative definition of a symmetric monoidal category.
 
-\begin{definition}
+\begin{definition}\label{def:newmonoidal}
 A \textit{symmetric monoidal category} is a Grothendieck opfibration \(p : \mathcal{D}\to \textbf{Fin}_*\) such that the Segal maps
 \[(\rho_!^1, ..., \rho_!^n) : \mathcal{D}_{\ang{n}}\to \mathcal{D}_{\ang{1}}^{\times n},\]
 are equivalences.
@@ -415,16 +415,34 @@ are equivalences.
 
 It is worth pausing to summarise what we have achieved in the last two sections. First, we noticed that pseudofunctors \(\mathcal{C}\to \textbf{Cat}\) encode the same information as opfibrations into \(\mathcal{C}\). We also noticed that symmetric monoidal categories could be written as particular pseudofunctors \(\textbf{Fin}_* \to \textbf{Cat}\), which means they are particular opfibrations into \(\textbf{Fin}_*\). We looked at the corresponding construction of \(\mathcal{C}^\otimes\) (via the Grothendieck construction). Thus, symmetric monoidal categories, particular pseudofunctors \(\textbf{Fin}_* \to \textbf{Cat}\), and opfibrations into \(\textbf{Fin}_*\) satisfying the Segal condition all encode the same data, but the latter package allows us to `hide' the unwieldy higher coherences in the opfibration itself, which will be incredibly useful when we begin to consider symmetric monoidal \(\infty\)-categories.
 
-We've said that symmetric monoidal categories are particular opfibrations to \(\textbf{Fin}_*\). Now, what are symmetric monoidal functors? 
+We end this section by similarly rewriting the definition of a symmetric monoidal functor. 
 
 \begin{definition}
-Let \((\mathcal{C}, \otimes)\), \((\mathcal{D}, \otimes')\) be symmetric monoidal categories (in the sense of \ref{def:monoidal}). A \textit{symmetric monoidal functor} \(F : \mathcal{C} \to \mathcal{D}\) is...
+Let \((\mathcal{C}, \otimes)\), \((\mathcal{D}, \otimes')\) be symmetric monoidal categories (in the sense of \ref{def:monoidal}), with units \(\textbf{1}\) and \(\textbf{1}'\) respectively. A \textit{symmetric monoidal functor} \(F : \mathcal{C} \to \mathcal{D}\) is a functor \(\mathcal{C} \to \mathcal{D}\) equipped with natural isomorphisms
+\[\phi : \textbf{1}'\xrightarrow\sim F(\textbf{1}), \quad J_{X,Y} : F(X)\otimes' F(Y) \to F(X\otimes Y),\]
+such that the diagrams below commute.
+\[\begin{tikzcd}[column sep=12ex]
+(F(X)\otimes' F(Y))\otimes' F(Z) \arrow[r, "\alpha'_{F(X), F(Y), F(Z)}"] \arrow[d, swap, "J_{X,Y}\otimes\id_{F(Z)}"]  & F(X)\otimes' (F(Y)\otimes' F(Z)) \arrow[d, "\id_{F(X)}\otimes J_{Y,Z}"]  \\
+F(X\otimes Y)\otimes' F(Z) \arrow[d, swap, "J_{X\otimes Y, Z}"]  & F(X)\otimes'F(Y\otimes Z) \arrow[d, "J_{X, Y\otimes Z}"]\\
+F((X\otimes Y)\otimes Z) \arrow[r, "F(\alpha_{X,Y,Z})"] & F(X\otimes (Y\otimes Z))
+\end{tikzcd}\]
+\[\begin{tikzcd}[column sep=10ex]
+\textbf{1}'\otimes' F(X) \arrow[r, "\phi\otimes\id_{F(X)}"] \arrow[d, swap, "l'_{F(X)}"]  & F(\textbf{1})\otimes' F(X) \arrow[d, "J_{\textbf{1}, X}"]  \\
+F(X) \arrow[r, swap, "F(l_X)^{-1}"]  & F(\textbf{1}\otimes X)
+\end{tikzcd}\quad \begin{tikzcd}[column sep=10ex]
+F(X) \otimes \textbf{1}' \arrow[r, "\id_{F(X)}\otimes\phi"] \arrow[d, swap, "r'_{F(X)}"]  & F(X)\otimes' F(\textbf{1}) \arrow[d, "J_{X, \textbf{1}}"]  \\
+F(X) \arrow[r, swap, "F(r_X)^{-1}"]  & F(X\otimes \textbf{1})
+\end{tikzcd}\]
+\[\begin{tikzcd}
+F(X)\otimes'F(Y) \arrow[r, "J_{X, Y}"] \arrow[d, swap, "\tau'_{X, Y}"]  & F(X\otimes Y) \arrow[d, "F(\tau_{X,Y})"]  \\
+F(Y)\otimes F(X) \arrow[r, swap, "J_{Y, X}"]  & F(Y\otimes X)
+\end{tikzcd}\]
 \end{definition}
 
-The definition below is basically definition 3.3 of \autocite{symmetricmonoidal}.
+In order to write this in form compatible with \ref{def:newmonoidal}, we define a notion of maps between opfibrations.
 
-\begin{definition}
-Let \(p : X \to \mathcal{C}\) and \(q : Y \to \mathcal{C}\) be two Grothendieck (op)fibrations. A functor \(F : X \to Y\) is a \textit{morphism of (op)fibrations} from \(p\) to \(q\) if the diagram below commutes,
+\begin{definition}[{\autocite{symmetricmonoidal}, Def 3.3}]
+Let \(p : X \to \mathcal{C}\) and \(q : Y \to \mathcal{C}\) be two Grothendieck (op)fibrations. We say that a functor \(F : X \to Y\) is a \textit{morphism of (op)fibrations} from \(p\) to \(q\) if the diagram below commutes,
 \[\begin{tikzcd}
 X \arrow[rd, swap, "p"] \arrow[rr, "F"]  & & Y \arrow[ld, "q"]  \\
 & \mathcal{C}  & 
@@ -432,14 +450,20 @@ X \arrow[rd, swap, "p"] \arrow[rr, "F"]  & & Y \arrow[ld, "q"]  \\
 and \(F\) sends \(p\)-(co)cartesian morphisms to \(q\)-(co)cartesian morphisms. 
 \end{definition}
 
+\begin{proposition}[{\autocite{symmetricmonoidal}, Prop 3.4}]
+Under the identification of symmetric monoidal categories and opfibrations over \(\textbf{Fin}_*\) given above, symmetric monoidal functors correspond to morphisms of opfibrations.
+\end{proposition}
+
 \section{Generalisation to \(\infty\)-categories}
 
-\begin{itemize}
-\item If an \(\infty\)-category has finite (co)products, there is a (co)cartesian monoidal structure on \(\mathcal{C}\). And we would have hoped so, because it's definitely true for \(1\)-categories!
+%\begin{itemize}
+%\item If an \(\infty\)-category has finite (co)products, there is a (co)cartesian monoidal structure on \(\mathcal{C}\). And we would have hoped so, because it's definitely true for \(1\)-categories!
 %\item Might be cool to try to look at \(E_k\) algebras, to resolve the earlier mystery of how to write braided monoidal categories.
-\end{itemize}
+%\end{itemize}
 
-We first need an \(\infty\)-categorical analogue of Grothendieck opfibrations. We start by requiring that our functor is what's known as an \textit{inner fibration}; there is no \(1\)--categorical analogue of this, since all functors between \(1\)-categories are automatically inner fibrations under the nerve functor (see \ref{ex:inner}). Think of it as a `minimum niceness condition' -- we want the fibres to be \(\infty\)-categories in much the same way as we want the fibres of ordinary functors to be categories themselves. 
+\subsection{Cocartesian fibrations}
+
+We first need an \(\infty\)-categorical analogue of Grothendieck opfibrations. We begin by requiring that our functor is what's known as an \textit{inner fibration}; there is no \(1\)--categorical analogue of this, since all functors between \(1\)-categories are automatically inner fibrations under the nerve functor (see \ref{ex:inner}). Think of it as a `minimum niceness condition' -- we want the fibres to be \(\infty\)-categories in much the same way as we want the fibres of ordinary functors to be categories themselves. 
 
 \begin{definition}[{\autocite{goodfibrations}, Def 2.1}]
 A functor \(p : X \to Y\) between simplicial sets is an \textit{inner fibration} if for all \(n \geq 2\), all \(0 < k < n\), and any solid arrow commutative square 
@@ -533,7 +557,7 @@ a dotted lift exists.
 Let \(p : X \to Y\) be an inner fibration. Then \(p\) is a cocartesian fibration if for any edge \(\phi : y \to y'\) in \(Y_1\), and for every \(x \in X_0\) lying over \(y\), there exists a \(p\)-cocartesian edge \(f : x \to x'\) of \(X\) lying over \(\phi\). 
 \end{definition}
 
-The following proposition (stated as a remark in \autocite{lurie2008higher}) tells us that the above definition is a reasonable generalisation of \ref{opfibration}. 
+The following proposition (stated as a remark in \autocite{lurie2008higher}) shows us that the above definition is a reasonable generalisation of \ref{opfibration}. 
 
 \begin{proposition}[{\autocite{lurie2008higher}, Rmk 2.4.2.2}]
 Let \(\mathcal{C}\), \(\mathcal{D}\) be categories, and let \(p : \mathcal{C} \to \mathcal{D}\) be a functor between them. Then \(p\) is a Grothendieck opfibration if and only if the induced map \(N(p) : N \mathcal{C} \to N\mathcal{D}\) is a cocartesian fibration of simplicial sets.
@@ -589,15 +613,32 @@ c' \arrow[rr, swap, "\gamma_1"] \arrow[rrruu, swap, "\gamma_2" {xshift=8pt, yshi
 \end{tikzcd}\]
 where all faces containing the vertex \(c\) commute. The image of this tetrahedron under \(p\) commutes in \(\mathcal{D}\), so the original tetrahedron must commute in \(\mathcal{C}\); that is, \(\gamma_1=\gamma_2\).\done
 
+\subsection{Symmetric monoidal \(\infty\)-categories}
+
 \begin{definition}[{\autocite{lurie2008higher}, Def 2.0.0.7}]
 A \textit{symmetric monoidal \(\infty\)-category} is a cocartesian fibration of simplicial sets \(p : X^\otimes \to N(\textbf{Fin}_*)\) such that for each \(n \geq 0\), the maps 
 \[\{\rho^i : \ang{n}\to \ang{1}\}_{1 \leq i \leq n}\] 
 induce functors \(\rho^i_! : X^\otimes_{\ang{n}}\to X^\otimes_{\ang{1}}\) which determine an equivalence \(X^\otimes_{\ang{n}}\simeq \left(X^\otimes_{\ang{1}}\right)^n\). 
 \end{definition}
 
+The following examples are evidence that this definition is a reasonable generalisation of ordinary symmetric monoidal categories. 
+
 \begin{example}
 Let \((\mathcal{C}, \otimes)\) be a symmetric monoidal category. Then \(p : N(\mathcal{C}^\otimes) \to N(\textbf{Fin}_*)\) is a symmetric monoidal \(\infty\)-category. 
 \end{example}
+
+\begin{example}
+If an \(\infty\)-category \(X\) has finite (co)products, there is a (co)cartesian monoidal structure on \(X\) (see \autocite{lurie2008higher}, sections 2.4.2 and 2.4.3). 
+\end{example}
+
+\begin{definition}
+Let \(X \xrightarrow p \textbf{Fin}_*\), \(Y\xrightarrow q \textbf{Fin}_*\) be symmetric monoidal \(\infty\)-categories. A symmetric monoidal functor is a commutative (up to homotopy) diagram
+\[\begin{tikzcd}
+X \arrow[rr, "F"] \arrow[dr, swap, "p"]  & & Y \arrow[dl, "q"]  \\
+& N \textbf{Fin}_*  & 
+\end{tikzcd}\]
+such that \(F\) preserves cocartesian edges.
+\end{definition}
 
 \section{A nontrivial example}
 
