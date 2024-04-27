@@ -608,6 +608,7 @@ Suppose that there were two maps \(\gamma_1, \gamma_2 : c' \to c''\) lying over 
 c' \arrow[rr, swap, "\gamma_1"] \arrow[rrruu, swap, "\gamma_2" {xshift=8pt, yshift=5pt}] & & c'' \arrow[ruu, swap, "\id"] \arrow[from=luu, swap, crossing over, "\psi" {xshift=-4pt, yshift=8pt}] & 
 \end{tikzcd}\]
 where all faces containing the vertex \(c\) commute. The image of this tetrahedron under \(p\) commutes in \(\mathcal{D}\), so the original tetrahedron must commute in \(\mathcal{C}\); that is, \(\gamma_1=\gamma_2\).\done
+\end{ourproof}
 
 \subsection{Symmetric monoidal \(\infty\)-categories}
 
@@ -637,57 +638,6 @@ X \arrow[rr, "F"] \arrow[dr, swap, "p"]  & & Y \arrow[dl, "q"]  \\
 \end{tikzcd}\]
 such that \(F\) preserves cocartesian edges.
 \end{definition}
-
-\section{A nontrivial example}
-
-Throughout this section, \(\mathcal{A}\) is an abelian category, and \(\mathcal{A}_{\text{proj}}\) is the full subcategory of \(\mathcal{A}\) spanned by the projective objects. 
-
-\begin{definition}[{\autocite{higheralgebra}, Def 1.2.3.1}]
-A \textit{chain complex} with values in \(\mathcal{A}\) is a composable sequence of morphisms 
-\[\cdots \to A_2 \xrightarrow{d(2)} A_1 \xrightarrow{d(1)}A_0 \xrightarrow{d(0)} A_{-1}\to \cdots\]
-in \(\mathcal{A}\) such that \(d(n-1)\circ d(n)=0\) for all \(n \in \inte\). The collection of chain complexes with values in \(\mathcal{A}\) is an additive category, \(\Ch(\mathcal{A})\). 
-\end{definition}
-
-\begin{definition}[\autocite{higheralgebra}, Not 1.3.2.6]
-\(\Ch^-(\mathcal{A})\) is the full subcategory of \(\Ch(\mathcal{A})\) spanned by those chain complexes \(M_*\) such that \(M_n \simeq 0\) for \(n << 0\). 
-\end{definition}
-
-\begin{definition}[{\autocite{higheralgebra}, Def 1.3.2.7}]
-Suppose \(\mathcal{A}\) has enough projective objects. We let \(\mathcal{D}^-(\mathcal{A})\) denote the \(\infty\)-category \(N_{\text{dg}}(\Ch^-(\mathcal{A}_{\text{proj}}))\). We refer to \(\mathcal{D}^-(\mathcal{A})\) as the \textit{derived \(\infty\)-category of \(\mathcal{A}\)}.  
-\end{definition}
-
-%Let 
-%\[\begin{tikzcd}
-%& c \arrow[dl, swap, "\phi"] \arrow[dr, "\psi"]  & \\
-%c'  & & c''
-%\end{tikzcd}\quad \begin{tikzcd}
-%& c \arrow[dl, swap, "\phi"] \arrow[dr, "\chi"]  & \\
-%c'  & & c'''
-%\end{tikzcd}\]
-%be diagrams in \(\mathcal{C}\), and let
-%\[\begin{tikzcd}
-%& d \arrow[dl, swap, "f"] \arrow[dr, "p(\psi)"]  & \\
-%d' \arrow[rr, swap, "g"] & & p(c'')
-%\end{tikzcd}\quad \begin{tikzcd}
-%& d \arrow[dl, swap, "f"] \arrow[dr, "p(\chi)"]  & \\
-%d' \arrow[rr, swap, "g'"] & & p(c''')
-%\end{tikzcd}\]
-%be commutative diagrams in \(\mathcal{D}\). Then there exist maps \(\gamma : c' \to c''\) and \(\gamma' : c' \to c'''\) lying over \(g\) and \(g'\) respectively, and making the diagrams in \(\mathcal{C}\) commute. Suppose there were two maps \(\gamma'_1 \gamma'_2 : c' \to c'''\) lying over \(g'\) and making the right diagram in \(\mathcal{C}\) commute. 
-
-%Again, since \(N(p)\) is a cocartesian fibration, for any tetrahedron
-%\[\begin{tikzcd}
-%& c \arrow[rr, "\chi"] \arrow[ddl, swap, "\phi"]  & & c''' \\
-%& & & \\
-%c' \arrow[rr, swap, ""] \arrow[rrruu, swap, ""] & & c'' \arrow[ruu, swap, ""] \arrow[from=luu, swap, crossing over, "\psi"] & 
-%\end{tikzcd}\]
-%where all faces containing the vertex \(c\) commute, if image commutes in \(\mathcal{D}\), then the original diagram must commute. 
-\end{ourproof}
-
-%This is a test to check pushing to GitHub is working as expected.
-
-%\tableofcontents
-
-%\pagebreak
 
 \section{Miscellaneous stupid notes}
 
