@@ -555,7 +555,7 @@ Let \(p : X \to Y\) be an inner fibration. Then \(p\) is a cocartesian fibration
 
 The following proposition (stated as a remark in \autocite{lurie2008higher}) shows us that the above definition is a reasonable generalisation of \ref{opfibration}. 
 
-\begin{proposition}[{\autocite{lurie2008higher}, Rmk 2.4.2.2}]
+\begin{proposition}[{\autocite{lurie2008higher}, Rmk 2.4.2.2}]\label{prop:opiffco}
 Let \(\mathcal{C}\), \(\mathcal{D}\) be categories, and let \(p : \mathcal{C} \to \mathcal{D}\) be a functor between them. Then \(p\) is a Grothendieck opfibration if and only if the induced map \(N(p) : N \mathcal{C} \to N\mathcal{D}\) is a cocartesian fibration of simplicial sets.
 \end{proposition}
 
@@ -623,7 +623,7 @@ induce functors \(\rho^i_! : X^\otimes_{\ang{n}}\to X^\otimes_{\ang{1}}\) which 
 The following examples are evidence that this definition is a reasonable generalisation of ordinary symmetric monoidal categories. 
 
 \begin{example}
-Let \((\mathcal{C}, \otimes)\) be a symmetric monoidal category. Then \(p : N(\mathcal{C}^\otimes) \to N(\textbf{Fin}_*)\) is a symmetric monoidal \(\infty\)-category. 
+Let \((\mathcal{C}, \otimes)\) be a symmetric monoidal category. Then \(p : N(\mathcal{C}^\otimes) \to N(\textbf{Fin}_*)\) is a symmetric monoidal \(\infty\)-category. This follows from \ref{prop:opiffco}, and the fact that the nerve of an equivalence is an equivalence of  \(\infty\)-categories (see \cite[\href{https://kerodon.net/tag/01E1}{Example 01E1}]{kerodon}). 
 \end{example}
 
 \begin{example}
@@ -634,28 +634,10 @@ If an \(\infty\)-category \(X\) has finite (co)products, there is a (co)cartesia
 Let \(X \xrightarrow p \textbf{Fin}_*\), \(Y\xrightarrow q \textbf{Fin}_*\) be symmetric monoidal \(\infty\)-categories. A symmetric monoidal functor is a commutative (up to homotopy) diagram
 \[\begin{tikzcd}
 X \arrow[rr, "F"] \arrow[dr, swap, "p"]  & & Y \arrow[dl, "q"]  \\
-& N \textbf{Fin}_*  & 
+& N(\textbf{Fin}_*)  & 
 \end{tikzcd}\]
 such that \(F\) preserves cocartesian edges.
 \end{definition}
-
-\section{Miscellaneous stupid notes}
-
-\subsection{Observations}
-
-(Stupid note to self, very obvious but I forget it every now and again):
-\begin{itemize}
-\item If \(X : \Delta^{\text{op}}\to \textbf{Set}\) is a simplicial set, and \(\Delta^0 : \Delta^{\text{op}}\to \textbf{Set}:= \Hom(-, [0])\), then a map \(F : X \to \Delta^0\) is a natural transformation \((F_n : X_n \to *)_{n \in \nat_0}\). That is, such a natural transformation is a family of maps down to a point. In other words, there's only really one natural transformation, so we really *can* view \(\Delta^0\) as a point. 
-\end{itemize}
-
-Let \(S \in \textbf{Set}\). We define the constant simplicial set 
-\[\begin{tikzcd}
-\overline{S} : \Delta^{\text{op}} \arrow[r, ""]  & \textbf{Set} \\
-\left[n\right] \arrow[r, mapsto, swap, ""] \arrow[d, swap, "f"] & S\\
-\left[m\right] \arrow[r, mapsto, swap, ""] & S \arrow[u, swap, "\id"]
-\end{tikzcd}\]
-
-It's a Kan complex. Why? Well, when you consider \(S\) as a discrete category, and take the nerve of it, you get \(\overline{S}\). You can then either just see than it's a Kan complex (fill the horns with identities) or use the fact that the nerve of a groupoid is a Kan complex. It's surely in \autocite{lurie2008higher} or \autocite{kerodon} somewhere. 
 
 \printbibliography
 
