@@ -390,7 +390,7 @@ For each \(i, j\) satisfying \(1 \leq i \leq n\), define  \(\rho^i \ang{n}\to \a
 Let \(\mathcal{C}^\otimes_{\ang{n}}\) denote the fibre \(p^{-1}\{\ang{n}\}\). Then every morphism \(\ang{n}\to \ang{m}\) in \(\textbf{Fin}_*\) induces a functor between the fibres \(\mathcal{C}^\otimes_{\ang{n}}\to \mathcal{C}^\otimes_{\ang{m}}\). In particular, the maps \(\rho^i\) defined above induce projections, the \textit{Segal maps}, \(\rho_!^i : \mathcal{C}^\otimes_{\ang{n}}\to \mathcal{C}^\otimes_{\ang{1}}\simeq \mathcal{C}\).
 \end{remark}
 
-\begin{proposition}[{\autocite{groth2015short}, Prop 4.26}]
+\begin{proposition}[{\autocite{groth2015short}, Prop 4.26}]\label{prop:segal}
 If \((\mathcal{C}, \otimes)\) is a symmetric monoidal category, then the forgetful functor 
 \begin{align*}
 p : \quad\;\;\, \mathcal{C}^\otimes \quad\;\;\,&\to \;\;\textbf{Fin}_*\\
@@ -401,7 +401,11 @@ is a Grothendieck opfibration. Moreover, \(p\) satisfies the \textit{Segal condi
 are equivalences. Conversely any Grothendieck opfibration \(p : \mathcal{D} \to \textbf{Fin}_*\) satisfying the Segal condition gives rise to a symmetric monoidal structure on \(\mathcal{D}_{\ang{1}}\).
 \end{proposition}
 
-The proposition above allows us to make the following alternative definition of a symmetric monoidal category.
+We do not prove the proposition above, but sketch how to recover a symmetric monoidal category from an opfibration satisfying the Segal condition.
+
+Let \(p : \mathcal{D} \to \textbf{Fin}_*\) be an opfibration which satisfies the Segal condition. Then \(\mathcal{D}_{\ang{0}}\simeq \mathcal{D}_{\ang{1}}^{\times 0}\simeq {*}\), so \(\mathcal{D}_{\ang{0}}\) has a single object up to equivalence. The unique map \(\ang{0}\to \ang{1}\) in \(\textbf{Fin}_*\) determines a map \({*}\to \mathcal{D}\), which picks out an object \(\textbf{1}\in \mathcal{D}\); this is the unit of \(\mathcal{D}\). 
+
+\ref{prop:segal} allows us to make the following alternative definition of a symmetric monoidal category.
 
 \begin{definition}\label{def:newmonoidal}
 A \textit{symmetric monoidal category} is a Grothendieck opfibration \(p : \mathcal{D}\to \textbf{Fin}_*\) such that the Segal maps
@@ -612,7 +616,7 @@ where all faces containing the vertex \(c\) commute. The image of this tetrahedr
 
 \subsection{Symmetric monoidal \(\infty\)-categories}
 
-We are finally ready to define symmetric monoidal \(\infty\)-categories.
+We are finally ready to define symmetric monoidal \(\infty\)-categories; the following definitions are now almost identical to those for symmetric monoidal \(1\)-categories.
 
 \begin{definition}[{\autocite{higheralgebra}, Def 2.0.0.7}]
 A \textit{symmetric monoidal \(\infty\)-category} is a cocartesian fibration of simplicial sets \(p : X^\otimes \to N(\textbf{Fin}_*)\) such that for each \(n \geq 0\), the maps 
