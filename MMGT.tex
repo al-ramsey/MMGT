@@ -710,40 +710,6 @@ Let \(S \in \textbf{Set}\). We define the constant simplicial set
 
 It's a Kan complex. Why? Well, when you consider \(S\) as a discrete category, and take the nerve of it, you get \(\overline{S}\). You can then either just see than it's a Kan complex (fill the horns with identities) or use the fact that the nerve of a groupoid is a Kan complex. It's surely in \autocite{lurie2008higher} or \autocite{kerodon} somewhere. 
 
-Here are the original definitions of the Grothendieck equivalence (before I dualised them, just in case I did it wrong). 
-
-Let \(F : \mathcal{C}^{\text{op}} \to \textbf{Cat}\) be a pseudofunctor. Define the category \(X\) as follows: the objects of \(X\) are pairs \((c, x)\), with \(c \in \mathcal{C}\), \(x \in F(c)\). A map \((c, x)\to (d, y)\) is a pair \((f, u)\), where \(f : c \to d\) is a morphism in \(\mathcal{C}\), and \(u : x\to (Ff)(y)\) is a morphism in \(F(c)\). For an object \((c, x) \in X\), the identity morphism is given by
-\[(\id_c, F^0_x : x \to F(\id_c)(x)),\]
-where \(F^0\) is the natural isomorphism \(\id_{F(c)} \cong F(\id_c)\). Further, given two maps \((f, u) : (c, x) \to (d, y)\) and \((g, v) : (d, y)\to (e, z)\), their composition \((g,v)\circ (f, u)\) is given by \(g \circ f\), together with the map
-\[x \xrightarrow{u} (Ff)(y)\xrightarrow{(Ff)(v)} (Ff \circ Fg)(z) \xrightarrow{\left(F^2_{f,g}\right)_z} (F(g\circ f))(z),\]
-
-where \(F^2_{f, g}\) is the natural isomorphism \(Ff \circ Fg \cong F(g \circ f)\) (recall that the domain of \(F\) is \(\mathcal{C}^{\text{op}}\), while \(f, g\) are morphisms in \(\mathcal{C}\)). One can show that the forgetful functor \(X \to \mathcal{C}\) is a fibration over \(\mathcal{C}\). 
-
-Now, let \(p : X\to \mathcal{C}\) be a fibration over \(\mathcal{C}\). Define a pseudofunctor 
-\begin{align*}
-\mathcal{C}^{\text{op}}&\to \textbf{Cat}\\
-c &\mapsto p^{-1}\{c\}.
-\end{align*}
-
-For a map \(f : c \to d\) in \(\mathcal{C}\), we define a functor 
-\begin{align*}
-f^* : p^{-1}\{d\}&\to p^{-1}\{c\},
-\end{align*}
-which sends \(x \in p^{-1}\{d\}\) to a the source \(x'\) of a cartesian edge \(\phi_x : x' \to x\) lying over \(f\). Now, let \(f^*(y)=y'\), with \(\phi_y : y' \to y\), and let \(g : x \to y\) be a morphism in \(p^{-1}\{d\}\) (that is, a morphism in \(X\) lying over \(\id_c\)). Then, since \(\phi_y : y' \to y\) is a cartesian edge, there is a unique lift \(\overline g : x' \to y'\) of \(\id_c\) making the square on the left commute, as shown in the diagram on the right. 
-
-\[\begin{tikzcd}
-x' \arrow[r, "\phi_x"] \arrow[d, swap, dashrightarrow, "\exists!\overline g"]  & x \arrow[d, "g"]  \\
-y' \arrow[r, swap, "\phi_y"]  & y
-\end{tikzcd}\quad\quad\quad \begin{tikzcd}
- & & x' \arrow[dddd, mapsto, ""] \arrow[dll, dashrightarrow, swap, "\exists !\overline g"] \arrow[dl, "g \circ \phi_x"] \\
-y' \arrow[r, swap, "\phi_y"] \arrow[dd, mapsto, swap, ""] & y \arrow[dd, mapsto, swap, ""]  & \\
-& & \\
-c \arrow[r, "f"] & d  & \\
- & & c \arrow[llu, "\id_c"] \arrow[lu, swap, "f"] 
-\end{tikzcd}\]
-
-We thus define \(f^*g=\overline{g}\) in \(p^{-1}\{c\}\). It can be shown that these data assemble into a pseudofunctor \(\mathcal{C}^{\text{op}}\to \textbf{Cat}\).
-
 \subsection{Questions}
 
 Questions:
