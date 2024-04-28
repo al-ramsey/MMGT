@@ -403,7 +403,40 @@ are equivalences. Conversely any Grothendieck opfibration \(p : \mathcal{D} \to 
 
 We do not prove the proposition above, but sketch how to recover a symmetric monoidal category from an opfibration satisfying the Segal condition.
 
-Let \(p : \mathcal{D} \to \textbf{Fin}_*\) be an opfibration which satisfies the Segal condition. Then \(\mathcal{D}_{\ang{0}}\simeq \mathcal{D}_{\ang{1}}^{\times 0}\simeq {*}\), so \(\mathcal{D}_{\ang{0}}\) has a single object up to equivalence. The unique map \(\ang{0}\to \ang{1}\) in \(\textbf{Fin}_*\) determines a map \({*}\to \mathcal{D}\), which picks out an object \(\textbf{1}\in \mathcal{D}\); this is the unit of \(\mathcal{D}\). 
+Let \(p : \mathcal{D} \to \textbf{Fin}_*\) be an opfibration which satisfies the Segal condition. Then \(\mathcal{D}_{\ang{0}}\simeq \mathcal{D}_{\ang{1}}^{\times 0}\simeq \{*\}\), so \(\mathcal{D}_{\ang{0}}\) has a single object up to equivalence. The unique map \(\ang{0}\to \ang{1}\) in \(\textbf{Fin}_*\) determines a map \(\{*\}\to \mathcal{D}\), which picks out an object \(\textbf{1}\in \mathcal{D}\); this is the unit of \(\mathcal{D}\). Now, let \(a : \ang{2}\to \ang{1}\) be the map in \(\textbf{Fin}_*\) which sends \(1, 2\in \ang{2}\) to \(1\in \ang{1}\). Then there are maps
+\begin{equation}\label{maps}
+\mathcal{D}_{\ang{1}}\times \mathcal{D}_{\ang{1}}\simeq \mathcal{D}_{\ang{2}}\to \mathcal{D}_{\ang{1}},
+\end{equation}
+where the first equivalence is induced by \(\rho^1\) and \(\rho^2\), and the second map is induced by \(a\). This gives us, up to canonical isomorphism, a map \(\otimes : \mathcal{D}_{\ang{1}}\times \mathcal{D}_{\ang{1}}\to \mathcal{D}_{\ang{1}}\); the product of the monoidal category. 
+
+The natural isomorphisms are obtained as follows: let \(s : \ang{2}\to \ang{2}\) be the map in \(\textbf{Fin}_*\) which permutes \(1\) and \(2\). Then \(a \circ s =  a\), and \((\rho^1\times \rho^2) \circ s = \rho^2 \circ \rho^1\). Using the maps in (\ref{maps}), we obtain a canonical isomorphism \(\otimes \xrightarrow\sim \sigma \circ \otimes\). Now, consider the commutative diagrams
+\[\begin{tikzcd}
+\ang{1} \arrow[r, "\id"] \arrow[d, swap, "\id"]  & \ang{1} \arrow[d, "f"]  \\
+\ang{1} & \ang{2} \arrow[l, "a"]
+\end{tikzcd}\qquad \begin{tikzcd}
+\ang{1} \arrow[r, "\id"] \arrow[d, swap, "\id"]  & \ang{1} \arrow[d, "g"]  \\
+\ang{1} & \ang{2} \arrow[l, "a"]
+\end{tikzcd}\]
+where \(f : \ang{1}\to \ang{2}\) sends \(1\mapsto 1\), and \(g : \ang{1}\to \ang{2}\) sends \(1 \mapsto 2\). These determine diagrams 
+\[\begin{tikzcd}
+\mathcal{D}_{\ang{1}} \arrow[r, "\id_!"] \arrow[d, swap, "\id_!"]  & \mathcal{D}_{\ang{1}} \arrow[d, "f_!"]  \\
+\mathcal{D}_{\ang{1}} & \mathcal{D}_{\ang{2}} \arrow[l, "a_!"]
+\end{tikzcd}\qquad \begin{tikzcd}
+\mathcal{D}_{\ang{1}} \arrow[r, "\id_!"] \arrow[d, swap, "\id_!"]  & \mathcal{D}_{\ang{1}} \arrow[d, "g_!"]  \\
+\mathcal{D}_{\ang{1}} & \mathcal{D}_{\ang{2}} \arrow[l, "a_!"]
+\end{tikzcd}\]
+which, combined with the equivalences \(\mathcal{D}_{\ang{n}}\simeq \mathcal{D}_{\ang{1}}^{\times n}\), give rise to the natural isomorphisms \(r\) and \(l\) respectively. In a similar way, the commutative diagram
+\[\begin{tikzcd}
+\ang{3} \arrow[r, "\tau^3_1"] \arrow[d, swap, "\tau^3_2"]  & \ang{2} \arrow[d, "\tau^2_1"]  \\
+\ang{2} \arrow[r, "\tau^2_1"] & \ang{1}
+\end{tikzcd}\]
+where 
+\[\tau^n_i(j) =\begin{cases}
+j &\text{if } 1 \leq j \leq i\\
+j-1 &\text{if } i < j \leq n\\
+* &\text{if } j = * 
+\end{cases}\]
+determines the natural isomorphism \(\alpha : \otimes \circ (\otimes \times \id) \xrightarrow{\sim}\otimes \circ (\id \times \otimes)\) (see Chapter 2 of \autocite{higheralgebra} for details). 
 
 \ref{prop:segal} allows us to make the following alternative definition of a symmetric monoidal category.
 
@@ -439,7 +472,7 @@ F(Y)\otimes F(X) \arrow[r, swap, "J_{Y, X}"]  & F(Y\otimes X)
 \end{tikzcd}\]
 \end{definition}
 
-In order to write this in form compatible with \ref{def:newmonoidal}, we define a notion of maps between opfibrations.
+We end this section by briefly defining a notion of maps between opfibrations, and use this to find the appropriate definition of a symmetric monoidal functor in a form compatible with \ref{def:newmonoidal}. Further detail may be found in \autocite{symmetricmonoidal}. 
 
 \begin{definition}[{\autocite{symmetricmonoidal}, Def 3.3}]
 Let \(p : X \to \mathcal{C}\) and \(q : Y \to \mathcal{C}\) be two Grothendieck (op)fibrations. We say that a functor \(F : X \to Y\) is a \textit{morphism of (op)fibrations} from \(p\) to \(q\) if the diagram below commutes,
@@ -463,7 +496,7 @@ Under the identification of symmetric monoidal categories and opfibrations over 
 
 \subsection{Cocartesian fibrations}
 
-We first need an \(\infty\)-categorical analogue of Grothendieck opfibrations. We begin by requiring that our functor is what's known as an \textit{inner fibration}; there is no \(1\)--categorical analogue of this, since all functors between \(1\)-categories are automatically inner fibrations under the nerve functor (see \ref{ex:inner}). This condition may be thought of as a `minimum niceness condition' -- we want the fibres to be \(\infty\)-categories in much the same way as we want the fibres of ordinary functors to be categories themselves. 
+We first need an \(\infty\)-categorical analogue of Grothendieck opfibrations. We begin by requiring that our map between \(\infty\)-categories (or, more generally, simplicial sets) is what is known as an \textit{inner fibration}; there is no \(1\)--categorical analogue of this, since all functors between \(1\)-categories are automatically inner fibrations under the nerve functor (see \ref{ex:inner}). This condition may be thought of as a `minimum niceness condition' -- we want the fibres to be \(\infty\)-categories in much the same way as we want the fibres of ordinary functors to be categories themselves. 
 
 \begin{definition}[{\autocite{goodfibrations}, Def 2.1}]
 A functor \(p : X \to Y\) between simplicial sets is an \textit{inner fibration} if for all \(n \geq 2\), all \(0 < k < n\), and any solid arrow commutative square 
@@ -616,7 +649,7 @@ where all faces containing the vertex \(c\) commute. The image of this tetrahedr
 
 \subsection{Symmetric monoidal \(\infty\)-categories}
 
-We are finally ready to define symmetric monoidal \(\infty\)-categories; the following definitions are now almost identical to those for symmetric monoidal \(1\)-categories.
+We are finally ready to define symmetric monoidal \(\infty\)-categories; the following definitions are now almost identical to those for symmetric monoidal \(1\)-categories, and thus this section will be surprisingly brief.
 
 \begin{definition}[{\autocite{higheralgebra}, Def 2.0.0.7}]
 A \textit{symmetric monoidal \(\infty\)-category} is a cocartesian fibration of simplicial sets \(p : X^\otimes \to N(\textbf{Fin}_*)\) such that for each \(n \geq 0\), the maps 
