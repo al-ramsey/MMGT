@@ -124,7 +124,7 @@
 
 In the first half of this report, we focus on ordinary \(1\)-categories and \(2\)-categories; we first consider some natural examples of pseudofunctors to \textbf{Cat}, to motivate the definitions of Grothendieck fibrations and opfibrations. We then outline in detail the relationship between pseudofunctors into \textbf{Cat} and Grothendieck opfibrations, using the (covariant) Grothendieck construction.
 
-We then move to symmetric monoidal \(1\)-categories, giving first the traditional definition, and then showing that it can be written as a pseudofunctor to \textbf{Cat} (and thus a Grothendieck opfibration). We construct the category \(\mathcal{C}^\otimes\) using the process outlined earlier, and recover Lurie's construction in Chapter 2 of \autocite{higheralgebra}. We then define symmetric monoidal functors in the usual way, and construct the definitions in terms of opfibrations, which will be more useful when working with \(\infty\)-categories. We will mostly follow the approaches taken by \autocite{symmetricmonoidal} and \autocite{groth2015short}. 
+Next, we consider symmetric monoidal \(1\)-categories, giving first the traditional definition, and then showing that it can be written as a pseudofunctor to \textbf{Cat} (and thus a Grothendieck opfibration). We construct the category \(\mathcal{C}^\otimes\) using the process outlined earlier, and recover Lurie's construction in Chapter 2 of \autocite{higheralgebra}. We then define symmetric monoidal functors in the usual way, and construct the definitions in terms of opfibrations, which will be more useful when working with \(\infty\)-categories. We mostly follow the approaches taken by \autocite{symmetricmonoidal} and \autocite{groth2015short}. 
 
 In section 3, we move to higher category theory. We first introduce inner fibrations, proving that they are stable under pullbacks and that their fibres are \(\infty\)-categories. Then, we introduce cartesian and cocartesian fibrations, and show that the nerve of a functor is a (co)cartesian fibration of \(\infty\)-categories if and only if the original functor was an (op)fibration of ordinary categories. 
 
@@ -186,7 +186,7 @@ R\; &\mapsto R \textbf{-Mod},
 which sends a ring homomorphism \(\phi : R \to S\) to the functor \(-\otimes_R S : R \textbf{-Mod}\to S \textbf{-Mod}\); this is known as \textit{extension of scalars}. However, to give the data of a pseudofunctor \(F : \mathcal{C} \to \textbf{Cat}\), we must specify not only the functions \(\ob(\mathcal{C})\to \ob(\textbf{Cat})\) and \(\Hom_\mathcal{C}(X, Y)\to \Hom_\textbf{Cat}(F(X), F(Y))\) for each \(X, Y \in \mathcal{C}\), but also natural isomorphisms
 \[F(\id_X) \cong \id_{F(X)}, \quad F(g \circ f) \cong F(g) \circ F(f).\]
 
-Thus, as we move into the realm of higher categories, the data needed to define the appropriate notion of a functor grows rapidly. Since we intend to generalise these concepts to \(\infty\)-categories, we will turn to a different method of encoding the same information - Grothendieck fibrations and opfibrations.
+Thus, as we move into the realm of higher categories, the amount of data needed to define the appropriate notion of a functor grows rapidly. Since we intend to generalise these concepts to \(\infty\)-categories, we will turn to a different method of encoding the same information - Grothendieck fibrations and opfibrations.
 
 \begin{definition}
 Let \(p : X \to \mathcal{C}\) be a functor, let \(f : c \to c'\) be a morphism in \(\mathcal{C}\), and let \(\phi : x \to x'\) be a morphism in \(X\) lying over \(f\).
@@ -217,7 +217,7 @@ c \arrow[r, "f"] \arrow[rrd, swap, "p(\psi)"] & c' \arrow[rd, "\forall g"]  & & 
 Let \(p : X \to \mathcal{C}\) be a functor. Then \(p\) is a \textit{Grothendieck fibration} if for any morphism of \(\mathcal{C}\) and any lift of its target, there is a \(p\)-cartesian morphism with that target lying over it. Dually, \(p\) is a \textit{Grothendieck opfibration} if for any morphism of \(\mathcal{C}\) and any lift of its source, there  is a \(p\)-cocartesian morphism with that source lying over it.
 \end{definition}
 
-We will usually refer to Grothendieck (op)fibrations as just (op)fibrations for brevity. Note that in \autocite{symmetricmonoidal} and \autocite{lurie2008higher} these are referred to as \textit{(co)cartesian fibrations}; we reserve this term for the \(\infty\)-category analogue. We will also often write (co)cartesian rather than \(p\)-(co)cartesian when it is clear what the functor \(p\) is.
+We will usually refer to Grothendieck (op)fibrations as just (op)fibrations for brevity. Note that in \autocite{symmetricmonoidal} and \autocite{kerodon} these are referred to as \textit{(co)cartesian fibrations}; we reserve this term for the \(\infty\)-category analogue. We will also often write (co)cartesian rather than \(p\)-(co)cartesian when it is clear what the functor \(p\) is.
 
 \begin{remark}\label{rem:op}
 A functor \(p : X \to \mathcal{C}\) is an opfibration if and only if \(p^{\text{op}} : X^{\text{op}}\to \mathcal{C}^{\text{op}}\) is a fibration. We give the definition of an opfibration explicitly above, since we will be working with these more often than fibrations.  
@@ -290,10 +290,10 @@ We now move onto the main object of our consideration: symmetric monoidal catego
 \begin{definition}\label{def:monoidal}
 A \textit{symmetric monoidal category} is a category \(\mathcal{C}\) equipped with a bifunctor 
 \[\otimes : \mathcal{C} \times \mathcal{C}\to \mathcal{C},\]
-an object \(\textbf{1}\in \mathcal{C}\), and natural isomorphisms
+an object \(\textbf{1}\in \mathcal{C}\) (the unit), and natural isomorphisms
 \[\alpha : \otimes \circ (\otimes \times \id) \xrightarrow{\sim}\otimes \circ (\id \times \otimes),\quad \tau : \otimes \xrightarrow\sim \sigma \circ \otimes\]
 \[l : \otimes \circ (\textbf{1}\times \id)\xrightarrow\sim \id, \quad r : \otimes \circ (\id \times \textbf{1})\xrightarrow\sim \id,\]
-where \(\sigma : \mathcal{C} \times \mathcal{C}\) swaps the order of the factors. These isomorphisms (encoding associativity, symmetry, left and right unitality respectively) are subject to the condition that \(\tau^2=\id\), and that the diagrams below commute.
+where \(\sigma : \mathcal{C} \times \mathcal{C}\) swaps the order of the factors. These isomorphisms (encoding associativity, symmetry, and left and right unitality respectively) are subject to the condition that \(\tau^2=\id\), and that the diagrams below commute.
 \[\begin{tikzcd}
 & ((U\otimes V)\otimes W)\otimes X \arrow[ld, swap, "\alpha_{U\otimes V, W, X}"] \arrow[rd, "\alpha_{U, V, W}\otimes \id_X"]  & \\
 (U\otimes V)\otimes (W\otimes X) \arrow[d, swap, "\alpha_{U, V, W\otimes X}"]  & & (U\otimes(V\otimes W))\otimes X \arrow[d, "\alpha_{U, V\otimes W, X}"]\\
