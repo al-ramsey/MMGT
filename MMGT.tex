@@ -448,7 +448,7 @@ are equivalences.
 
 It is worth pausing to summarise what we have achieved in the last two sections. First, we noticed that pseudofunctors \(\mathcal{C}\to \textbf{Cat}\) encode the same information as opfibrations into \(\mathcal{C}\). We also noticed that symmetric monoidal categories could be written as special pseudofunctors \(\textbf{Fin}_* \to \textbf{Cat}\), which means they are special opfibrations into \(\textbf{Fin}_*\). We looked at the corresponding construction of \(\mathcal{C}^\otimes\) (via the Grothendieck construction). Thus, symmetric monoidal categories, certain pseudofunctors \(\textbf{Fin}_* \to \textbf{Cat}\), and opfibrations into \(\textbf{Fin}_*\) satisfying the Segal condition all encode the same data, but the latter package allows us to `hide' the unwieldy higher coherences in the opfibration itself, which will be incredibly useful when we begin to consider symmetric monoidal \(\infty\)-categories.
 
-We end this section by similarly rewriting the definition of a symmetric monoidal functor. 
+We conclude by similarly rewriting the definition of a symmetric monoidal functor. 
 
 \begin{definition}
 Let \((\mathcal{C}, \otimes)\), \((\mathcal{D}, \otimes')\) be symmetric monoidal categories (in the sense of \ref{def:monoidal}), with units \(\textbf{1}\) and \(\textbf{1}'\) respectively. A \textit{symmetric monoidal functor} \(F : \mathcal{C} \to \mathcal{D}\) is a functor \(\mathcal{C} \to \mathcal{D}\) equipped with natural isomorphisms
@@ -590,9 +590,9 @@ a dotted lift exists.
 Let \(p : X \to Y\) be an inner fibration. Then \(p\) is a cocartesian fibration if for any edge \(\phi : y \to y'\) in \(Y_1\), and for every \(x \in X_0\) lying over \(y\), there exists a \(p\)-cocartesian edge \(f : x \to x'\) of \(X\) lying over \(\phi\). 
 \end{definition}
 
-The following proposition (stated as a remark in \autocite{lurie2008higher}) shows us that the above definition is a reasonable generalisation of \ref{opfibration}. 
+The following proposition (the dual of which is stated as Remark 2.4.2.2 in \autocite{lurie2008higher}) shows us that the above definition is a reasonable generalisation of \ref{opfibration}. 
 
-\begin{proposition}[{\autocite{lurie2008higher}, Rmk 2.4.2.2}]\label{prop:opiffco}
+\begin{proposition}\label{prop:opiffco}
 Let \(\mathcal{C}\), \(\mathcal{D}\) be categories, and let \(p : \mathcal{C} \to \mathcal{D}\) be a functor between them. Then \(p\) is a Grothendieck opfibration if and only if the induced map \(N(p) : N \mathcal{C} \to N\mathcal{D}\) is a cocartesian fibration of simplicial sets.
 \end{proposition}
 
